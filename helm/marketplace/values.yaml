@@ -1,0 +1,13 @@
+replicaCount: 1
+
+image:
+  repository: sr2020/marketplace
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+app:
+  billingHost: https://gateway.evarun.ru/api/v1/billing/

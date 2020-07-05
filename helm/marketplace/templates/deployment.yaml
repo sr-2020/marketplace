@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketplace
+spec:
+  selector:
+    matchLabels:
+      run: marketplace
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        run: marketplace
+    spec:
+      containers:
+        - name: marketplace
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8080
+          env:
+            - name: BILLING_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-configmap
+                  key: billingHost
