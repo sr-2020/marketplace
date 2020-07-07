@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . .
 RUN  npm install -g http-server \
 npm install \
-npm run build \
+npm run build
 
 RUN rm -rf node_modules
 
