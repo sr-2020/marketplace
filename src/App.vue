@@ -9,6 +9,5 @@
 </template>
 
 <style lang="less">
-  @import url(styles/grid);
-
+@import url(styles/grid);
 </style>
