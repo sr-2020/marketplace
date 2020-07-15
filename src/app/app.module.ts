@@ -10,7 +10,7 @@ import { GoodsModule } from './goods/goods.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +19,7 @@ import { GoodsModule } from './goods/goods.module';
     GoodsModule,
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

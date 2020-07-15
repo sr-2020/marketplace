@@ -5,7 +5,7 @@ export default   [
     qr: 'some link',
     count: 1,
     price: 20000,
-    lifestyle: 'some lifestyle',
+    lifestyle: 0,
     owner: 'some name'
   },
   {
@@ -14,7 +14,7 @@ export default   [
     qr: 'some link',
     count: 100,
     price: 312312,
-    lifestyle: 'Aluminum',
+    lifestyle: 1,
     owner: 'Guines corp'
   },
   {
@@ -23,7 +23,7 @@ export default   [
     qr: 'some link',
     count: 2312,
     price: 20,
-    lifestyle: 'Хлебушек',
+    lifestyle: 0,
     owner: '3 корочки'
   },
   {
@@ -32,7 +32,7 @@ export default   [
     qr: 'some link',
     count: 1,
     price: 20000000,
-    lifestyle: 'etc',
+    lifestyle: 4,
     owner: 'BMW'
   },
   {
@@ -41,7 +41,7 @@ export default   [
     qr: 'some link',
     count: 1,
     price: 4214,
-    lifestyle: 'some lifestyle',
+    lifestyle: 3,
     owner: 'some name'
   },
   {
@@ -50,7 +50,7 @@ export default   [
     qr: 'some link',
     count: 1123,
     price: 63462,
-    lifestyle: 'some lifestyle',
+    lifestyle: 0,
     owner: 'some name'
   },
   {
@@ -59,7 +59,7 @@ export default   [
     qr: 'some link',
     count: 1,
     price: 20000,
-    lifestyle: 'some lifestyle',
+    lifestyle: 1,
     owner: 'some name'
   }
 ];

@@ -12,7 +12,7 @@ export class GoodsListComponent implements OnInit {
   constructor(private service: GoodsListService) {
   }
 
-  displayedColumns: string[] = ['id', 'name', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'lifestyle', 'actions'];
 
   ngOnInit(): void {
     this.data = this.service.getGoodsList();
