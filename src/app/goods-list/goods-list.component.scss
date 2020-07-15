@@ -1,0 +1,22 @@
+.container-fluid {
+  padding-top: 40px;
+  @media screen and (max-width: 767px) {
+    padding-top: 20px;
+  }
+}
+
+table {
+  tr.mat-row:hover {
+    background-color: #EEEEEE;
+    cursor: pointer;
+  }
+
+  th, td {
+    &:last-child {
+      width: 10%;
+      text-align: center;
+    }
+  }
+
+  width: 100%;
+}

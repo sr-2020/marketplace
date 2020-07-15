@@ -4,7 +4,7 @@
     <table mat-table
            *ngIf="data"
            [dataSource]="data"
-           class="mat-elevation-z8 col-xs-12">
+           class="col-xs-12 mat-elevation-z8 ">
       <ng-container matColumnDef="id">
         <th mat-header-cell
             *matHeaderCellDef> ID
@@ -19,6 +19,14 @@
         </th>
         <td mat-cell
             *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell
+            *matHeaderCellDef>
+        </th>
+        <td mat-cell
+            *matCellDef="let element"> Изменить / Удалить </td>
       </ng-container>
 
       <tr mat-header-row
