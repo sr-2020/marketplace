@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoodsModule } from './goods/goods.module';
+import { SrCommonModule } from './common/common.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { GoodsModule } from './goods/goods.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    SrCommonModule,
     GoodsModule,
+    MatButtonModule
   ],
   providers: [],
 

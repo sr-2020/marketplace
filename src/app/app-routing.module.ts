@@ -4,7 +4,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./goods/goods.module').then(m => m.GoodsModule), },
+  { path: '', redirectTo: 'goods', pathMatch: 'full' },
+  { path: 'goods', loadChildren: () => import('./goods/goods.module').then(m => m.GoodsModule), },
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404' }
 ];
