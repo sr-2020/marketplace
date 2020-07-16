@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoodsModule } from './goods/goods.module';
+import { CommonModule } from './common/common.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { GoodsModule } from './goods/goods.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CommonModule,
     GoodsModule,
   ],
   providers: [],
