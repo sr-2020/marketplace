@@ -1,1 +1,11 @@
-<p>nav works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div *ngFor="let l of navBarSchema"
+         class="col-xs-2">
+      <a mat-raised-button [routerLink]="l.routerLink" [routerLinkActive]="'nav-bar--active'">{{l.name}}</a>
+    </div>
+
+  </div>
+
+</div>
+

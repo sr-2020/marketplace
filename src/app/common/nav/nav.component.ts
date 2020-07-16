@@ -1,15 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'sr-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss']
 })
-export class NavComponent implements OnInit {
+export class NavComponent {
+  isMobile = window.innerWidth < 991;
+  navBarSchema = [
+    {
+      name: 'Информация',
+      routerLink: 'info'
+    },
+    {
+      name: 'Переводы',
+      routerLink: 'transactions'
+    },
+    {
+      name: 'Контракты',
+      routerLink: 'contracts'
+    },
+    {
+      name: 'Доступные товары',
+      routerLink: 'goods'
+    },
+    {
+      name: 'Купленные товары',
+      routerLink: 'basket'
+    },
+    {
+      name: 'Доступы',
+      routerLink: 'permissions'
+    },
+  ];
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @HostListener('window:resize')
+  onResize() {
+    this.isMobile = window.innerWidth < 991;
   }
-
 }
