@@ -7,6 +7,8 @@ import { Component, HostListener } from '@angular/core';
 })
 export class NavComponent {
   isMobile = window.innerWidth < 991;
+  isOpen = false;
+
   navBarSchema = [
     {
       name: 'Информация',
