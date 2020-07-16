@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
+import { NavComponent } from './nav/nav.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, NavComponent],
   imports: [
   ]
 })
