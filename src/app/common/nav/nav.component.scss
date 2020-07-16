@@ -1,0 +1,57 @@
+
+
+.nav-bar {
+  a {
+    width: 100%;
+  }
+  &--active {
+    background-color: #EEEEEE;
+  }
+}
+
+.side-bar {
+  display: flex;
+  padding-top: 40px;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  background-color: #dddddd;
+  box-shadow: gray;
+  height: 100vh;
+  transition: left .3s ease-in-out;
+  a {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  &.--open {
+    left: 0;
+    mat-icon {
+      transform: rotate(-180deg);
+    }
+  }
+  &__close-button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:  #dddddd;
+    border-radius: 0 4px 4px 0;
+    top: calc(50vh - 30px);
+    cursor: pointer;
+    right: -30px;
+    width: 30px;
+    height: 60px;
+    color: black;
+    opacity: 0.4;
+    transition: opacity .3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+    mat-icon{
+      transition: transform .3s ease-in-out;
+    }
+  }
+}
