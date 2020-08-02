@@ -7,6 +7,8 @@ import { TransactionsNewComponent } from './transactions-new/transactions-new.co
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 
@@ -16,8 +18,10 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatButtonModule,
     MatInputModule,
+    ReactiveFormsModule,
     TransactionsRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule
   ]
 })
 export class TransactionsModule { }
