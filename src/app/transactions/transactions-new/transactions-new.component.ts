@@ -14,7 +14,7 @@ export class TransactionsNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: ['', Validators.required],
+      target: ['', Validators.required],
       amount: [0, Validators.required],
       comment: [''],
       type: false,
