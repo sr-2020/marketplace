@@ -1,7 +1,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-sm-offset-10 col-sm-2 end-xs">
-      <button mat-raised-button color="primary" [routerLink]="['new']">Add transaction</button>
+      <button mat-raised-button
+              color="primary"
+              [routerLink]="['new']">Add transaction
+      </button>
     </div>
+  </div>
+  <div class="row">
+    <pre class="col-xs-12">
+      {{transactionList | json}}
+    </pre>
   </div>
 </div>

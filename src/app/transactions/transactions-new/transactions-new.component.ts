@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TransactionsService } from '../transactions.service';
 
 @Component({
   selector: 'sr-transactions-new',
@@ -9,16 +10,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TransactionsNewComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: TransactionsService) {
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       target: ['', Validators.required],
-      amount: [0, Validators.required],
+      sum: [0, [Validators.required, Validators.pattern(/[+-]?\d+/)]],
       comment: [''],
       type: false,
     });
+  }
+
+  performTransaction() {
+    this.service.createTransaction(
+      {
+        id: Math.random().toString(),
+        target: this.form.value.target,
+        timestamp: new Date().getTime(),
+        sum: this.form.value.sum,
+        comment: this.form.value.comment,
+      }
+    );
   }
 
   get transferTypeCtrl() {

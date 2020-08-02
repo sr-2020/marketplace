@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TransactionsService } from '../transactions.service';
 
 @Component({
   selector: 'sr-transactions-list',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transactions-list.component.scss']
 })
 export class TransactionsListComponent implements OnInit {
-
-  constructor() { }
+  transactionList: any;
+  constructor(private service: TransactionsService) { }
 
   ngOnInit(): void {
+    this.transactionList = this.service.getTransactionList();
   }
 
 }
