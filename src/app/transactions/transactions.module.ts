@@ -6,6 +6,7 @@ import { TransactionsRoutingModule } from './transactions-routing.module';
 import { TransactionsNewComponent } from './transactions-new/transactions-new.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -15,7 +16,8 @@ import { MatInputModule } from '@angular/material/input';
     CommonModule,
     MatButtonModule,
     MatInputModule,
-    TransactionsRoutingModule
+    TransactionsRoutingModule,
+    MatIconModule
   ]
 })
 export class TransactionsModule { }

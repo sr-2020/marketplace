@@ -1,12 +1,32 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-sm-offset-10 col-sm-2 end-xs">
-      <button mat-raised-button color="primary" [routerLink]="['..']">Назад</button>
+    <h2 class="col-xs-12 col-sm-6">Новый перевод</h2>
+    <div class="col-xs-12 col-sm-6 end-xs">
+      <button mat-button
+              [routerLink]="['..']">
+        <mat-icon>navigate_before</mat-icon>Вернуться к списку транзакций
+      </button>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 col-sm-4 end-xs">
-
+    <mat-form-field class="col-xs-12 col-sm-6 ">
+      <mat-label>Получатель</mat-label>
+      <input matInput
+             type="text">
+    </mat-form-field>
+    <mat-form-field class="col-xs-12 col-sm-6 ">
+      <mat-label>Сумма</mat-label>
+      <input matInput
+             type="number">
+    </mat-form-field>
+    <mat-form-field class="col-xs-12">
+      <mat-label>Комментарий (не обязательно)</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+    <div class="col-xs-12">
+      <button mat-raised-button>
+        Перевести
+      </button>
     </div>
   </div>
 </div>
