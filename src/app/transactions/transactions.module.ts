@@ -10,7 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { getRusPaginatorIntl } from '../util/paginationTranslation';
 
 
 
@@ -26,6 +27,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSlideToggleModule,
     MatExpansionModule,
     MatPaginatorModule
+  ],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: getRusPaginatorIntl() }
   ]
 })
-export class TransactionsModule { }
+export class TransactionsModule {
+  constructor() {
+  }
+}
