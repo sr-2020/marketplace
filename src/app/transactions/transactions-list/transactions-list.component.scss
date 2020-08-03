@@ -1,0 +1,16 @@
+.row.--actions {
+  margin-bottom: 40px;
+}
+.transaction-list__column {
+  width: 30%;
+
+  &.--trade-icon {
+    width: 10%;
+    mat-icon {
+      color: green;
+      &.--negative {
+        color: red;
+      }
+    }
+  }
+}
