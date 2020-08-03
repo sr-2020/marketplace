@@ -6,11 +6,27 @@
               [routerLink]="['new']">Add transaction
       </button>
     </div>
+
+    <mat-form-field class="col-xs-12 col-sm-4">
+      <mat-label>Фильтр</mat-label>
+      <input type="text"
+             matInput
+             (keydown)="applyFilter($event)">
+    </mat-form-field>
+    <mat-paginator
+      class="col-xs-12 col-sm-8 end-sm"
+      #listPaginator
+      [length]="50"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25]">
+    </mat-paginator>
+
+
   </div>
   <div class="row">
     <div class="col-xs-12">
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let t of transactionList"
+        <mat-expansion-panel *ngFor="let t of list$ | async"
                              hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title class="transaction-list__column --trade-icon">
@@ -43,7 +59,8 @@
               <div class="col-xs-6 col-sm-12">Сумма</div>
               <div class="col-xs-6 col-sm-12">{{ t.sum }} &#165;</div>
             </div>
-            <div class="row col-xs-12 col-sm-6 col-md-3" *ngIf="t.comment">
+            <div class="row col-xs-12 col-sm-6 col-md-3"
+                 *ngIf="t.comment">
               <div class="col-xs-6 col-sm-12">Комментарий</div>
               <div class="col-xs-6 col-sm-12">{{ t.comment }}</div>
             </div>

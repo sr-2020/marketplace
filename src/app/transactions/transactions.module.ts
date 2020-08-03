@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -23,7 +24,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     TransactionsRoutingModule,
     MatIconModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatPaginatorModule
   ]
 })
 export class TransactionsModule { }
