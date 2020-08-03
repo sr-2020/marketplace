@@ -8,8 +8,24 @@
     </div>
   </div>
   <div class="row">
-    <pre class="col-xs-12">
-      {{transactionList | json}}
-    </pre>
+    <div class="col-xs-12">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let t of transactionList" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{t.target}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{ t.sum }}&#165;
+            </mat-panel-description>
+            <mat-panel-description>
+              {{ t.timestamp | date: 'dd MMMM y': '+0300': 'ru_RU'}}
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+          <p>This is the primary content of the panel.</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
 </div>

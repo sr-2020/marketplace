@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 
@@ -21,7 +22,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ReactiveFormsModule,
     TransactionsRoutingModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule
   ]
 })
 export class TransactionsModule { }
