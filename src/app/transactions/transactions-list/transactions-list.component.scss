@@ -1,16 +1,30 @@
 .row.--actions {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
 }
 .transaction-list__column {
   width: 30%;
-
-  &.--trade-icon {
-    width: 10%;
-    mat-icon {
-      color: green;
-      &.--negative {
-        color: red;
-      }
+  align-items: center;
+  @media only screen and (max-width: 767px) {
+    width: 60%;
+    &.--currency {
+      width: 30%;
     }
   }
+  &.--trade-icon {
+    width: 5%;
+    mat-icon {
+
+    }
+  }
+
+}
+.--currency {
+  color: green;
+  &.--negative {
+    color: red;
+  }
+}
+
+.--currency, .--date {
+  justify-content: flex-end;
 }
