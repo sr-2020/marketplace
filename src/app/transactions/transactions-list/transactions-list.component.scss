@@ -1,0 +1,44 @@
+.row.--actions {
+  margin-bottom: 32px;
+}
+.transaction-list__column {
+  width: 30%;
+  align-items: center;
+  @media only screen and (max-width: 767px) {
+    width: 60%;
+    &.--currency {
+      width: 30%;
+    }
+  }
+  &.--trade-icon {
+    width: 5%;
+  }
+
+}
+.--currency {
+  color: green;
+  &.--negative {
+    color: red;
+  }
+}
+
+.--currency, .--date {
+  justify-content: flex-end;
+}
+
+.info-meta {
+  margin-bottom: 8px;
+
+  .--title {
+    color: #999999;
+  }
+  .--value {
+    font-size: 16px;
+  }
+  @media only screen and (max-width: 767px) {
+    .--title, .--value {
+      font-size: 12px;
+
+    }
+  }
+}

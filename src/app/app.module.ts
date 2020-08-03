@@ -8,6 +8,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { GoodsModule } from './goods/goods.module';
 import { SrCommonModule } from './common/common.module';
 import { MatButtonModule } from '@angular/material/button';
+import { TransactionsModule } from './transactions/transactions.module';
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeRu, 'ru_RU');
 
 @NgModule({
   declarations: [
@@ -20,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     BrowserAnimationsModule,
     SrCommonModule,
     GoodsModule,
+    TransactionsModule,
     MatButtonModule
   ],
   providers: [],

@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row --actions">
+    <div class="col-xs-12 col-sm-offset-10 col-sm-2 end-xs">
+      <button mat-raised-button
+              color="primary"
+              [routerLink]="['new']">Добавить перевод
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <mat-form-field class="col-xs-12 col-sm-3">
+      <mat-label>Фильтр</mat-label>
+      <input type="text"
+             matInput
+             (keydown)="applyFilter($event)">
+    </mat-form-field>
+    <mat-paginator
+      class="col-xs-12 col-sm-9 end-sm"
+      #listPaginator
+      [length]="50"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25]">
+    </mat-paginator>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let t of list$ | async"
+                             hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="transaction-list__column --trade-icon">
+              <mat-icon class="--currency"
+                        [class.--negative]="t.sum < 0">{{t.sum < 0 ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
+            </mat-panel-title>
+            <mat-panel-title class="transaction-list__column">
+              {{t.target}}
+            </mat-panel-title>
+            <mat-panel-title class="transaction-list__column --currency"
+                             [class.--negative]="t.sum < 0">
+              <ng-container *ngIf="t.sum > 0">+</ng-container>
+              {{ t.sum }}&#165;
+            </mat-panel-title>
+            <mat-panel-description class="transaction-list__column --date col-mobile-hidden">
+              {{ t.timestamp | date: 'dd MMMM y г.': '': 'ru_RU'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Идентификатор:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.id}}</div>
+            </div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Дата и время:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.timestamp | date: 'dd MMMM y г., HH:MM': '': 'ru_RU'}}</div>
+            </div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Получатель:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.target}}</div>
+            </div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 center-md --title">Сумма:</div>
+              <div class="col-xs-6 col-sm-12 center-md --value">{{ t.sum }} &#165;</div>
+            </div>
+            <div class="row col-xs-12 info-meta"
+                 *ngIf="t.comment">
+              <div class="col-xs-12 --title">Комментарий:</div>
+              <div class="col-xs-12 --value">{{ t.comment }}</div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

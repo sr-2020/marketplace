@@ -1,11 +1,12 @@
-
+@import 'src/styles/variables.scss';
 
 .nav-bar {
-  a {
+  margin-bottom: 40px;
+  button {
     width: 100%;
   }
   &--active {
-    background-color: #EEEEEE;
+    background-color: $teal-50;
   }
 }
 
@@ -21,7 +22,7 @@
   box-shadow: gray;
   height: 100vh;
   transition: left .3s ease-in-out;
-  a {
+  button {
     text-align: left;
     margin-bottom: 10px;
   }
