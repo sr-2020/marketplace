@@ -12,9 +12,6 @@
   }
   &.--trade-icon {
     width: 5%;
-    mat-icon {
-
-    }
   }
 
 }
@@ -27,4 +24,21 @@
 
 .--currency, .--date {
   justify-content: flex-end;
+}
+
+.info-meta {
+  margin-bottom: 8px;
+
+  .--title {
+    color: #999999;
+  }
+  .--value {
+    font-size: 16px;
+  }
+  @media only screen and (max-width: 767px) {
+    .--title, .--value {
+      font-size: 12px;
+
+    }
+  }
 }

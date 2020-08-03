@@ -29,39 +29,42 @@
                              hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title class="transaction-list__column --trade-icon">
-              <mat-icon class="--currency" [class.--negative]="t.sum < 0">{{t.sum < 0 ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
+              <mat-icon class="--currency"
+                        [class.--negative]="t.sum < 0">{{t.sum < 0 ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
             </mat-panel-title>
             <mat-panel-title class="transaction-list__column">
               {{t.target}}
             </mat-panel-title>
-            <mat-panel-title class="transaction-list__column --currency" [class.--negative]="t.sum < 0">
+            <mat-panel-title class="transaction-list__column --currency"
+                             [class.--negative]="t.sum < 0">
+              <ng-container *ngIf="t.sum > 0">+</ng-container>
               {{ t.sum }}&#165;
             </mat-panel-title>
             <mat-panel-description class="transaction-list__column --date col-mobile-hidden">
-              {{ t.timestamp | date: 'dd MMMM y': '': 'ru_RU'}}
+              {{ t.timestamp | date: 'dd MMMM y г.': '': 'ru_RU'}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
-            <div class="row col-xs-12 col-sm-6 col-md-3">
-              <div class="col-xs-6 col-sm-12">Идентификатор</div>
-              <div class="col-xs-6 col-sm-12">{{ t.id}}</div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Идентификатор:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.id}}</div>
             </div>
-            <div class="row col-xs-12 col-sm-6 col-md-3">
-              <div class="col-xs-6 col-sm-12">Дата и время</div>
-              <div class="col-xs-6 col-sm-12">{{ t.timestamp | date: 'dd MMMM y, HH:MM': '': 'ru_RU'}}</div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Дата и время:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.timestamp | date: 'dd MMMM y г., HH:MM': '': 'ru_RU'}}</div>
             </div>
-            <div class="row col-xs-12 col-sm-6 col-md-3">
-              <div class="col-xs-6 col-sm-12">Получатель</div>
-              <div class="col-xs-6 col-sm-12">{{ t.target}}</div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 --title">Получатель:</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.target}}</div>
             </div>
-            <div class="row col-xs-12 col-sm-6 col-md-3">
-              <div class="col-xs-6 col-sm-12">Сумма</div>
-              <div class="col-xs-6 col-sm-12">{{ t.sum }} &#165;</div>
+            <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
+              <div class="col-xs-6 col-sm-12 center-md --title">Сумма:</div>
+              <div class="col-xs-6 col-sm-12 center-md --value">{{ t.sum }} &#165;</div>
             </div>
-            <div class="row col-xs-12 col-sm-6 col-md-3"
+            <div class="row col-xs-12 info-meta"
                  *ngIf="t.comment">
-              <div class="col-xs-6 col-sm-12">Комментарий</div>
-              <div class="col-xs-6 col-sm-12">{{ t.comment }}</div>
+              <div class="col-xs-12 --title">Комментарий:</div>
+              <div class="col-xs-12 --value">{{ t.comment }}</div>
             </div>
           </div>
         </mat-expansion-panel>
