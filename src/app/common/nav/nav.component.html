@@ -3,16 +3,21 @@
   <div class="row">
     <div *ngFor="let l of navBarSchema"
          class="col-xs-2">
-      <a mat-raised-button
-         [routerLink]="l.routerLink"
-         [routerLinkActive]="'nav-bar--active'">{{l.name}}</a>
+      <button mat-raised-button
+              [disabled]="l.disabled"
+              [routerLink]="l.routerLink"
+              routerLinkActive="nav-bar--active">{{l.name}}</button>
     </div>
   </div>
 </div>
 
 <ng-template #mobileNavBar>
-  <div class="side-bar" [class.--open]="isOpen">
-    <div class="side-bar__close-button" (click)="isOpen = !isOpen"><mat-icon>arrow_forward</mat-icon></div>
+  <div class="side-bar"
+       [class.--open]="isOpen">
+    <div class="side-bar__close-button"
+         (click)="isOpen = !isOpen">
+      <mat-icon>arrow_forward</mat-icon>
+    </div>
     <a *ngFor="let l of navBarSchema"
        mat-button
        [routerLink]="l.routerLink"
