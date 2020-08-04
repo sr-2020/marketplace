@@ -1,4 +1,5 @@
-<div class="container-fluid" *ngIf="!isMobile else mobileHeader">
+<div class="container-fluid"
+     *ngIf="!isMobile else mobileHeader">
   <div class="row">
     <div class="col-xs-12 col-lg-3">
       <h2>Магазин: Типичный магазин</h2>
@@ -15,7 +16,12 @@
   <div class="container-fluid --mobile">
     <div class="row">
       <div class="col-xs-2">
-        <button class="nav-button-mobile" mat-icon-button (click)="openCloseNav()"><mat-icon>menu</mat-icon></button>
+        <button class="nav-button-mobile"
+                mat-icon-button
+                [style.color]="isOpenNav ? 'black' : 'white'"
+                (click)="openCloseNav()">
+          <mat-icon>menu</mat-icon>
+        </button>
       </div>
     </div>
   </div>

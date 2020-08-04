@@ -16,6 +16,10 @@ export class HeaderComponent {
     return this._appService.isMobile;
   }
 
+  get isOpenNav() {
+    return this._navService.isOpen;
+  }
+
   openCloseNav() {
     this._navService.toggleNavBar();
   }
