@@ -12,6 +12,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { getRusPaginatorIntl } from '../util/paginationTranslation';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -20,6 +21,7 @@ import { getRusPaginatorIntl } from '../util/paginationTranslation';
   imports: [
     CommonModule,
     MatButtonModule,
+    HttpClientModule,
     MatInputModule,
     ReactiveFormsModule,
     TransactionsRoutingModule,

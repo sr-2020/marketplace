@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TransactionsService } from '../transactions.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'sr-transactions-new',
@@ -10,7 +11,7 @@ import { TransactionsService } from '../transactions.service';
 export class TransactionsNewComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: TransactionsService) {
+  constructor(private fb: FormBuilder, private service: TransactionsService, private httpService: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -34,7 +35,14 @@ export class TransactionsNewComponent implements OnInit {
     );
   }
 
+
   get transferTypeCtrl() {
     return this.form.get('type');
+  }
+
+  test() {
+    this.httpService.get('https://gateway.evarun.ru/api/v1/billing/api/test/testid').subscribe(el => {
+      console.log(el);
+    });
   }
 }
