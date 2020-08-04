@@ -3,21 +3,25 @@ import { TransactionsService } from '../transactions.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'sr-transactions-list',
   templateUrl: './transactions-list.component.html',
   styleUrls: ['./transactions-list.component.scss']
 })
-export class TransactionsListComponent implements OnInit, AfterViewInit{
+export class TransactionsListComponent implements OnInit, AfterViewInit {
   transactionList: any;
   dataSource: MatTableDataSource<any>;
   list$: Observable<any>;
-  constructor(private service: TransactionsService) {
+
+  constructor(private _service: TransactionsService, private _appService: AppService) {
   }
+
   @ViewChild('listPaginator') paginator: MatPaginator;
+
   ngOnInit(): void {
-    this.transactionList = this.service.getTransactionList();
+    this.transactionList = this._service.getTransactionList();
     this.dataSource = new MatTableDataSource<any>(this.transactionList);
     this.list$ = this.dataSource.connect();
   }
@@ -36,5 +40,8 @@ export class TransactionsListComponent implements OnInit, AfterViewInit{
     }
   }
 
+  get isMobile() {
+    return this._appService.isMobile;
+  }
 
 }

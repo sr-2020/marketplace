@@ -1,5 +1,6 @@
 <div class="container-fluid">
-  <div class="row --actions">
+  <div class="row --actions"
+       *ngIf="!isMobile else mobileActions">
     <div class="col-xs-12 col-sm-offset-10 col-sm-2 end-xs">
       <button mat-raised-button
               color="primary"
@@ -7,6 +8,15 @@
       </button>
     </div>
   </div>
+
+  <ng-template #mobileActions>
+    <button mat-fab
+            color="primary"
+            class="add-mobile-btn"
+            [routerLink]="['new']">
+      <mat-icon>add</mat-icon>
+    </button>
+  </ng-template>
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
       <mat-label>Фильтр</mat-label>
@@ -32,7 +42,7 @@
               <mat-icon class="--currency"
                         [class.--negative]="t.sum < 0">{{t.sum < 0 ? 'arrow_upward' : 'arrow_downward'}}</mat-icon>
             </mat-panel-title>
-            <mat-panel-title class="transaction-list__column">
+            <mat-panel-title class="transaction-list__column --target">
               {{t.target}}
             </mat-panel-title>
             <mat-panel-title class="transaction-list__column --currency"

@@ -1,22 +1,38 @@
+.container-fluid {
+  padding-bottom: 80px;
+}
+
 .row.--actions {
   margin-bottom: 32px;
 }
+
 .transaction-list__column {
-  width: 30%;
+  width: 20%;
   align-items: center;
+
+  &.--target {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   @media only screen and (max-width: 767px) {
     width: 60%;
     &.--currency {
       width: 30%;
     }
   }
+
   &.--trade-icon {
     width: 5%;
   }
 
 }
+
 .--currency {
   color: green;
+
   &.--negative {
     color: red;
   }
@@ -32,13 +48,22 @@
   .--title {
     color: #999999;
   }
+
   .--value {
     font-size: 16px;
   }
+
   @media only screen and (max-width: 767px) {
     .--title, .--value {
       font-size: 12px;
 
     }
   }
+}
+
+.add-mobile-btn {
+  position: fixed;
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
 }
