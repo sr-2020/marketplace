@@ -14,10 +14,6 @@
 <ng-template #mobileNavBar>
   <div class="side-bar"
        [class.--open]="isOpen">
-    <div class="side-bar__close-button"
-         (click)="isOpen = !isOpen">
-      <mat-icon>arrow_forward</mat-icon>
-    </div>
     <a *ngFor="let l of navBarSchema"
        mat-button
        [routerLink]="l.routerLink"

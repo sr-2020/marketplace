@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { TransactionsService } from '../transactions.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class TransactionsListComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
   list$: Observable<any>;
 
-  constructor(private _service: TransactionsService, private _appService: AppService) {
+  constructor(private _service: TransactionsService, private _appService: AppService, private  _cdr: ChangeDetectorRef) {
   }
 
   @ViewChild('listPaginator') paginator: MatPaginator;
@@ -24,10 +24,12 @@ export class TransactionsListComponent implements OnInit, AfterViewInit {
     this.transactionList = this._service.getTransactionList();
     this.dataSource = new MatTableDataSource<any>(this.transactionList);
     this.list$ = this.dataSource.connect();
+
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this._cdr.detectChanges();
   }
 
   applyFilter(event: Event) {
