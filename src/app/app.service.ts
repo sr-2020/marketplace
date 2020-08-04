@@ -12,10 +12,5 @@ export class AppService {
     this._isMobile = value;
   }
 
-  private _isMobile: boolean;
-
-  constructor() {
-  }
-
-
+  private _isMobile = window.innerWidth < 767;
 }

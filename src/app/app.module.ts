@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TransactionsModule } from './transactions/transactions.module';
 import localeRu from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
+import { AppService } from './app.service';
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -28,7 +29,7 @@ registerLocaleData(localeRu, 'ru_RU');
     TransactionsModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [AppService],
 
   bootstrap: [AppComponent]
 })

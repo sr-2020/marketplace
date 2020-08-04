@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'sr-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'sr-marketplace';
+  constructor(private _appService: AppService) {}
+
+  @HostListener('window:resize')
+  onResize() {
+    this._appService.isMobile = window.innerWidth < 767;
+  }
+
 }

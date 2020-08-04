@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { Command } from '@angular/cli/models/command';
 import { Router } from '@angular/router';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'sr-nav',
@@ -8,10 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  isMobile = window.innerWidth < 991;
+
   isOpen = false;
- constructor(private router: Router) {
- }
+
+  constructor(private router: Router, private _appService: AppService) {
+  }
+
   navBarSchema = [
     {
       name: 'Информация',
@@ -44,13 +47,14 @@ export class NavComponent {
     },
   ];
 
-  @HostListener('window:resize')
-  onResize() {
-    this.isMobile = window.innerWidth < 991;
+  get isMobile() {
+    return this._appService.isMobile;
   }
 
   navigate(isDisable: boolean, commands: Command[]) {
-    if (isDisable) { return; }
+    if (isDisable) {
+      return;
+    }
     this.router.navigate(commands);
   }
 }
