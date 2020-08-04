@@ -1,0 +1,9 @@
+@import "src/styles/variables";
+.container-fluid {
+  &.--mobile {
+    background: $teal-300;
+  }
+}
+.nav-button-mobile {
+  z-index: 3000;
+}

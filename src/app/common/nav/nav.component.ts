@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Command } from '@angular/cli/models/command';
 import { Router } from '@angular/router';
 import { AppService } from '../../app.service';
+import { NavService } from './nav.service';
 
 @Component({
   selector: 'sr-nav',
@@ -9,10 +10,7 @@ import { AppService } from '../../app.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-
-  isOpen = false;
-
-  constructor(private router: Router, private _appService: AppService) {
+  constructor(private router: Router, private _appService: AppService, private _navService: NavService) {
   }
 
   navBarSchema = [
@@ -49,6 +47,10 @@ export class NavComponent {
 
   get isMobile() {
     return this._appService.isMobile;
+  }
+
+  get isOpen() {
+    return this._navService.isOpen;
   }
 
   navigate(isDisable: boolean, commands: Command[]) {

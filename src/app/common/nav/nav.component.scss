@@ -11,5 +11,18 @@
 }
 
 .side-bar {
+  position: fixed;
+  padding: 40px 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  z-index: 2000;
 
+  &__menu-btn {
+    margin-left: 20px;
+  }
 }

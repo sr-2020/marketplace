@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AppService } from '../../app.service';
+import { NavService } from '../nav/nav.service';
 
 @Component({
   selector: 'sr-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private _appService: AppService, private _navService: NavService) {
   }
 
+  get isMobile() {
+    return this._appService.isMobile;
+  }
+
+  openCloseNav() {
+    this._navService.toggleNavBar();
+  }
 }
