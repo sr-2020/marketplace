@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'sr-not-found',
@@ -12,7 +13,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   test() {
-    this.httpService.get('/proxy', { withCredentials: true }).subscribe(el => {
+    this.httpService.get(`${environment.api}/Billing/info/getmyshops`, { withCredentials: true }).subscribe(el => {
       console.log(el);
     });
   }
