@@ -13,7 +13,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   test() {
-    this.httpService.get('https://gateway.evarun.ru/api/v1/billing/api/test/testid').subscribe(el => {
+    this.httpService.get('https://gateway.evarun.ru/api/v1/billing/api/test/testid', {withCredentials: true}).subscribe(el => {
       console.log(el);
     });
   }
