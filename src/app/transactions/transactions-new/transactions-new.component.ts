@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionsNewComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: TransactionsService, private httpService: HttpClient) {
+  constructor(private fb: FormBuilder, private service: TransactionsService) {
   }
 
   ngOnInit(): void {
@@ -40,9 +40,5 @@ export class TransactionsNewComponent implements OnInit {
     return this.form.get('type');
   }
 
-  test() {
-    this.httpService.get('https://gateway.evarun.ru/api/v1/billing/api/test/testid').subscribe(el => {
-      console.log(el);
-    });
-  }
+
 }
