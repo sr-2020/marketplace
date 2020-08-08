@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionsService } from '../transactions/transactions.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,7 +12,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   test() {
-    this.httpService.get('https://gateway.evarun.ru/api/v1/billing/api/test/testid', {withCredentials: true}).subscribe(el => {
+    this.httpService.get('/proxy', { withCredentials: true }).subscribe(el => {
       console.log(el);
     });
   }
