@@ -1,8 +1,8 @@
-<ng-conteiner *ngIf="session else loading">
+<ng-container *ngIf="session else loading">
   <sr-header></sr-header>
   <sr-nav></sr-nav>
   <router-outlet></router-outlet>
-</ng-conteiner>
+</ng-container>
 
 <ng-template #loading>
   <div class="loading">
