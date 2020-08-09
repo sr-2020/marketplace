@@ -12,6 +12,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import localeRu from '@angular/common/locales/ru';
 import { registerLocaleData } from '@angular/common';
 import { AppService } from './app.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -27,7 +28,8 @@ registerLocaleData(localeRu, 'ru_RU');
     SrCommonModule,
     GoodsModule,
     TransactionsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
   providers: [AppService],
 

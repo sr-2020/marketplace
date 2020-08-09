@@ -1,4 +1,16 @@
-<sr-header></sr-header>
-<sr-nav></sr-nav>
-<router-outlet></router-outlet>
+<ng-conteiner *ngIf="session else loading">
+  <sr-header></sr-header>
+  <sr-nav></sr-nav>
+  <router-outlet></router-outlet>
+</ng-conteiner>
 
+<ng-template #loading>
+  <div class="loading">
+    <h2>Подождите идет загрузка...</h2>
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+</ng-template>
