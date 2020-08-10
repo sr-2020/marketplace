@@ -36,7 +36,7 @@ export class NavComponent {
     {
       name: 'Купленные товары',
       routerLink: 'basket',
-      disabled: true
+      disabled: false
     },
     {
       name: 'Доступы',
