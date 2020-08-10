@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #mobileHeader>
-  <div class="container-fluid --mobile">
+  <div class="container-fluid --mobile" style="color: white">
     <div class="row">
       <div class="col-xs-2">
         <button class="nav-button-mobile"
@@ -27,6 +27,18 @@
           <mat-icon>menu</mat-icon>
         </button>
       </div>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+      <div>Магазин:</div>
+      <b>{{session.shops[0].name}}</b>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+      <div>Владелец:</div>
+      <b> {{session.currentCharacterName}}</b>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+      <div>Баланс:</div>
+      <b>{{session.shops[0].balance}}&#165;</b>
     </div>
   </div>
 </ng-template>
