@@ -1,13 +1,17 @@
 <div class="container-fluid"
      *ngIf="!isMobile else mobileHeader">
   <div class="row">
-    <div class="col-xs-12 col-lg-3">
-      <h2>Магазин: Типичный магазин</h2>
-      <h3>ID: Sdasad-ASD-dasasd-asd</h3>
+    <div class="col-xs-12 col-lg-4">
+      <h3>Магазин:</h3>
+      <h2>{{session.shops[0].name}}</h2>
     </div>
-    <div class="col-xs-12 col-lg-3">
-      <h2>Владелец: Dzu_WE</h2>
-      <h3>SIN: 123214123213213</h3>
+    <div class="col-xs-12 col-lg-4">
+      <h3>Владелец:</h3>
+      <h2> {{session.currentCharacterName}}</h2>
+    </div>
+    <div class="col-xs-12 col-lg-4">
+      <h3>Баланс:</h3>
+      <h2>{{session.shops[0].balance}}&#165;</h2>
     </div>
   </div>
 </div>
