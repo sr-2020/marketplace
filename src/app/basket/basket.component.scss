@@ -1,0 +1,8 @@
+table {
+  width: 100%;
+}
+
+mat-list-item::ng-deep .mat-list-item-content {
+  display: flex;
+  justify-content: space-between;
+}
