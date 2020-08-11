@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Command } from '@angular/cli/models/command';
 import { Router } from '@angular/router';
-import { AppService } from '../../app.service';
+import { AppService } from '../app.service';
 import { NavService } from './nav.service';
 
 @Component({

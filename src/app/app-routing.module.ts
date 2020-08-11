@@ -5,9 +5,15 @@ import { environment } from '../environments/environment';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'goods', pathMatch: 'full' },
-  { path: 'goods', loadChildren: () => import('./goods/goods.module').then(m => m.GoodsModule), },
-  { path: 'basket', loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule), },
+  { path: '', redirectTo: 'goods', pathMatch: 'full'},
+  {
+    path: 'goods',
+    loadChildren: () => import('./goods/goods.module').then(m => m.GoodsModule),
+  },
+  {
+    path: 'basket',
+    loadChildren: () => import('./basket/basket.module').then(m => m.BasketModule),
+  },
   {
     path: 'transactions',
     loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule),

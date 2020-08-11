@@ -1,0 +1,6 @@
+<button *ngFor="let l of navBarSchema"
+        mat-button
+        [disabled]="l.disabled"
+        [routerLink]="l.routerLink"
+        [routerLinkActive]="'nav-bar--active'"
+        (click)="close()">{{l.name}}</button>
