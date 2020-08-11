@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import mockData from './basket-list.mock';
 import { AppService } from '../app.service';
+import { MatDialog } from '@angular/material/dialog';
+import { BasketQrPopupComponent } from './basket-qr-popup/basket-qr-popup.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'sr-basket',
@@ -10,7 +13,7 @@ import { AppService } from '../app.service';
 export class BasketComponent implements OnInit {
   mock = mockData;
 
-  constructor(private _appService: AppService) {
+  constructor(private _appService: AppService, private _dialog: MatDialog, private _matSnackBar: MatSnackBar) {
   }
 
   displayedColumns: string[] = ['id', 'name', 'lifestyle', 'actions'];
@@ -22,8 +25,18 @@ export class BasketComponent implements OnInit {
     return this._appService.isMobile;
   }
 
-  translateState(state) {
-    const s = ['Запись недоступна', 'Записать код', 'Код уже записан'];
-    return s[state] ? s[state] : 'Неизвестное состояние';
+  openScanDialog(i: any) {
+    const dialogRef = this._dialog.open(BasketQrPopupComponent, { data: i });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!result) {
+        return;
+      }
+      this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.name }`, '', {
+        duration: 2000,
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+      });
+    });
   }
 }
