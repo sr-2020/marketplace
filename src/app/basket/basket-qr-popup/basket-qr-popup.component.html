@@ -12,13 +12,6 @@
     </mat-select>
   </mat-form-field>
 
-  <zxing-scanner *ngIf="hasPermission !== false || hasDevices !== false"
-                 [(device)]="currentDevice"
-                 (scanSuccess)="onScanSuccess($event)"
-                 (permissionResponse)="onHasPermission($event)"
-                 (camerasFound)="onCamerasFound($event)"
-  ></zxing-scanner>
-
   <ng-container *ngIf="hasPermission === undefined">
 
     <h2>Ожидание доступа к камере</h2>
@@ -55,6 +48,13 @@
     </blockquote>
 
   </ng-container>
+
+  <zxing-scanner *ngIf="hasPermission !== false && hasDevices !== false"
+                 [(device)]="currentDevice"
+                 (scanSuccess)="onScanSuccess($event)"
+                 (permissionResponse)="onHasPermission($event)"
+                 (camerasFound)="onCamerasFound($event)"
+  ></zxing-scanner>
 </mat-dialog-content>
 
 
@@ -64,6 +64,7 @@
           mat-dialog-close>Отмена
   </button>
   <button mat-raised-button
+          *ngIf="code"
           [mat-dialog-close]="{code: code, name: data.name}"
           color="primary">Связать!
   </button>

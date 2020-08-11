@@ -33,7 +33,7 @@ export class BasketComponent implements OnInit {
         return;
       }
       this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.name }`, '', {
-        duration: 2000,
+        duration: 4000,
         horizontalPosition: 'center',
         verticalPosition: 'bottom'
       });
