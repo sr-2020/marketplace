@@ -18,6 +18,8 @@
        mat-button
        [disabled]="l.disabled"
        [routerLink]="l.routerLink"
-       [routerLinkActive]="'nav-bar--active'">{{l.name}}</button>
+       [routerLinkActive]="'nav-bar--active'"
+    (click)="close()"
+    >{{l.name}}</button>
   </div>
 </ng-template>

@@ -52,6 +52,9 @@ export class NavComponent {
   get isOpen() {
     return this._navService.isOpen;
   }
+  close() {
+    this._navService.isOpen = false;
+  }
 
   navigate(isDisable: boolean, commands: Command[]) {
     if (isDisable) {
