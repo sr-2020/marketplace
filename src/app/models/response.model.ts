@@ -1,5 +1,5 @@
 export interface ResponseModel<DataType> {
-  data: DataType
-  message: string
-  status: boolean
+  data: DataType;
+  message: string;
+  status: boolean;
 }

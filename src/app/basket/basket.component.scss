@@ -1,0 +1,73 @@
+table::ng-deep {
+  width: 100%;
+  .mat-cell, .mat-header-cell {
+    &:nth-child(3) {
+      text-align: center;
+
+    }
+  }
+  .mat-cell:last-of-type {
+    text-align: right;
+  }
+}
+
+mat-list-item::ng-deep .mat-list-item-content {
+  display: flex;
+  justify-content: space-between;
+  button {
+    transform: scale(0.8);
+  }
+}
+
+.lifestyle-badge {
+  &:before {
+    content: "";
+    font-size: 9px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: gold;
+  }
+
+  &.--wood:before {
+    content: 'Д';
+    background: saddlebrown;
+  }
+  &.--bronze:before {
+    content: 'Б';
+    background: #FF8D1F;
+
+  }
+  &.--silver:before {
+    content: 'С';
+    color: black;
+    background: silver;
+
+  }
+  &.--gold:before {
+    content: 'З';
+    color: black;
+    background: gold;
+
+  }
+  &.--platinum:before {
+    content: 'П';
+    color: black;
+    background: #E5E4E2;
+
+  }
+  &.--iridium:before {
+    content: "И";
+    color: black;
+    background: #9AE2FA;
+  }
+
+}

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api: 'https://billing.evarun.ru/api/'
+  // api: 'https://billing.evarun.ru/api/'
+  api: 'http://localhost:8080/'
 };
 
 /*

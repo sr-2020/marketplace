@@ -5,11 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LifestylePipe implements PipeTransform {
 
-  transform(value: number): string {
-    const lifestyles = [
-      'дерево', 'бронза', 'серебро', 'золото', 'платина', 'ирридиум'
-    ];
-    return lifestyles[value] ?? 'unknown lifestyle';
+  transform(value: string): string {
+
+    const lifestyles = new Map([
+      ['Wood', 'Дерево'],
+      ['Bronze', 'Бронза'],
+      ['Silver', 'Серебро'],
+      ['Gold', 'Золото'],
+      ['Platinum', 'Платина'],
+      ['Iridium', 'Иридиум'],
+    ]);
+
+
+    return lifestyles.get(value) ?? 'unknown';
   }
 
 }

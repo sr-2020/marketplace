@@ -1,0 +1,11 @@
+@import 'src/styles/variables.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  button {
+    text-align: left;
+  }
+}

@@ -1,0 +1,17 @@
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+mat-drawer-container::ng-deep {
+  min-height: 100vh;
+
+  mat-drawer-content {
+    min-height: 100vh;
+    overflow: visible;
+  }
+}
+
+
