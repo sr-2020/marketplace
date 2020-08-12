@@ -15,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NavComponent } from './nav/nav.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ShopComponent } from './shop/shop.component';
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -22,7 +23,8 @@ registerLocaleData(localeRu, 'ru_RU');
   declarations: [
     AppComponent,
     NotFoundComponent,
-    NavComponent
+    NavComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,

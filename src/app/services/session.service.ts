@@ -3,11 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { SessionModel } from '../models/session.model';
 import { environment } from '../../environments/environment';
 import { ResponseModel } from '../models/response.model';
+import { ShopModel } from '../models/shop.model';
+import { BehaviorSubject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
+  selectedShop = new BehaviorSubject<ShopModel>(null);
+
   get session(): SessionModel {
     return this._session;
   }
@@ -18,7 +23,7 @@ export class SessionService {
 
   private _session: SessionModel;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private _router: Router) {
   }
 
   initSession() {
@@ -26,6 +31,10 @@ export class SessionService {
       {
         next: ({ data }) => {
           this._session = data;
+
+          if (data.shops.length) {
+            this.selectedShop.next(data.shops[0]);
+          }
         },
         error: (err) => {
           console.log(err);
