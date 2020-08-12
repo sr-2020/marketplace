@@ -11,8 +11,8 @@
           <mat-icon>menu</mat-icon>
         </button>
         <div class="meta">
-          <span>{{session.shops[0].name}} </span>
-          <span *ngIf="!isMobile">Баланс &#165;{{session.shops[0].balance}} </span>
+          <span>{{(shop$ | async).name}} </span>
+          <span *ngIf="!isMobile">Баланс &#165;{{(shop$ | async).balance}} </span>
         </div>
       </mat-toolbar-row>
       <mat-toolbar-row style="height: 40px">

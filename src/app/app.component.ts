@@ -4,6 +4,7 @@ import { SessionService } from './services/session.service';
 import { ShopModel } from './models/shop.model';
 import { SessionModel } from './models/session.model';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sr-root',
@@ -18,8 +19,8 @@ export class AppComponent implements OnInit {
     this._sessionService.initSession();
   }
 
-  get selectedShop(): ShopModel {
-    return this._sessionService.selectedShop.value;
+  get shop$(): Observable<ShopModel> {
+    return this._sessionService.selectedShop;
   }
 
   get session(): SessionModel {

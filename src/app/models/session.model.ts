@@ -1,7 +1,7 @@
-import { ShopModel } from './shop.model'
+import { ShopModel } from './shop.model';
 
 export interface SessionModel {
-  currentCharacterId: number
-  currentCharacterName: string
-  shops: ShopModel[]
+  currentCharacterId: number;
+  currentCharacterName: string;
+  shops: ShopModel[];
 }
