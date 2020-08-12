@@ -8,5 +8,5 @@ export interface ShopModel {
   commission: number;
   lifestyle: LifestyleType;
   name: string;
-  specialisation: SpecialisationModel[];
+  specialisations: SpecialisationModel[];
 }

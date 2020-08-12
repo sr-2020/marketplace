@@ -16,6 +16,11 @@ import { NavComponent } from './nav/nav.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ShopComponent } from './shop/shop.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -36,7 +41,12 @@ registerLocaleData(localeRu, 'ru_RU');
     MatProgressSpinnerModule,
     MatSidenavModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatListModule
   ],
   providers: [AppService],
 

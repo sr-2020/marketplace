@@ -38,6 +38,14 @@ export class SessionService {
         }
       }
     );
+
+    this.selectedShop.subscribe((shop: ShopModel) => {
+      if (!shop) {
+        return;
+      }
+      const routePath = this._router.url.split('/').slice(2);
+      this._router.navigate(['/', shop.id, ...routePath]);
+    });
   }
 
   private _selectCurrentShop(data: SessionModel) {

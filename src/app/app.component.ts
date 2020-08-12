@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  shop: ShopModel;
+
   constructor(private _appService: AppService, private _sessionService: SessionService, public http: HttpClient) {
   }
 
@@ -27,10 +29,12 @@ export class AppComponent implements OnInit {
     return this._sessionService.session;
   }
 
-
   @HostListener('window:resize')
   onResize() {
     this._appService.isMobile = window.innerWidth < 767;
   }
 
+  changeShop(shop: ShopModel) {
+    this._sessionService.changeShop(shop);
+  }
 }
