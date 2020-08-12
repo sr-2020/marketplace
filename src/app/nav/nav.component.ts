@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Command } from '@angular/cli/models/command';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { NavService } from './nav.service';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'sr-nav',
@@ -10,7 +11,11 @@ import { NavService } from './nav.service';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  constructor(private router: Router, private _appService: AppService, private _navService: NavService) {
+  @Output() linkSelected = new EventEmitter<null>();
+  constructor(private router: Router,
+              private _appService: AppService,
+              private _navService: NavService,
+              private _sessionService: SessionService) {
   }
 
   navBarSchema = [
@@ -52,14 +57,17 @@ export class NavComponent {
   get isOpen() {
     return this._navService.isOpen;
   }
+
+  get currentShop() {
+    return this._sessionService.selectedShop.value;
+  }
+
   close() {
     this._navService.isOpen = false;
   }
 
-  navigate(isDisable: boolean, commands: Command[]) {
-    if (isDisable) {
-      return;
-    }
-    this.router.navigate(commands);
+  navigate(commands: Command[]) {
+    this.router.navigate(['/', this.currentShop.id, ...commands]);
+    this.linkSelected.emit();
   }
 }

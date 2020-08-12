@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SessionModel } from '../models/session.model';
 import { AppService } from '../app.service';
 import { SessionService } from '../services/session.service';
@@ -8,13 +8,9 @@ import { SessionService } from '../services/session.service';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit {
-
+export class ShopComponent {
 
   constructor(private _appService: AppService, private _sessionService: SessionService) {
-  }
-
-  ngOnInit(): void {
   }
 
   get isMobile() {

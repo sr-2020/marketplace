@@ -5,13 +5,13 @@ import { environment } from '../../environments/environment';
 import { ResponseModel } from '../models/response.model';
 import { ShopModel } from '../models/shop.model';
 import { BehaviorSubject } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-  selectedShop = new BehaviorSubject<ShopModel>(null);
+  selectedShop = new BehaviorSubject<ShopModel>(undefined);
 
   get session(): SessionModel {
     return this._session;
@@ -31,10 +31,7 @@ export class SessionService {
       {
         next: ({ data }) => {
           this._session = data;
-
-          if (data.shops.length) {
-            this.selectedShop.next(data.shops[0]);
-          }
+          this._selectCurrentShop(data);
         },
         error: (err) => {
           console.log(err);
@@ -43,8 +40,21 @@ export class SessionService {
     );
   }
 
+  private _selectCurrentShop(data: SessionModel) {
+    const urlCommands = this._router.url.split('/');
+    const shopIdFromLink = urlCommands[1];
+    this.selectedShop.next(data.shops.find((el) => el.id === +shopIdFromLink));
+  }
 
-  getHero(id: string) {
+  public changeShop(shop) {
+    this.selectedShop.next(shop);
+    this._router.navigate(['/', this.selectedShop.value.id]);
+  }
 
+  public getShopFromLinkId(id: string): ShopModel {
+    if (isNaN(+id) || id === '') {
+      this._router.navigate(['/']);
+      return;
+    }
   }
 }

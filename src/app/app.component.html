@@ -1,1 +1,24 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="session else loading">
+  <ng-container *ngIf="selectedShop; else selectShop">
+    <router-outlet></router-outlet>
+  </ng-container>
+
+  <ng-template #selectShop>
+    <div class="container-fluid">
+      Выберите магазин:
+      {{this.session?.shops |json}}
+    </div>
+  </ng-template>
+</ng-container>
+
+
+<ng-template #loading>
+  <div class="loading">
+    <h2>Подождите идет загрузка...</h2>
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+</ng-template>
