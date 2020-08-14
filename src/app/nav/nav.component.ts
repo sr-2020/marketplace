@@ -22,7 +22,7 @@ export class NavComponent {
     {
       name: 'Информация',
       routerLink: 'info',
-      disabled: true
+      disabled: false
     },
     {
       name: 'Переводы',
