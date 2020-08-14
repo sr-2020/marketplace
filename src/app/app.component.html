@@ -12,35 +12,37 @@
             <h3>
               Вы вошли, как {{session.currentCharacterName}}
             </h3>
-            <p *ngIf="session.shops.length; else noShops">
-              Мы обнаружили несколько магазинов. <br>
-              Для продолжения необходимо выбрать один их них:
-            </p>
+            <ng-container *ngIf="session.shops.length; else noShops">
+              <p>
+                Мы обнаружили несколько магазинов. <br>
+                Для продолжения необходимо выбрать один их них:
+              </p>
 
-            <mat-form-field style="width: 100%">
-              <mat-select [(value)]="shop">
-                <mat-option *ngFor="let s of session.shops"
-                            [value]="s">
-                  {{s.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+              <mat-form-field style="width: 100%">
+                <mat-select [(value)]="shop">
+                  <mat-option *ngFor="let s of session.shops"
+                              [value]="s">
+                    {{s.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <div *ngIf="shop as s">
-              <h3>Информация о магазине:</h3>
-              <mat-list>
-                <mat-list-item><b>Название</b>: {{s.name}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item><b>ID Магазина</b>: {{s.id}}</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item><b>Баланс</b>: {{s.balance}}&#165;</mat-list-item>
-                <mat-divider></mat-divider>
-                <mat-list-item><b>Количество доступных специализаций</b>: {{s.specialisations.length}}</mat-list-item>
+              <div *ngIf="shop as s">
+                <h3>Информация о магазине:</h3>
+                <mat-list>
+                  <mat-list-item><b>Название</b>: {{s.name}}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>ID Магазина</b>: {{s.id}}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>Баланс</b>: {{s.balance}}&#165;</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>Количество доступных специализаций</b>: {{s.specialisations.length}}</mat-list-item>
 
-              </mat-list>
-            </div>
+                </mat-list>
+              </div>
+            </ng-container>
             <ng-template #noShops>
-              <p *ngIf="session.shops.length; else noShops">
+              <p>
                 К сожалению в нашей базе нет зарегистрированных магазинов. Для подключения магазину обратитесь к
                 мастерам.
               </p>
@@ -55,7 +57,6 @@
             </button>
           </mat-card-actions>
         </mat-card>
-
       </div>
     </div>
   </ng-template>

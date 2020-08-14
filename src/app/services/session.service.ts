@@ -51,7 +51,7 @@ export class SessionService {
   private _selectCurrentShop(data: SessionModel) {
     const urlCommands = this._router.url.split('/');
     const shopIdFromLink = urlCommands[1];
-    this.selectedShop.next(data.shops.find((el) => el.id === +shopIdFromLink));
+    this.selectedShop.next(data.shops.find((el) => el?.id === +shopIdFromLink));
   }
 
   public changeShop(shop) {
