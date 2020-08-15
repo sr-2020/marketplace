@@ -13,7 +13,7 @@ export class GoodsListService {
   }
 
   getGoodsList(): Observable<any> {
-    return this._httpClient.post(`${ environment.api }/getproducts`,
+    return this._httpClient.post(`${ environment.api }shop/getproducts`,
       { shop: this.sessionService.selectedShop.value?.id },
       { withCredentials: true }
     );

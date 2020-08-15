@@ -1,1 +1,8 @@
-<p>info works!</p>
+<div class="container-fluid">
+  <ng-container *ngFor="let info of shopInfo">
+    <div *ngIf="info.value" class="row">
+      <div class="col-xs-12 col-sm-2 --title">{{info.title}}</div>
+      <div class="col-xs-12 col-sm-10 --value">{{info.value}}</div>
+    </div>
+  </ng-container>
+</div>

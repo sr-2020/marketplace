@@ -11,5 +11,5 @@ const infoRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class TransactionsRoutingModule {
+export class InfoRoutingModule {
 }
