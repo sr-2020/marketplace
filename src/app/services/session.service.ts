@@ -27,7 +27,7 @@ export class SessionService {
   }
 
   initSession() {
-    this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, { withCredentials: true }).subscribe(
+    this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shopmanager/getmyshops`, { withCredentials: true }).subscribe(
       {
         next: ({ data }) => {
           this._session = data;
