@@ -1,5 +1,5 @@
 <!--suppress ALL -->
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="isLoading">
   <h2>Доступные товары</h2>
   <div class="row">
     <table mat-table
@@ -46,4 +46,6 @@
   </div>
 </div>
 
-
+<ng-container *ngIf="error">
+  {{error.message}}
+</ng-container>

@@ -7,7 +7,7 @@ import { InfoComponent } from './info.component';
 @NgModule({
   declarations: [InfoComponent],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class InfoModule { }

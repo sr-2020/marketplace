@@ -8,14 +8,20 @@ import {GoodsListService} from './goods-list.service';
 })
 export class GoodsListComponent implements OnInit {
   data: object[];
-
+  isLoading = true;
+  error: any;
   constructor(private service: GoodsListService) {
   }
 
   displayedColumns: string[] = ['id', 'name', 'lifestyle', 'actions'];
 
   ngOnInit(): void {
-    this.data = this.service.getGoodsList();
+    this.service.getGoodsList().subscribe( el => {
+      this.data = el;
+      this.isLoading = false;
+    }, err => {
+      this.isLoading = false;
+    });
   }
 
 }
