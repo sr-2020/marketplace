@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'sr-debug',
@@ -17,6 +18,12 @@ export class DebugComponent implements OnInit {
       .subscribe(
         el => console.log(el),
         error => console.log(error))
+  }
+
+  sendPostReq() {
+    return this.httpService.post(`${ environment.api }shop/getproducts`,
+      { shop: 3 },
+      { withCredentials: true }).subscribe(el => console.log(el), err => console.log(err));
   }
 
   ngOnInit(): void {
