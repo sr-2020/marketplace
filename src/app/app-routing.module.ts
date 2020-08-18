@@ -27,6 +27,7 @@ const routes: Routes = [
             path: 'transactions',
             loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule),
           },
+          { path: '**', redirectTo: '404' }
         ]
       },
     ]
@@ -34,7 +35,7 @@ const routes: Routes = [
 ];
 
 if (!environment.production) {
-  routes.push({ path: 'debug', loadChildren: () => import('./debug/debug.module').then(m => m.DebugModule), },
+  routes.unshift({ path: 'debug', loadChildren: () => import('./debug/debug.module').then(m => m.DebugModule), },
   );
 }
 routes.push({ path: '404', component: NotFoundComponent },

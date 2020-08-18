@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {GoodsListService} from './goods-list.service';
+import { Component, OnInit } from '@angular/core';
+import { GoodsListService } from './goods-list.service';
+import { ShopUnitModel } from '../../models/shop-unit.model';
 
 @Component({
   selector: 'sr-goods-list',
@@ -7,17 +8,18 @@ import {GoodsListService} from './goods-list.service';
   styleUrls: ['./goods-list.component.scss'],
 })
 export class GoodsListComponent implements OnInit {
-  data: object[];
+  data: ShopUnitModel[];
   isLoading = true;
   error: any;
+
   constructor(private service: GoodsListService) {
   }
 
   displayedColumns: string[] = ['id', 'name', 'lifestyle', 'actions'];
 
   ngOnInit(): void {
-    this.service.getGoodsList().subscribe( el => {
-      this.data = el;
+    this.service.getGoodsList().subscribe(el => {
+      this.data = el.data;
       this.isLoading = false;
     }, err => {
       this.isLoading = false;
