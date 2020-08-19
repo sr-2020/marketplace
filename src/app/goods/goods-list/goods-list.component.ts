@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GoodsListService } from './goods-list.service';
 import { ShopUnitModel } from '../../models/shop-unit.model';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'sr-goods-list',
@@ -8,7 +10,7 @@ import { ShopUnitModel } from '../../models/shop-unit.model';
   styleUrls: ['./goods-list.component.scss'],
 })
 export class GoodsListComponent implements OnInit {
-  data: ShopUnitModel[];
+  shopList$: Observable<ShopUnitModel[]>;
   isLoading = true;
   error: any;
 
@@ -18,12 +20,6 @@ export class GoodsListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'lifestyle', 'actions'];
 
   ngOnInit(): void {
-    this.service.getGoodsList().subscribe(el => {
-      this.data = el.data;
-      this.isLoading = false;
-    }, err => {
-      this.isLoading = false;
-    });
+    this.shopList$ = this.service.getGoodsList().pipe(map(el => el.data));
   }
-
 }

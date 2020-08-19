@@ -5,6 +5,9 @@ import { GoodsListComponent } from './goods-list/goods-list.component';
 import { GoodsRoutingModule } from './goods-routing.module';
 import { GoodsItemComponent } from './goods-item/goods-item.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -13,7 +16,10 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     SharedModule,
-    GoodsRoutingModule
+    GoodsRoutingModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
 })
 export class GoodsModule { }
