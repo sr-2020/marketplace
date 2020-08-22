@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { GoodsQrPopupComponent } from '../goods-qr-popup/goods-qr-popup.component';
 
 @Component({
   selector: 'sr-goods-list',
@@ -20,7 +22,7 @@ export class GoodsListComponent implements AfterViewInit {
 
   @ViewChild('listPaginator') paginator: MatPaginator;
 
-  constructor(private service: GoodsListService) {
+  constructor(private service: GoodsListService, private _dialog: MatDialog) {
   }
 
   applyFilter(event: Event) {
@@ -43,7 +45,12 @@ export class GoodsListComponent implements AfterViewInit {
       }));
       this.dataSource.paginator = this.paginator;
       this.goods$ = this.dataSource.connect();
-
     });
+  }
+
+  openScanDialog(event, qr: string) {
+    event.stopPropagation();
+    const dialogRef = this._dialog.open(GoodsQrPopupComponent , { data: qr });
+
   }
 }

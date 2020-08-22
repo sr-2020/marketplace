@@ -11,13 +11,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { GoddsQrPopupComponent } from './godds-qr-popup/godds-qr-popup.component';
+import { GoodsQrPopupComponent } from './goods-qr-popup/goods-qr-popup.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     GoodsListComponent,
-    GoddsQrPopupComponent],
+    GoodsQrPopupComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -29,7 +31,9 @@ import { GoddsQrPopupComponent } from './godds-qr-popup/godds-qr-popup.component
     MatFormFieldModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule
   ],
 })
 export class GoodsModule {
