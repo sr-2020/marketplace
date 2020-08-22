@@ -65,14 +65,14 @@
   </button>
   <button mat-raised-button
           *ngIf="code"
-          [mat-dialog-close]="{code: code, name: data.name}"
+          [mat-dialog-close]="{code: code, skuName: data.skuName, rentaId: data.rentaId}"
           color="primary">Связать!
   </button>
 </mat-dialog-actions>
 
 <ng-template #codeRef>
   <mat-dialog-content class="mat-typography">
-    <div>Вы действительно хотите связать предмет <b>{{data.name}}</b> с кодом <b>{{code}}</b></div>
+    <div>Вы действительно хотите связать предмет <b>{{data.skuName}}</b> с кодом <b>{{code}}</b></div>
     <div><small>QR-код можно использовать только 1 раз</small></div>
   </mat-dialog-content>
 </ng-template>

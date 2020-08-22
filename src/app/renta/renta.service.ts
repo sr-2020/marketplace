@@ -20,8 +20,11 @@ export class RentaService {
       { withCredentials: true });
   }
 
-  setQR() {
-
+  setQR(qr: string, rentaId: string) {
+    console.log({qr, rentaId});
+    return this._httpClient.post(`${ environment.api }shop/writerenta2qr`, {
+      qr, rentaId
+    }, { withCredentials: true });
   }
 
 }

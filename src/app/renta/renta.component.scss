@@ -13,3 +13,12 @@
     color: #666;
   }
 }
+
+::ng-deep {
+  .mat-paginator{
+    background-color: #FAFAFA;
+  }
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    align-items: center;
+  }
+}

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RentaQrPopupComponent } from './renta-qr-popup/renta-qr-popup.component';
@@ -7,6 +7,7 @@ import { RentaService } from './renta.service';
 import { RentaModel } from '../models/renta.model';
 import { BehaviorSubject } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'sr-basket',
@@ -17,7 +18,7 @@ export class RentaComponent implements AfterViewInit {
   rentas: RentaModel[];
   rentas$: BehaviorSubject<RentaModel[]>;
   dataSource: MatTableDataSource<RentaModel>;
-
+  @ViewChild('listPaginator') paginator: MatPaginator;
   rentasSchema = [
     {
       title: 'Корпорация',
@@ -41,16 +42,18 @@ export class RentaComponent implements AfterViewInit {
       prop: 'productType'
     },
   ];
+
   constructor(private _appService: AppService,
-              private _basket: RentaService,
+              private _rentaService: RentaService,
               private _dialog: MatDialog,
               private _matSnackBar: MatSnackBar) {
   }
 
   ngAfterViewInit() {
-    this._basket.getRentas().subscribe(el => {
+    this._rentaService.getRentas().subscribe(el => {
       this.rentas = el.data;
       this.dataSource = new MatTableDataSource(el.data);
+      this.dataSource.paginator = this.paginator;
       this.rentas$ = this.dataSource.connect();
     });
   }
@@ -65,16 +68,28 @@ export class RentaComponent implements AfterViewInit {
 
   openScanDialog(i: RentaModel) {
     const dialogRef = this._dialog.open(RentaQrPopupComponent, { data: i });
-
     dialogRef.afterClosed().subscribe(result => {
       if (!result) {
         return;
       }
-      this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.name }`, '', {
-        duration: 4000,
-        horizontalPosition: 'center',
-        verticalPosition: 'bottom'
-      });
+
+      this._rentaService.setQR(result.code, result.rentaId).subscribe(
+        (el) => {
+          this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.skuName }`, '', {
+            duration: 4000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          });
+        },
+        ({ error }) => {
+          this._matSnackBar.open(`Ошибка записи: ${ error.message }`, '', {
+            duration: 4000,
+            horizontalPosition: 'center',
+            verticalPosition: 'bottom'
+          });
+        });
+
+
     });
   }
 }

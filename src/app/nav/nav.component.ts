@@ -68,4 +68,9 @@ export class NavComponent {
   navigate(commands: Command[]) {
     this.router.navigate(['/', this.currentShop.id, ...commands]).then(() => this.linkSelected.emit());
   }
+
+  changeShop() {
+    this._sessionService.selectedShop.next(null);
+    this.router.navigate(['/']);
+  }
 }

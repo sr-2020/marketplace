@@ -23,11 +23,13 @@ export class InfoComponent implements OnInit {
         },
         {
           title: 'Баланс:',
-          value: el.balance
+          value: el.balance,
+          price: true
         },
         {
           title: 'Комиссия:',
-          value: el.commission
+          value: el.commission,
+          price: true
         },
         {
           title: 'Лайфстайл:',
