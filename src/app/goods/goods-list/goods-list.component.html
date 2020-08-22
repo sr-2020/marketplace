@@ -1,30 +1,50 @@
-<div class="row">
-  <div class="col-xs-12">
-    <mat-accordion *ngIf="(shopList$ | async) as goods; else loading">
-      <mat-expansion-panel *ngFor="let d of goods"
-                           hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{d.sku.skuName}}
-          </mat-panel-title>
-          <mat-panel-description>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        {{d | json}}
+<div class="container-fluid">
+  <h1>Доступные товары</h1>
+</div>
 
-      </mat-expansion-panel>
-    </mat-accordion>
+<div class="container-fluid">
+  <div class="row">
+    <mat-form-field class="col-xs-12 col-sm-3">
+      <mat-label>Фильтр</mat-label>
+      <input type="text"
+             matInput
+             (keydown)="applyFilter($event)">
+    </mat-form-field>
+    <mat-paginator
+      class="col-xs-12 col-sm-9 end-sm"
+      #listPaginator
+      [length]="50"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25]">
+    </mat-paginator>
+  </div>
+  <div *ngIf="goods$ | async; else loading"
+       class="row">
+    <div class="col-xs-12">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let g of goods$ | async"
+                             hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{g.skuName}}
+            </mat-panel-title>
+            <mat-panel-description style="text-align: right">
 
-    <ng-template #loading>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-12 --loader">
-            <h3>Идет загрузка товаров...</h3>
-            <mat-spinner></mat-spinner>
-          </div>
-        </div>
-      </div>
-    </ng-template>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
 </div>
 
+<ng-template #loading>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 --loader">
+        <h3><b>Идет загрузка товаров...</b></h3>
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>
+</ng-template>

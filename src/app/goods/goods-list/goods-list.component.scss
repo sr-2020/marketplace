@@ -5,3 +5,23 @@
   justify-content: center;
   align-items: center;
 }
+
+.print {
+  @media print {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20000;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+::ng-deep .mat-paginator {
+  background-color: #FAFAFA;
+}
+
