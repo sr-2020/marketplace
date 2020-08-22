@@ -2,7 +2,7 @@
                         autosize>
     <mat-drawer #drawer
                 [mode]="isMobile ? 'push' : 'side'">
-      <sr-nav></sr-nav>
+      <sr-nav (linkSelected)="drawer.close()"></sr-nav>
     </mat-drawer>
     <mat-toolbar color="primary">
       <mat-toolbar-row class="mat-elevation-z4">

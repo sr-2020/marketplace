@@ -3,10 +3,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'sr-basket-qr-popup',
-  templateUrl: './basket-qr-popup.component.html',
-  styleUrls: ['./basket-qr-popup.component.scss']
+  templateUrl: './renta-qr-popup.component.html',
+  styleUrls: ['./renta-qr-popup.component.scss']
 })
-export class BasketQrPopupComponent implements OnInit {
+export class RentaQrPopupComponent implements OnInit {
   availableDevices: MediaDeviceInfo[];
   currentDevice: MediaDeviceInfo = null;
 

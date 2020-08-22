@@ -24,15 +24,7 @@ export class GoodsListComponent implements AfterViewInit {
 
   goodsSchema = [
     {
-      title: 'ID товара',
-      prop: 'skuId'
-    },
-    {
-      title: 'ID организации',
-      prop: 'corporationId'
-    },
-    {
-      title: 'Название организации',
+      title: 'Корпорация',
       prop: 'corporationName'
     },
     {
@@ -55,10 +47,6 @@ export class GoodsListComponent implements AfterViewInit {
     {
       title: 'Тип товара',
       prop: 'productTypeName'
-    },
-    {
-      title: 'QR ID',
-      prop: 'qrid'
     },
   ];
 

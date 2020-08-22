@@ -15,8 +15,8 @@ export class GoodsQrPopupComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._httpClient.get(this.data, { responseType: 'blob' })
-      .subscribe(res => this.createDataUrl(res));
+    // this._httpClient.get(this.data, { responseType: 'blob' })
+    //   .subscribe(res => this.createDataUrl(res));
   }
 
   createDataUrl(res: Blob) {

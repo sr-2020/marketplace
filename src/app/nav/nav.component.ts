@@ -39,7 +39,7 @@ export class NavComponent {
     },
     {
       name: 'Купленные товары',
-      routerLink: 'basket',
+      routerLink: 'renta',
       disabled: false
     },
     {
@@ -66,7 +66,6 @@ export class NavComponent {
   }
 
   navigate(commands: Command[]) {
-    this.router.navigate(['/', this.currentShop.id, ...commands]);
-    this.linkSelected.emit();
+    this.router.navigate(['/', this.currentShop.id, ...commands]).then(() => this.linkSelected.emit());
   }
 }
