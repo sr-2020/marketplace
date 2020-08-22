@@ -23,15 +23,38 @@
     <div class="col-xs-12">
       <mat-accordion>
         <mat-expansion-panel *ngFor="let g of goods$ | async"
+                             [class.--disabled]="!g.enabled"
                              hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{g.skuName}}
+              {{g.skuName}} <span class="--disabled-text"
+                                  *ngIf="!g.enabled">(Недоступен)</span>
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
-            <button mat-mini-fab style="transform: scale(0.8)" (click)="openScanDialog($event, g.qr)"><mat-icon>qr_code_2</mat-icon></button>
+              <div class="--count">Кол-во: {{g.count}}</div>
+              <div class="--lifestyle --{{g.lifeStyle.toLowerCase()}}"></div>
+              <button mat-icon-button
+                      color="primary"
+                      (click)="openScanDialog($event, g.qr)">
+                <mat-icon>qr_code_2</mat-icon>
+              </button>
             </mat-panel-description>
           </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description"
+                 *ngFor="let s of goodsSchema">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
+                <div class="col-xs-12 col-sm-6">{{g[s.prop]}} <span *ngIf="s.price">&#165;</span></div>
+              </div>
+            </div>
+            <div class="col-xs-12 --description">
+              <div class="row">
+                <div class="col-xs-12 --title">Описание:</div>
+                <div class="col-xs-12">{{g.description}}</div>
+              </div>
+            </div>
+          </div>
         </mat-expansion-panel>
       </mat-accordion>
     </div>

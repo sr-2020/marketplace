@@ -22,6 +22,46 @@ export class GoodsListComponent implements AfterViewInit {
 
   @ViewChild('listPaginator') paginator: MatPaginator;
 
+  goodsSchema = [
+    {
+      title: 'ID товара',
+      prop: 'skuId'
+    },
+    {
+      title: 'ID организации',
+      prop: 'corporationId'
+    },
+    {
+      title: 'Название организации',
+      prop: 'corporationName'
+    },
+    {
+      title: 'Доступен',
+      prop: 'enabled'
+    },
+    {
+      title: 'Название номенклатуры',
+      prop: 'nomenklaturaName'
+    },
+    {
+      title: 'Код',
+      prop: 'code'
+    },
+    {
+      title: 'Базовая цена',
+      prop: 'basePrice',
+      price: true
+    },
+    {
+      title: 'Тип товара',
+      prop: 'productTypeName'
+    },
+    {
+      title: 'QR ID',
+      prop: 'qrid'
+    },
+  ];
+
   constructor(private service: GoodsListService, private _dialog: MatDialog) {
   }
 
@@ -39,7 +79,7 @@ export class GoodsListComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource<any>(this.shopList.map(el => {
         return {
           qr: el.qr,
-          qrId: el.qrid,
+          qrid: el.qrid,
           ...el.sku
         };
       }));
@@ -50,7 +90,6 @@ export class GoodsListComponent implements AfterViewInit {
 
   openScanDialog(event, qr: string) {
     event.stopPropagation();
-    const dialogRef = this._dialog.open(GoodsQrPopupComponent , { data: qr });
-
+    this._dialog.open(GoodsQrPopupComponent, { data: qr });
   }
 }
