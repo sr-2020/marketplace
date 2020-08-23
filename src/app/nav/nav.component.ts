@@ -25,7 +25,7 @@ export class NavComponent {
     },
     {
       name: 'Переводы',
-      routerLink: 'transactions'
+      routerLink: 'transfers'
     },
     {
       name: 'Контракты',

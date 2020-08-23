@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoodsModule } from './goods/goods.module';
 import { MatButtonModule } from '@angular/material/button';
-import { TransactionsModule } from './transactions/transactions.module';
+import { TransfersModule } from './transfers/transfers.module';
 import { registerLocaleData } from '@angular/common';
 import { AppService } from './app.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -36,7 +36,7 @@ registerLocaleData(localeRu, 'ru_RU');
     BrowserAnimationsModule,
     AppRoutingModule,
     GoodsModule,
-    TransactionsModule,
+    TransfersModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatSidenavModule,

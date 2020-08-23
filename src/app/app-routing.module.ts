@@ -24,8 +24,8 @@ const routes: Routes = [
             loadChildren: () => import('./renta/renta.module').then(m => m.RentaModule),
           },
           {
-            path: 'transactions',
-            loadChildren: () => import('./transactions/transactions.module').then(m => m.TransactionsModule),
+            path: 'transfers',
+            loadChildren: () => import('./transfers/transfers.module').then(m => m.TransfersModule),
           },
           { path: '**', redirectTo: '404' }
         ]

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TransactionsService } from '../transactions.service';
-import { HttpClient } from '@angular/common/http';
+import { TransferService } from '../transfer.service';
 
 @Component({
   selector: 'sr-transactions-new',
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class TransactionsNewComponent implements OnInit {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: TransactionsService) {
+  constructor(private fb: FormBuilder, private service: TransferService) {
   }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TransactionsComponent } from './transactions.component';
-import { TransactionsListComponent } from './transactions-list/transactions-list.component';
-import { TransactionsRoutingModule } from './transactions-routing.module';
-import { TransactionsNewComponent } from './transactions-new/transactions-new.component';
+import { TransfersComponent } from './transfers.component';
+import { TransfersListComponent } from './transfers-list/transfers-list.component';
+import { TransfersRoutingModule } from './transfers-routing.module';
+import { TransactionsNewComponent } from './transfers-new/transactions-new.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,28 +13,30 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { getRusPaginatorIntl } from '../util/paginationTranslation';
 import { HttpClientModule } from '@angular/common/http';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
 @NgModule({
-  declarations: [TransactionsComponent, TransactionsListComponent, TransactionsNewComponent],
+  declarations: [TransfersComponent, TransfersListComponent, TransactionsNewComponent],
   imports: [
     CommonModule,
     MatButtonModule,
     HttpClientModule,
     MatInputModule,
     ReactiveFormsModule,
-    TransactionsRoutingModule,
+    TransfersRoutingModule,
     MatIconModule,
     MatSlideToggleModule,
     MatExpansionModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useValue: getRusPaginatorIntl() }
   ]
 })
-export class TransactionsModule {
+export class TransfersModule {
   constructor() {
   }
 }

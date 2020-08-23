@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TransactionsListComponent } from './transactions-list/transactions-list.component';
-import { TransactionsNewComponent } from './transactions-new/transactions-new.component';
+import { TransfersListComponent } from './transfers-list/transfers-list.component';
+import { TransactionsNewComponent } from './transfers-new/transactions-new.component';
 
 const transactionsRoutes: Routes = [
-  { path: '', component: TransactionsListComponent, children: [] },
+  { path: '', component: TransfersListComponent, children: [] },
   {
     path: 'new',
     component: TransactionsNewComponent,
@@ -16,5 +16,5 @@ const transactionsRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class TransactionsRoutingModule {
+export class TransfersRoutingModule {
 }
