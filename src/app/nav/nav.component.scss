@@ -1,0 +1,16 @@
+@import 'src/styles/variables.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+
+  .nav-bar--active {
+    background-color: #B1D7D3
+  }
+
+  button {
+    text-align: left;
+  }
+}

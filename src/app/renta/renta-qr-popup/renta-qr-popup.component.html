@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Считать QR Код</h2>
+<mat-dialog-content class="mat-typography"
+                    *ngIf="!code; else codeRef">
+  <mat-form-field *ngIf="availableDevices?.length > 0"
+                  appearance="fill">
+    <mat-label>Выберите устройство</mat-label>
+    <mat-select [(value)]="currentDevice">
+      <mat-option *ngFor="let d of availableDevices"
+                  [value]="d">
+        {{d.label}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngIf="hasPermission === undefined">
+
+    <h2>Ожидание доступа к камере</h2>
+
+    <blockquote>
+      Если у устройства нет камеры, запрос на разрешение доступа не будет выполнен.
+    </blockquote>
+
+  </ng-container>
+
+  <ng-container *ngIf="hasPermission === false">
+    <h2>Вы отклонили доступ, дальнейшая работа со сканером невозможна</h2>
+
+    <blockquote>
+      Вы можете попробовать перезагрузить страницу для повторного запроса.
+    </blockquote>
+  </ng-container>
+
+  <ng-container *ngIf="hasDevices === undefined">
+    <h2>Невозможно получить доступ к устройствам</h2>
+
+    <blockquote>
+      Возможно доступ заблокирован политикой безопасности на устройстве.
+    </blockquote>
+
+  </ng-container>
+
+  <ng-container *ngIf="hasDevices === false">
+
+    <h2>Устройства не найдены</h2>
+
+    <blockquote>
+      Если вы зашли с компьютера. Проверьте работоспособность устройств видеозахвата.
+    </blockquote>
+
+  </ng-container>
+
+  <zxing-scanner *ngIf="hasPermission !== false && hasDevices !== false"
+                 [(device)]="currentDevice"
+                 (scanSuccess)="onScanSuccess($event)"
+                 (permissionResponse)="onHasPermission($event)"
+                 (camerasFound)="onCamerasFound($event)"
+  ></zxing-scanner>
+</mat-dialog-content>
+
+
+<mat-dialog-actions align="end">
+  <button mat-button
+          [mat-dialog-close]="null"
+          mat-dialog-close>Отмена
+  </button>
+  <button mat-raised-button
+          *ngIf="code"
+          [mat-dialog-close]="{code: code, skuName: data.skuName, rentaId: data.rentaId}"
+          color="primary">Связать!
+  </button>
+</mat-dialog-actions>
+
+<ng-template #codeRef>
+  <mat-dialog-content class="mat-typography">
+    <div>Вы действительно хотите связать предмет <b>{{data.skuName}}</b> с кодом <b>{{code}}</b></div>
+    <div><small>QR-код можно использовать только 1 раз</small></div>
+  </mat-dialog-content>
+</ng-template>

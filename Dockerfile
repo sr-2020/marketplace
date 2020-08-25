@@ -10,3 +10,4 @@ RUN cp -fR server/* . && npm install
 
 EXPOSE 8080
 CMD [ "node", "main.js" ]
+

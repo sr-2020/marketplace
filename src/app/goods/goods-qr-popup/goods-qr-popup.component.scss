@@ -1,0 +1,13 @@
+img {
+  width: 400px;
+  height: 400px;
+}
+
+
+@media print {
+
+  img {
+    width: 700px;
+    height: 700px;
+  }
+}

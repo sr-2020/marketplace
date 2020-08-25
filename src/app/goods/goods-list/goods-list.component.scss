@@ -1,21 +1,108 @@
-.container-fluid {
-  @media screen and (max-width: 767px) {
-    padding-top: 20px;
+.--loader {
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.print {
+  @media print {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20000;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
   }
 }
 
-table {
-  tr.mat-row:hover {
-    background-color: #EEEEEE;
-    cursor: pointer;
+::ng-deep {
+  .mat-paginator{
+    background-color: #FAFAFA;
   }
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    align-items: center;
+  }
+}
+.--count {
+  @media only screen and (max-width: 992px ) {
+    display: none;
+  }
+  width: 100px;
+  text-align: left;
+}
 
-  th, td {
-    &:last-child {
-      width: 10%;
-      text-align: center;
+.--disabled {
+  background-color: #ddd;
+  &-text {
+    margin-left: 20px;
+    color: #999;
+    @media only screen and (max-width: 700px ) {
+      display: none;
     }
   }
+}
+.--lifestyle {
+  text-align: right;
+  min-width: 20px;
+  max-width: 20px;
 
-  width: 100%;
+  &:before {
+    content: "";
+    font-size: 9px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: gold;
+  }
+
+  &.--wood:before {
+    content: 'Д';
+    background: saddlebrown;
+  }
+  &.--bronze:before {
+    content: 'Б';
+    background: #FF8D1F;
+
+  }
+  &.--silver:before {
+    content: 'С';
+    color: black;
+    background: silver;
+
+  }
+  &.--gold:before {
+    content: 'З';
+    color: black;
+    background: gold;
+
+  }
+  &.--platinum:before {
+    content: 'П';
+    color: black;
+    background: #E5E4E2;
+
+  }
+  &.--iridium:before {
+    content: "И";
+    color: black;
+    background: #9AE2FA;
+  }
+}
+
+
+.--description {
+  margin-bottom: 20px;
+  .--title {
+    color: #666;
+  }
 }

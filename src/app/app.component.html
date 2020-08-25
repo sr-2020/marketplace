@@ -1,4 +1,75 @@
-<sr-header></sr-header>
-<sr-nav></sr-nav>
-<router-outlet></router-outlet>
+<ng-container *ngIf="session else loading">
+  <ng-container *ngIf="(shop$ | async); else selectShop">
+    <router-outlet></router-outlet>
+  </ng-container>
 
+  <ng-template #selectShop>
+    <div class="container-fluid shop-selector">
+      <div class="row">
+        <mat-card class="col-xs-12 middle-sm col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 mat-elevation-z4">
+          <mat-card-content>
+            <h2>Привет!</h2>
+            <h3>
+              Вы вошли, как {{session.currentCharacterName}}
+            </h3>
+            <ng-container *ngIf="session.shops.length; else noShops">
+              <p>
+                Мы обнаружили несколько магазинов. <br>
+                Для продолжения необходимо выбрать один их них:
+              </p>
+
+              <mat-form-field style="width: 100%">
+                <mat-select [(value)]="shop">
+                  <mat-option *ngFor="let s of session.shops"
+                              [value]="s">
+                    {{s.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div *ngIf="shop as s">
+                <h3>Информация о магазине:</h3>
+                <mat-list>
+                  <mat-list-item><b>Название</b>: {{s.name}}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>ID Магазина</b>: {{s.id}}</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>Баланс</b>: {{s.balance}}&#165;</mat-list-item>
+                  <mat-divider></mat-divider>
+                  <mat-list-item><b>Количество доступных специализаций</b>: {{s.specialisations.length}}</mat-list-item>
+
+                </mat-list>
+              </div>
+            </ng-container>
+            <ng-template #noShops>
+              <p>
+                К сожалению в нашей базе нет зарегистрированных магазинов. Для подключения магазину обратитесь к
+                мастерам.
+              </p>
+            </ng-template>
+          </mat-card-content>
+          <mat-card-actions [align]="'end'">
+            <button *ngIf="session.shops.length"
+                    mat-raised-button
+                    color="primary"
+                    (click)="changeShop(shop)">
+              Выбрать магазин
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </ng-template>
+</ng-container>
+
+
+<ng-template #loading>
+  <div class="loading">
+    <h2>Подождите идет загрузка...</h2>
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+</ng-template>

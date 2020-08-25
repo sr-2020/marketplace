@@ -1,0 +1,102 @@
+.transaction-list__column {
+  width: 40%;
+  align-items: center;
+
+  &.--target {
+    width: 50%;
+    white-space: nowrap;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media only screen and (max-width: 767px) {
+    width: 60%;
+    &.--currency {
+      width: 20%;
+    }
+  }
+
+  &.--trade-icon {
+    width: 5%;
+  }
+
+}
+
+.--currency {
+  color: green;
+
+  &.--negative {
+    color: red;
+  }
+}
+
+.--currency, .--date {
+  justify-content: flex-end;
+}
+
+.info-meta {
+  margin-bottom: 8px;
+
+  .--title {
+    color: #999999;
+  }
+
+  .--value {
+    font-size: 16px;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .--title, .--value {
+      font-size: 12px;
+
+    }
+  }
+}
+
+.add-mobile-btn {
+  position: fixed;
+  z-index: 1000;
+  bottom: 20px;
+  right: 20px;
+}
+.--send-from {
+  position: relative;
+  &:before {
+    content: 'Отправитель:';
+    position: absolute;
+    font-size: 8px;
+    color: #666666;
+    top: -12px;
+  }
+}
+.--comment {
+  position: relative;
+  margin-left: 30px;
+  &:before {
+    content: 'Комментарий:';
+    position: absolute;
+    font-size: 8px;
+    color: #666666;
+    top: -12px;
+  }
+}
+.--loader {
+  display: flex;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+::ng-deep {
+  .mat-paginator{
+    background-color: #FAFAFA;
+  }
+  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+    align-items: center;
+  }
+}
+
+.container-fluid:last-child {
+  margin-bottom: 80px;
+}

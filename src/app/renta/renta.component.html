@@ -1,0 +1,72 @@
+<div class="container-fluid">
+  <h1>Купленные товары</h1>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <mat-form-field class="col-xs-12 col-sm-3">
+      <mat-label>Поиск</mat-label>
+      <input type="text"
+             matInput
+             (keydown)="applyFilter($event)">
+    </mat-form-field>
+    <mat-paginator
+      class="col-xs-12 col-sm-9 end-sm"
+      #listPaginator
+      [length]="50"
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+  <div *ngIf="rentas$ | async; else loading"
+       class="row">
+    <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
+      <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
+      <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+    </div>
+    <div class="col-xs-12">
+      <mat-accordion multi>
+        <mat-expansion-panel *ngFor="let r of rentas$ | async"
+                             hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{r.skuName}}
+            </mat-panel-title>
+            <mat-panel-description style="justify-content: flex-end">
+              <button *ngIf="!r.qrRecorded; else qr"
+                      mat-icon-button
+                      color="primary"
+                      (click)="openScanDialog(r)">
+                <mat-icon>qr_code_2</mat-icon>
+              </button>
+
+              <ng-template #qr>
+                QR:&nbsp;{{r.qrRecorded}}
+              </ng-template>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description"
+                 *ngFor="let s of rentasSchema">
+              <div class="row">
+                <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
+                <div class="col-xs-12 col-sm-6">{{r[s.prop]}} <span *ngIf="s.price">&#165;</span></div>
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 --loader">
+        <h3><b>Идет загрузка проданных товаров...</b></h3>
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>
+</ng-template>

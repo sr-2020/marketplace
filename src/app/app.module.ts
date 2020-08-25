@@ -1,16 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GoodsModule } from './goods/goods.module';
-import { SrCommonModule } from './common/common.module';
 import { MatButtonModule } from '@angular/material/button';
-import { TransactionsModule } from './transactions/transactions.module';
-import localeRu from '@angular/common/locales/ru';
+import { TransfersModule } from './transfers/transfers.module';
 import { registerLocaleData } from '@angular/common';
+import { AppService } from './app.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import localeRu from '@angular/common/locales/ru';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { NavComponent } from './nav/nav.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { ShopComponent } from './shop/shop.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
+import { PrintComponent } from './print/print.component';
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -18,17 +29,28 @@ registerLocaleData(localeRu, 'ru_RU');
   declarations: [
     AppComponent,
     NotFoundComponent,
+    NavComponent,
+    ShopComponent,
+    PrintComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    SrCommonModule,
+    AppRoutingModule,
     GoodsModule,
-    TransactionsModule,
-    MatButtonModule
+    TransfersModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatListModule
   ],
-  providers: [],
+  providers: [AppService],
 
   bootstrap: [AppComponent]
 })
