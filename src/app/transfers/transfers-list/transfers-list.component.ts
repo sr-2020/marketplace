@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { AppService } from '../../app.service';
 import { TransferModel } from '../../models/transfer.model';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'sr-transfers-list',
@@ -20,7 +21,7 @@ export class TransfersListComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild('listPaginator') paginator: MatPaginator;
-
+  @ViewChild(MatAccordion) accordion: MatAccordion;
   ngOnInit(): void {
 
   }

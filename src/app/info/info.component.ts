@@ -18,8 +18,16 @@ export class InfoComponent implements OnInit {
     this._session.selectedShop.subscribe((el: ShopModel) => {
       this.shopInfo = [
         {
+          title: 'ID:',
+          value: el.id
+        },
+        {
           title: 'Название:',
           value: el.name
+        },
+        {
+          title: 'ID владельца:',
+          value: el.ownerId
         },
         {
           title: 'Баланс:',

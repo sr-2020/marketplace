@@ -19,7 +19,7 @@
   </ng-template>
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
-      <mat-label>Фильтр</mat-label>
+      <mat-label>Поиск</mat-label>
       <input type="text"
              matInput
              (keydown)="applyFilter($event)">
@@ -28,14 +28,18 @@
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25]">
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
   <div class="row"
        *ngIf="list$ | async; else loading">
+    <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
+      <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
+      <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+    </div>
     <div class="col-xs-12">
-      <mat-accordion>
+      <mat-accordion multi>
         <mat-expansion-panel *ngFor="let t of list$ | async"
                              hideToggle>
           <mat-expansion-panel-header>
@@ -51,7 +55,7 @@
               {{t.transferType === 'Incoming' ? "+" : "-"}}  {{ t.amount }}&#165;
             </mat-panel-title>
             <mat-panel-description class="transaction-list__column --date col-mobile-hidden">
-              {{ t.operationTime | date: 'dd MMMM y г., HH:MM': '': 'ru_RU'}}
+              {{ t.operationTime | date: 'dd MMMM y г., HH:MM:SS': '': 'ru_RU'}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
@@ -65,7 +69,7 @@
             </div>
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
               <div class="col-xs-6 col-sm-12 --title">Дата и время:</div>
-              <div class="col-xs-6 col-sm-12 --value">{{ t.operationTime | date: 'dd MMMM y г., HH:MM': '': 'ru_RU'}}</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.operationTime | date: 'dd MMMM y г., HH:MM:SS': '': 'ru_RU'}}</div>
             </div>
 
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">

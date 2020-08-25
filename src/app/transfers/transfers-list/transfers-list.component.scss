@@ -1,5 +1,5 @@
 .transaction-list__column {
-  width: 20%;
+  width: 40%;
   align-items: center;
 
   &.--target {
@@ -13,7 +13,7 @@
   @media only screen and (max-width: 767px) {
     width: 60%;
     &.--currency {
-      width: 30%;
+      width: 20%;
     }
   }
 
