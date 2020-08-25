@@ -5,7 +5,7 @@
 <div class="container-fluid">
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
-      <mat-label>Фильтр</mat-label>
+      <mat-label>Поиск</mat-label>
       <input type="text"
              matInput
              (keydown)="applyFilter($event)">
@@ -14,14 +14,18 @@
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25]">
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
   <div *ngIf="rentas$ | async; else loading"
        class="row">
+    <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
+      <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
+      <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+    </div>
     <div class="col-xs-12">
-      <mat-accordion>
+      <mat-accordion multi>
         <mat-expansion-panel *ngFor="let r of rentas$ | async"
                              hideToggle>
           <mat-expansion-panel-header>
@@ -29,7 +33,7 @@
               {{r.skuName}}
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
-              <button *ngIf="r.hasQRWrite; else qr"
+              <button *ngIf="!r.qrRecorded; else qr"
                       mat-icon-button
                       color="primary"
                       (click)="openScanDialog(r)">

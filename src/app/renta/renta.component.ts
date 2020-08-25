@@ -8,6 +8,8 @@ import { RentaModel } from '../models/renta.model';
 import { BehaviorSubject } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatAccordion } from '@angular/material/expansion';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'sr-basket',
@@ -18,7 +20,10 @@ export class RentaComponent implements AfterViewInit {
   rentas: RentaModel[];
   rentas$: BehaviorSubject<RentaModel[]>;
   dataSource: MatTableDataSource<RentaModel>;
+
   @ViewChild('listPaginator') paginator: MatPaginator;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
+
   rentasSchema = [
     {
       title: 'Корпорация',
@@ -50,12 +55,16 @@ export class RentaComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._rentaService.getRentas().subscribe(el => {
-      this.rentas = el.data;
-      this.dataSource = new MatTableDataSource(el.data);
-      this.dataSource.paginator = this.paginator;
-      this.rentas$ = this.dataSource.connect();
+    this._rentaService.getRentas().subscribe(({ data }) => {
+      this.refreshRentas(data);
     });
+  }
+
+  refreshRentas(renta: RentaModel[]) {
+    this.rentas = renta;
+    this.dataSource = new MatTableDataSource(renta);
+    this.dataSource.paginator = this.paginator;
+    this.rentas$ = this.dataSource.connect();
   }
 
   applyFilter(event: Event) {
@@ -73,23 +82,26 @@ export class RentaComponent implements AfterViewInit {
         return;
       }
 
-      this._rentaService.setQR(result.code, result.rentaId).subscribe(
-        (el) => {
-          this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.skuName }`, '', {
-            duration: 4000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
+      this._rentaService.setQR(result.code, result.rentaId)
+        .pipe(switchMap(() => {
+          return this._rentaService.getRentas();
+        }))
+        .subscribe(
+          ({ data }) => {
+            this.refreshRentas(data);
+            this._matSnackBar.open(`QR: ${ result.code } связан с предметом ${ result.skuName }`, '', {
+              duration: 4000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom'
+            });
+          },
+          ({ error }) => {
+            this._matSnackBar.open(`Ошибка записи: ${ error.message }`, '', {
+              duration: 4000,
+              horizontalPosition: 'center',
+              verticalPosition: 'bottom'
+            });
           });
-        },
-        ({ error }) => {
-          this._matSnackBar.open(`Ошибка записи: ${ error.message }`, '', {
-            duration: 4000,
-            horizontalPosition: 'center',
-            verticalPosition: 'bottom'
-          });
-        });
-
-
     });
   }
 }
