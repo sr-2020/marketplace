@@ -3,9 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { environment } from '../environments/environment';
 import { ShopComponent } from './shop/shop.component';
+import { PrintComponent } from './print/print.component';
 
 
 const routes: Routes = [
+  {
+    path: 'print', component: PrintComponent
+  },
   {
     path: '', component: ShopComponent, children: [
       { path: ':id', redirectTo: ':id/goods' },

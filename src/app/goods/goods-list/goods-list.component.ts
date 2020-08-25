@@ -18,6 +18,7 @@ export class GoodsListComponent implements AfterViewInit {
   shopList: ShopUnitModel[];
   goods$: BehaviorSubject<any>;
   dataSource: MatTableDataSource<any>;
+  printMode = false;
   isLoading = true;
   error: any;
 
@@ -73,5 +74,12 @@ export class GoodsListComponent implements AfterViewInit {
   openScanDialog(event, qr: string) {
     event.stopPropagation();
     this._dialog.open(GoodsQrPopupComponent, { data: qr });
+  }
+
+  togglePrintMode() {
+    this.printMode = !this.printMode;
+    if (!this.printMode) {
+      console.log('some clear logic');
+    }
   }
 }

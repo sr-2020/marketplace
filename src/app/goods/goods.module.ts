@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { GoodsQrPopupComponent } from './goods-qr-popup/goods-qr-popup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatInputModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
 })
 export class GoodsModule {

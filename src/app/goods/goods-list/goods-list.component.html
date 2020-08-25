@@ -21,9 +21,12 @@
   <div *ngIf="goods$ | async; else loading"
        class="row">
     <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
+      <button mat-button (click)="togglePrintMode()"><mat-icon>print</mat-icon></button>
       <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
       <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+
     </div>
+
     <div class="col-xs-12">
       <mat-accordion multi>
         <mat-expansion-panel *ngFor="let g of goods$ | async"
@@ -31,6 +34,7 @@
                              hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
+              <mat-checkbox *ngIf="printMode" (click)="$event.stopPropagation()"></mat-checkbox>
               {{g.skuName}} <span class="--disabled-text"
                                   *ngIf="!g.enabled">(Недоступен)</span>
             </mat-panel-title>
