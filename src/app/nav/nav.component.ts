@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Command } from '@angular/cli/models/command';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { NavService } from './nav.service';
@@ -65,8 +64,8 @@ export class NavComponent {
     this._navService.isOpen = false;
   }
 
-  navigate(commands: Command[]) {
-    this.router.navigate(['/', this.currentShop.id, ...commands]).then(() => this.linkSelected.emit());
+  onClick() {
+    this.linkSelected.emit();
   }
 
   changeShop() {
