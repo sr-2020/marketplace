@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class SessionService {
   selectedShop = new BehaviorSubject<ShopModel>(undefined);
-
   get session(): SessionModel {
     return this._session;
   }
@@ -27,6 +26,7 @@ export class SessionService {
   }
 
   initSession() {
+
     this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, { withCredentials: true }).subscribe(
       {
         next: ({ data }) => {

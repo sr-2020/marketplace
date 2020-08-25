@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { GoodsQrPopupComponent } from '../goods-qr-popup/goods-qr-popup.component';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'sr-goods-list',
@@ -21,6 +22,7 @@ export class GoodsListComponent implements AfterViewInit {
   error: any;
 
   @ViewChild('listPaginator') paginator: MatPaginator;
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   goodsSchema = [
     {
@@ -28,16 +30,8 @@ export class GoodsListComponent implements AfterViewInit {
       prop: 'corporationName'
     },
     {
-      title: 'Доступен',
-      prop: 'enabled'
-    },
-    {
       title: 'Название номенклатуры',
       prop: 'nomenklaturaName'
-    },
-    {
-      title: 'Код',
-      prop: 'code'
     },
     {
       title: 'Базовая цена',

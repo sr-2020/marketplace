@@ -5,7 +5,7 @@
 <div class="container-fluid">
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
-      <mat-label>Фильтр</mat-label>
+      <mat-label>Поиск</mat-label>
       <input type="text"
              matInput
              (keydown)="applyFilter($event)">
@@ -14,14 +14,18 @@
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 25]">
+      [pageSize]="25"
+      [pageSizeOptions]="[5, 10, 25, 100]">
     </mat-paginator>
   </div>
   <div *ngIf="goods$ | async; else loading"
        class="row">
+    <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
+      <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
+      <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+    </div>
     <div class="col-xs-12">
-      <mat-accordion>
+      <mat-accordion multi>
         <mat-expansion-panel *ngFor="let g of goods$ | async"
                              [class.--disabled]="!g.enabled"
                              hideToggle>
@@ -55,6 +59,12 @@
                 <div class="row">
                   <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
                   <div class="col-xs-12 col-sm-6">{{g[s.prop]}} <span *ngIf="s.price">&#165;</span></div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 --title">Тип:</div>
+                  <div class="col-xs-12 col-sm-6">{{g.discountType == 1 ? 'Обычный предмет' : 'Оружие&nbsp;или&nbsp;броня'}}</div>
                 </div>
               </div>
               <div class="col-xs-12 --description">
