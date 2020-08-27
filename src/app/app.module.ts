@@ -22,6 +22,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { PrintComponent } from './print/print.component';
+import { BuyGoodsComponent } from './buy-goods/buy-goods.component';
 
 registerLocaleData(localeRu, 'ru_RU');
 
@@ -31,7 +32,8 @@ registerLocaleData(localeRu, 'ru_RU');
     NotFoundComponent,
     NavComponent,
     ShopComponent,
-    PrintComponent
+    PrintComponent,
+    BuyGoodsComponent
   ],
   imports: [
     BrowserModule,
