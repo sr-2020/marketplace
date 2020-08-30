@@ -1,3 +1,8 @@
-<pre>
+<pre *ngIf="dataToPrint.length > 0; else nothingToPrint">
   {{dataToPrint | json}}
 </pre>
+
+
+<ng-template #nothingToPrint>
+  Печатать нечего
+</ng-template>
