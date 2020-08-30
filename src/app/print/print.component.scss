@@ -1,0 +1,9 @@
+.--print-item {
+  margin-bottom: 12px;
+}
+@media print {
+  .--back-button {
+    display: none;
+  }
+
+}
