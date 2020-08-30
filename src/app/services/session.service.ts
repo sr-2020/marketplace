@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SessionService {
   selectedShop = new BehaviorSubject<ShopModel>(undefined);
+
   get session(): SessionModel {
     return this._session;
   }
@@ -26,7 +27,6 @@ export class SessionService {
   }
 
   initSession() {
-
     this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, { withCredentials: true }).subscribe(
       {
         next: ({ data }) => {
@@ -43,26 +43,17 @@ export class SessionService {
       if (!shop) {
         return;
       }
-      const routePath = this._router.url.split('/').slice(2);
-      this._router.navigate(['/', shop.id, ...routePath]);
+      window.localStorage.setItem('shopId', shop.id.toString());
     });
   }
 
   private _selectCurrentShop(data: SessionModel) {
-    const urlCommands = this._router.url.split('/');
-    const shopIdFromLink = urlCommands[1];
-    this.selectedShop.next(data.shops.find((el) => el?.id === +shopIdFromLink));
+    const shopId = +window.localStorage.getItem('shopId');
+    this.selectedShop.next(data.shops.find((el) => el?.id === shopId));
   }
 
   public changeShop(shop) {
     this.selectedShop.next(shop);
-    this._router.navigate(['/', this.selectedShop.value.id]);
   }
 
-  public getShopFromLinkId(id: string): ShopModel {
-    if (isNaN(+id) || id === '') {
-      this._router.navigate(['/']);
-      return;
-    }
-  }
 }
