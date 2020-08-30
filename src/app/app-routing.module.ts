@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ShopComponent } from './shop/shop.component';
-import { PrintComponent } from './print/print.component';
-import { AuthComponent } from './auth/auth.component';
-import { ShopGuard } from './shop/shop.guard';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
+import { ShopComponent } from './shop/shop.component'
+import { PrintComponent } from './print/print.component'
+import { AuthComponent } from './auth/auth.component'
+import { ShopGuard } from './shop/shop.guard'
+import { NotFoundComponent } from './not-found/not-found.component'
 
 
 const routes: Routes = [
@@ -34,9 +35,10 @@ const routes: Routes = [
       },
     ]
   },
-  { path: '**', redirectTo: '404' }
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '404', pathMatch: 'full' }
 
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

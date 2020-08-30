@@ -5,5 +5,8 @@
   .--back-button {
     display: none;
   }
-
+  .--print-item {
+    page-break-after: always;
+  }
 }
+
