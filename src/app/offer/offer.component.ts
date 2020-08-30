@@ -14,6 +14,7 @@ export class OfferComponent implements OnInit {
   }
 
   sendRequest() {
-    this._offerService.getRenta(8589934595).subscribe(el => console.log(el))
+    let id = 8589934595
+    this._offerService.getRenta(id.toString()).subscribe(el => console.log(el))
   }
 }

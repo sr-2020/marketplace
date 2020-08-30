@@ -11,13 +11,10 @@ export class OfferService {
   constructor(private _httpClient: HttpClient, private _session: SessionService) {
   }
 
-  getRenta(id) {
-    return this._httpClient.post<any>(`${ environment.api }shop/createpricebyqr`, {}, {
-      params: {
-        // @ts-ignore
-        character: this._session.session.currentCharacterId,
-        qr: id,
-      }
+  getRenta(id:string ) {
+    return this._httpClient.post<any>(`${ environment.api }shop/createpricebyqr`, {
+      character: this._session.session.currentCharacterId,
+      qr: id
     })
   }
 }
