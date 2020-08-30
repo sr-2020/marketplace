@@ -49,6 +49,11 @@ export class SessionService {
 
   private _selectCurrentShop(data: SessionModel) {
     const shopId = +window.localStorage.getItem('shopId');
+    if(!data.shops.find((el) => el?.id === shopId)) {
+      window.localStorage.removeItem('shopId')
+      this.selectedShop.next(null);
+      return
+    }
     this.selectedShop.next(data.shops.find((el) => el?.id === shopId));
   }
 

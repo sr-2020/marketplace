@@ -14,6 +14,13 @@ const routes: Routes = [
   {
     path: 'auth', component: AuthComponent
   },
+  {
+    path: 'offer', redirectTo: '/goods', pathMatch: 'full',
+  },
+  {
+    path: 'offer/:id', loadChildren: () => import('./offer/offer.module').then(m => m.OfferModule),
+
+  },
   { path: '', redirectTo: '/goods', canActivate: [ShopGuard], canActivateChild: [ShopGuard], pathMatch: 'full' },
   {
     path: '', component: ShopComponent, canActivate: [ShopGuard], canActivateChild: [ShopGuard], children: [
