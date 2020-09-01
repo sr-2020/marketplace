@@ -25,6 +25,11 @@
               <div class="col-xs-12 col-sm-3">Описание</div>
               <div class="col-xs-12 col-sm-9">{{offer.description}}</div>
             </div>
+            <div>
+            <button mat-raised-button color="primary"
+                    (click)="createOffer(offer.idOffer)">Тестовая покупка
+            </button>
+            </div>
           </mat-card-content>
         </mat-card>
       </div>

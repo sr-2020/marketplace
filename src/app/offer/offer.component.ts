@@ -31,6 +31,10 @@ export class OfferComponent implements OnInit {
     this._offerService.getRenta(id, charId).subscribe(({ data }) => this.offer = data)
   }
 
+  createOffer(id: number) {
+    this._offerService.createRenta(id).subscribe(el => console.log(el))
+  }
+
   get session$() {
     return this._session.session$
   }

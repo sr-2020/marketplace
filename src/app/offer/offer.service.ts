@@ -20,4 +20,10 @@ export class OfferService {
       qr: id
     })
   }
+
+  createRenta(id: number) {
+    return this._httpClient.post<any>(`${ environment.api }shop/createrenta`, {
+      offerId: id
+    }, {})
+  }
 }

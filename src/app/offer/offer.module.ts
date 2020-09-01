@@ -5,6 +5,7 @@ import { OfferRoutingModule } from './offer-routing.module'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatCardModule } from '@angular/material/card'
 import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatButtonModule } from '@angular/material/button'
 
 
 
@@ -15,7 +16,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
     OfferRoutingModule,
     MatProgressSpinnerModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule
   ]
 })
 export class OfferModule { }
