@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { OfferService } from './offer.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SessionService } from '../services/session.service';
+import { Component, OnInit } from '@angular/core'
+import { OfferService } from './offer.service'
+import { ActivatedRoute } from '@angular/router'
+import { SessionService } from '../services/session.service'
+import { OfferModel } from '../models/offer.model'
 
 @Component({
   selector: 'sr-offer',
@@ -9,29 +10,28 @@ import { SessionService } from '../services/session.service';
   styleUrls: ['./offer.component.scss']
 })
 export class OfferComponent implements OnInit {
-  offerId: string;
-  offer: any;
+  offerId: string
+  offer: OfferModel
 
-  isLoading = true;
 
   constructor(private _offerService: OfferService, private _route: ActivatedRoute, private _session: SessionService) {
   }
 
   ngOnInit(): void {
-    this.offerId = this._route.snapshot.params?.id;
+    this.offerId = this._route.snapshot.params?.id
     this.session$.subscribe(session => {
       if (!session) {
-        return;
+        return
       }
-      this.getOffer(this.offerId, session.currentCharacterId.toString());
-    });
+      this.getOffer(this.offerId, session.currentCharacterId.toString())
+    })
   }
 
   getOffer(id: string, charId: string) {
-    this._offerService.getRenta(id, charId).subscribe(offer => this.offer = offer);
+    this._offerService.getRenta(id, charId).subscribe(({ data }) => this.offer = data)
   }
 
   get session$() {
-    return this._session.session$;
+    return this._session.session$
   }
 }
