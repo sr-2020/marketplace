@@ -11,7 +11,7 @@ import { SessionService } from '../services/session.service';
 })
 export class NavComponent {
   @Output() linkSelected = new EventEmitter<null>();
-  constructor(private router: Router,
+  constructor(private _router: Router,
               private _appService: AppService,
               private _navService: NavService,
               private _sessionService: SessionService) {
@@ -70,6 +70,6 @@ export class NavComponent {
 
   changeShop() {
     this._sessionService.selectedShop.next(null);
-    this.router.navigate(['/']);
+    this._router.navigate(['/', 'auth']);
   }
 }

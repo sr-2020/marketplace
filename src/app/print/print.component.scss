@@ -1,0 +1,12 @@
+.--print-item {
+  margin-bottom: 12px;
+}
+@media print {
+  .--back-button {
+    display: none;
+  }
+  .--print-item {
+    page-break-after: always;
+  }
+}
+

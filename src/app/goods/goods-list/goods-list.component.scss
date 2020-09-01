@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .print {
   @media print {
     position: fixed;
@@ -22,15 +21,24 @@
 }
 
 ::ng-deep {
-  .mat-paginator{
+  .mat-paginator {
     background-color: #FAFAFA;
   }
+  .mat-content {
+    height: 40px;
+  }
+
   .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
     align-items: center;
   }
+  .mat-expansion-panel-header-title {
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
+
 .--count {
-  @media only screen and (max-width: 992px ) {
+  @media only screen and (max-width: 992px) {
     display: none;
   }
   width: 100px;
@@ -38,15 +46,17 @@
 }
 
 .--disabled {
-  background-color: #ddd;
+  background-color: #DDDDDD;
+
   &-text {
     margin-left: 20px;
-    color: #999;
-    @media only screen and (max-width: 700px ) {
+    color: #999999;
+    @media only screen and (max-width: 700px) {
       display: none;
     }
   }
 }
+
 .--lifestyle {
   text-align: right;
   min-width: 20px;
@@ -66,32 +76,37 @@
   }
 
   &.--wood:before {
-    content: 'Д';
+    content: "Д";
     background: saddlebrown;
   }
+
   &.--bronze:before {
-    content: 'Б';
+    content: "Б";
     background: #FF8D1F;
 
   }
+
   &.--silver:before {
-    content: 'С';
+    content: "С";
     color: black;
     background: silver;
 
   }
+
   &.--gold:before {
-    content: 'З';
+    content: "З";
     color: black;
     background: gold;
 
   }
+
   &.--platinum:before {
-    content: 'П';
+    content: "П";
     color: black;
     background: #E5E4E2;
 
   }
+
   &.--iridium:before {
     content: "И";
     color: black;
@@ -102,7 +117,27 @@
 
 .--description {
   margin-bottom: 20px;
+
   .--title {
-    color: #666;
+    color: #666666;
   }
+
+  @media only screen and (max-width: 767px) {
+    .--title, .--value {
+      font-size: 12px;
+
+    }
+  }
+}
+
+.print-checkbox {
+  margin-left: 12px;
+  width: 20px;
+}
+.print-mode {
+  margin-bottom: 12px;
+}
+
+.card-title {
+  margin: 0;
 }

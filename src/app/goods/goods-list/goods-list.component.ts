@@ -5,14 +5,18 @@ import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { BehaviorSubject } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { GoodsQrPopupComponent } from '../goods-qr-popup/goods-qr-popup.component';
 import { MatAccordion } from '@angular/material/expansion';
+import { PrintService } from '../../print/print.service';
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { AppService } from '../../app.service';
 
 @Component({
   selector: 'sr-goods-list',
   templateUrl: './goods-list.component.html',
   styleUrls: ['./goods-list.component.scss'],
+  providers: [
+    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop' }
+  ]
 })
 export class GoodsListComponent implements AfterViewInit {
   shopList: ShopUnitModel[];
@@ -26,6 +30,10 @@ export class GoodsListComponent implements AfterViewInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   goodsSchema = [
+    {
+      title: 'Название товара',
+      prop: 'skuName'
+    },
     {
       title: 'Корпорация',
       prop: 'corporationName'
@@ -45,7 +53,12 @@ export class GoodsListComponent implements AfterViewInit {
     },
   ];
 
-  constructor(private service: GoodsListService, private _dialog: MatDialog) {
+  get printList() {
+    return this._printService.getItems();
+  }
+
+  constructor(private _service: GoodsListService,
+              private _appService: AppService, private _printService: PrintService) {
   }
 
   applyFilter(event: Event) {
@@ -57,7 +70,7 @@ export class GoodsListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.service.getGoodsList().pipe(map(el => el.data)).subscribe(shopList => {
+    this._service.getGoodsList().pipe(map(el => el.data)).subscribe(shopList => {
       this.shopList = shopList;
       this.dataSource = new MatTableDataSource<any>(this.shopList.map(el => {
         return {
@@ -71,15 +84,33 @@ export class GoodsListComponent implements AfterViewInit {
     });
   }
 
-  openScanDialog(event, qr: string) {
-    event.stopPropagation();
-    this._dialog.open(GoodsQrPopupComponent, { data: qr });
-  }
-
   togglePrintMode() {
     this.printMode = !this.printMode;
     if (!this.printMode) {
-      console.log('some clear logic');
+      this._printService.reset();
     }
+  }
+
+  selectItemToPrint(e, good) {
+    e.stopPropagation();
+    const skuIdx = this.printList.findIndex((el) => {
+      return el.skuId === good.skuId;
+    });
+    if (skuIdx !== -1) {
+      this._printService.removeItem(skuIdx);
+      return;
+    }
+
+    this._printService.pushItem(good);
+  }
+
+  isSelected(good) {
+    return this.printList.findIndex((el) => {
+      return el.skuId === good.skuId;
+    });
+  }
+
+  get isMobile() {
+    return this._appService.isMobile;
   }
 }
