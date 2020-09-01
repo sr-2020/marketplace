@@ -4,7 +4,7 @@ import { SessionModel } from '../models/session.model';
 import { environment } from '../../environments/environment';
 import { ResponseModel } from '../models/response.model';
 import { ShopModel } from '../models/shop.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -14,14 +14,14 @@ export class SessionService {
   selectedShop = new BehaviorSubject<ShopModel>(undefined);
 
   get session(): SessionModel {
+    return this._session.value;
+  }
+
+  get session$(): BehaviorSubject<SessionModel> {
     return this._session;
   }
 
-  set session(value: SessionModel) {
-    this._session = value;
-  }
-
-  private _session: SessionModel;
+  private _session = new BehaviorSubject<SessionModel>(null);
 
   constructor(private httpClient: HttpClient, private _router: Router) {
   }
@@ -30,7 +30,7 @@ export class SessionService {
     this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, { withCredentials: true }).subscribe(
       {
         next: ({ data }) => {
-          this._session = data;
+          this._session.next(data);
           this._selectCurrentShop(data);
         },
         error: (err) => {
@@ -49,10 +49,10 @@ export class SessionService {
 
   private _selectCurrentShop(data: SessionModel) {
     const shopId = +window.localStorage.getItem('shopId');
-    if(!data.shops.find((el) => el?.id === shopId)) {
-      window.localStorage.removeItem('shopId')
+    if (!data.shops.find((el) => el?.id === shopId)) {
+      window.localStorage.removeItem('shopId');
       this.selectedShop.next(null);
-      return
+      return;
     }
     this.selectedShop.next(data.shops.find((el) => el?.id === shopId));
   }

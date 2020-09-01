@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { OfferService } from './offer.service'
+import { OfferService } from './offer.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'sr-offer',
@@ -7,14 +9,29 @@ import { OfferService } from './offer.service'
   styleUrls: ['./offer.component.scss']
 })
 export class OfferComponent implements OnInit {
+  offerId: string;
+  offer: any;
 
-  constructor(private _offerService: OfferService) { }
+  isLoading = true;
 
-  ngOnInit(): void {
+  constructor(private _offerService: OfferService, private _route: ActivatedRoute, private _session: SessionService) {
   }
 
-  sendRequest() {
-    let id = 8589934595
-    this._offerService.getRenta(id.toString()).subscribe(el => console.log(el))
+  ngOnInit(): void {
+    this.offerId = this._route.snapshot.params?.id;
+    this.session$.subscribe(session => {
+      if (!session) {
+        return;
+      }
+      this.getOffer(this.offerId, session.currentCharacterId.toString());
+    });
+  }
+
+  getOffer(id: string, charId: string) {
+    this._offerService.getRenta(id, charId).subscribe(offer => this.offer = offer);
+  }
+
+  get session$() {
+    return this._session.session$;
   }
 }

@@ -1,3 +1,11 @@
-<p>offer works!</p>
+<ng-container *ngIf="offer">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <pre>{{offer | json}}</pre>
+    </div>
+  </div>
+</div>
+</ng-container>
 
-<button (click)="sendRequest()">get</button>
+
