@@ -14,6 +14,8 @@ export class OfferComponent implements OnInit {
   offerId: string;
   offer: OfferModel;
   offerCompleted = false;
+  errorMsg: string;
+  isLoading = true;
 
   constructor(private _offerService: OfferService,
               private _route: ActivatedRoute,
@@ -32,14 +34,23 @@ export class OfferComponent implements OnInit {
   }
 
   getOffer(id: string) {
-    this._offerService.getRenta(id).subscribe(({ data }) => this.offer = data);
+    this._offerService.getRenta(id).subscribe(({ data }) => {
+      this.offer = data;
+      this.isLoading = false;
+    }, ({ message }) => {
+      this.errorMsg = message;
+      this.isLoading = false;
+    });
   }
 
   createOffer(id: number) {
     this._offerService.createRenta(id).subscribe(() => {
-      this._snack.open('Покупка произведена');
-      this.offerCompleted = true;
-    });
+        this._snack.open('Покупка произведена');
+        this.offerCompleted = true;
+      },
+      ({ message }) => {
+        this._snack.open(message);
+      });
   }
 
   get session$() {

@@ -1,11 +1,11 @@
-<ng-container *ngIf="offer; else loading">
-<!--  <div class="container-fluid">-->
-<!--    <div class="row">-->
-<!--      <div class="col-xs-12">-->
-<!--        <pre>{{offer | json}}</pre>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+<ng-container *ngIf="offer">
+  <!--  <div class="container-fluid">-->
+  <!--    <div class="row">-->
+  <!--      <div class="col-xs-12">-->
+  <!--        <pre>{{offer | json}}</pre>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
   <div class="container-fluid">
     <div class="row">
@@ -26,10 +26,11 @@
               <div class="col-xs-12 col-sm-9">{{offer.description}}</div>
             </div>
             <div>
-            <button mat-raised-button color="primary"
-                    [disabled]="offerCompleted"
-                    (click)="createOffer(offer.priceId)">Купить!
-            </button>
+              <button mat-raised-button
+                      color="primary"
+                      [disabled]="offerCompleted"
+                      (click)="createOffer(offer.priceId)">Купить!
+              </button>
             </div>
           </mat-card-content>
         </mat-card>
@@ -38,7 +39,7 @@
   </div>
 </ng-container>
 
-<ng-template #loading>
+<ng-container *ngIf="isLoading">
   <div class="sr-loading">
     <h2>Подождите идет загрузка</h2>
     <mat-progress-spinner
@@ -47,4 +48,14 @@
       mode="indeterminate">
     </mat-progress-spinner>
   </div>
-</ng-template>
+</ng-container>
+<div class="container-fluid" *ngIf="errorMsg">
+  <div class="row">
+    <div class="col-xs-12">
+      <mat-card>
+        <mat-card-header>Ошибка</mat-card-header>
+        <mat-card-content>Текст: {{errorMsg}}</mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
