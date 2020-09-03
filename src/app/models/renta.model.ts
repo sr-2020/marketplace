@@ -1,5 +1,7 @@
 export interface RentaModel {
   characterId: number;
+  characterName: string;
+  dateCreated: string;
   corporation: string;
   finalPrice: number;
   hasQRWrite: boolean;

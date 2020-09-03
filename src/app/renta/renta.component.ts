@@ -26,6 +26,14 @@ export class RentaComponent implements AfterViewInit {
 
   rentasSchema = [
     {
+      title: 'Покупатель',
+      prop: 'characterName',
+    },
+    {
+      title: 'Время покупки',
+      prop: 'dateCreated'
+    },
+    {
       title: 'Корпорация',
       prop: 'corporation'
     },

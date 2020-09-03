@@ -59,7 +59,8 @@
                  *ngFor="let s of rentasSchema">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
-                <div class="col-xs-12 col-sm-6">{{r[s.prop]}} <span *ngIf="s.price">&#165;</span></div>
+                <div class="col-xs-12 col-sm-6">{{s.prop === 'dateCreated' ? (r[s.prop] | date: 'dd MMMM y г., HH:MM:SS') : r[s.prop]}}
+                  <span *ngIf="s.price">&#165;</span></div>
               </div>
             </div>
           </div>
