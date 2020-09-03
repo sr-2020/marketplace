@@ -17,7 +17,7 @@ export class GoodsListService {
   getGoodsList(): Observable<ResponseModel<ShopUnitModel[]>> {
     return this._httpClient.post<ResponseModel<ShopUnitModel[]>>(`${ environment.api }shop/getproducts`,
       { shop: this.sessionService.selectedShop.value?.id },
-      { withCredentials: true }
+      // { withCredentials: true }
     );
   }
 }
