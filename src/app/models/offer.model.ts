@@ -1,7 +1,7 @@
-import { LifestyleType } from '../types/lifestyle.type'
+import { LifestyleType } from '../types/lifestyle.type';
 
 export interface OfferModel {
-  idOffer: number;
+  priceId: number;
   dateCreated: number;
   shopName: string;
   dateTill: number;

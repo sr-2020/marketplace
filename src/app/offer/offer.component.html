@@ -1,11 +1,11 @@
 <ng-container *ngIf="offer; else loading">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12">
-        <pre>{{offer | json}}</pre>
-      </div>
-    </div>
-  </div>
+<!--  <div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--      <div class="col-xs-12">-->
+<!--        <pre>{{offer | json}}</pre>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 
   <div class="container-fluid">
     <div class="row">
@@ -27,7 +27,8 @@
             </div>
             <div>
             <button mat-raised-button color="primary"
-                    (click)="createOffer(offer.idOffer)">Тестовая покупка
+                    [disabled]="offerCompleted"
+                    (click)="createOffer(offer.priceId)">Купить!
             </button>
             </div>
           </mat-card-content>
