@@ -37,8 +37,9 @@ export class OfferComponent implements OnInit {
     this._offerService.getRenta(id).subscribe(({ data }) => {
       this.offer = data;
       this.isLoading = false;
-    }, ({ data }) => {
-      this.errorMsg = data?.message;
+    }, ({ error }) => {
+
+      this.errorMsg = error?.message;
       this.isLoading = false;
     });
   }
@@ -48,8 +49,8 @@ export class OfferComponent implements OnInit {
         this._snack.open('Покупка произведена');
         this.offerCompleted = true;
       },
-      ({ data }) => {
-        this._snack.open(data?.message);
+      ({ error }) => {
+        this._snack.open(error?.message);
       });
   }
 
