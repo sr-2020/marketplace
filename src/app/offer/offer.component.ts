@@ -48,8 +48,8 @@ export class OfferComponent implements OnInit {
         this._snack.open('Покупка произведена');
         this.offerCompleted = true;
       },
-      ({ message }) => {
-        this._snack.open(message);
+      ({ data }) => {
+        this._snack.open(data?.message);
       });
   }
 
