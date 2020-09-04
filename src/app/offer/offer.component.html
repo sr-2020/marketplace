@@ -1,12 +1,6 @@
 <ng-container *ngIf="offer">
-  <!--  <div class="container-fluid">-->
-  <!--    <div class="row">-->
-  <!--      <div class="col-xs-12">-->
-  <!--        <pre>{{offer | json}}</pre>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
 
+  <a mat-raised-button href="https://rc-web.evarun.ru/">Logout</a>
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -22,8 +16,12 @@
                  [src]="offer.urlPicture"
                  alt="">
             <div class="row">
+              <div class="col-xs-12 col-sm-3">Цена</div>
+              <div class="col-xs-12 col-sm-12">{{offer.finalPrice}}&#165;</div>
+            </div>
+            <div class="row">
               <div class="col-xs-12 col-sm-3">Описание</div>
-              <div class="col-xs-12 col-sm-9">{{offer.description}}</div>
+              <div class="col-xs-12 col-sm-12">{{offer.description}}</div>
             </div>
             <div>
               <button mat-raised-button
