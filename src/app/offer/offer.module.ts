@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -19,7 +20,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatCardModule,
     MatDatepickerModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatToolbarModule
   ]
 })
 export class OfferModule { }

@@ -37,8 +37,8 @@ export class OfferComponent implements OnInit {
     this._offerService.getRenta(id).subscribe(({ data }) => {
       this.offer = data;
       this.isLoading = false;
-    }, ({ message }) => {
-      this.errorMsg = message;
+    }, ({ data }) => {
+      this.errorMsg = data?.message;
       this.isLoading = false;
     });
   }
