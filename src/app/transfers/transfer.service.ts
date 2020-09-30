@@ -18,7 +18,8 @@ export class TransferService {
   getTransferList(): Observable<ResponseModel<TransferModel[]>> {
     return this._httpClient.post<ResponseModel<TransferModel[]>>(
       `${ environment.api }shop/getTransfers`,
-      { shop: this._session.selectedShop.value.id });
+      { shop: this._session.selectedShop.value.id },
+      { withCredentials: true });
   }
 
   createTransaction(transaction) {

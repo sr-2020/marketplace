@@ -6,6 +6,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatCardModule } from '@angular/material/card'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatButtonModule } from '@angular/material/button'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -17,7 +19,9 @@ import { MatButtonModule } from '@angular/material/button'
     MatProgressSpinnerModule,
     MatCardModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule,
+    MatToolbarModule
   ]
 })
 export class OfferModule { }

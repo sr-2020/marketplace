@@ -27,3 +27,4 @@ jobs:
       script:
         - kubectl set image deployment/marketplace marketplace=sr2020/marketplace:$IMAGE_TAG --record
         - kubectl rollout status deployment/marketplace
+      if: branch = master
