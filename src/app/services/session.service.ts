@@ -4,7 +4,7 @@ import { SessionModel } from '../models/session.model';
 import { environment } from '../../environments/environment';
 import { ResponseModel } from '../models/response.model';
 import { ShopModel } from '../models/shop.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -27,7 +27,12 @@ export class SessionService {
   }
 
   initSession() {
-    this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, { withCredentials: true }).subscribe(
+    this.httpClient.get<ResponseModel<SessionModel>>(`${ environment.api }shop/getmyshops`, {
+      headers: {
+        // Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1NTgyNyIsImF1dGgiOiJST0xFX1BMQVlFUiIsIm1vZGVsSWQiOjU1ODI3LCJjaGFyYWN0ZXJJZCI6OTQyLCJleHAiOjE2MDUxMTM5ODR9.VKWIbGnWtvOhmcYzxst-nV6n1JEMzEH37a_OAmwrrwIlJ7XJ7mkWLb-IGYYlPTXdEC5DYf1YxBEGsFCQ3VFDyw`,
+        'x-user-id': '51629',
+      }, withCredentials: true
+    }).subscribe(
       {
         next: ({ data }) => {
           this._session.next(data);
