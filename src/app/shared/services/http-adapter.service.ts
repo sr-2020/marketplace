@@ -14,7 +14,7 @@ export class HttpAdapterService {
 
   constructor(private http: HttpClient) {
     if (environment.production && !HttpAdapterService.isAuthorized(document.cookie)) {
-      if (~ALLOW_UNAUTHORIZED_ACCESS.indexOf(document.location.pathname)) {
+      if (!~ALLOW_UNAUTHORIZED_ACCESS.indexOf(document.location.pathname)) {
         const redirectedFrom = document.location.href
         document.location.href = `http://web.evarun.ru/login?externalUrl=${ redirectedFrom }`
       }
