@@ -37,7 +37,7 @@ export class HttpAdapterService {
   }
 
   private static isAuthorized(cookie: string): boolean {
-    return !!cookie && /Authorisation/gi.test(cookie)
+    return !!cookie && /Authorization/gi.test(cookie)
   }
 
   getReq<T>(command: URLCommand): Observable<T> {

@@ -62,7 +62,7 @@ export class SessionService {
 
   public logOut() {
     this.selectedShop.next(null)
-    document.cookie = 'Authorisation=1;max-age=-1'
+    document.cookie = 'Authorization=1;max-age=-1'
     document.location.href = 'http://web.evarun.ru/login'
   }
 }
