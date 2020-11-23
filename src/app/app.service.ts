@@ -1,16 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   get isMobile(): boolean {
-    return this._isMobile;
+    return this._isMobile
   }
 
   set isMobile(value: boolean) {
-    this._isMobile = value;
+    this._isMobile = value
   }
 
-  private _isMobile = window.innerWidth < 767;
+  private _isMobile = window.innerWidth < 767
 }
