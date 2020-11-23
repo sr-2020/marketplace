@@ -29,7 +29,6 @@ export class HttpAdapterService {
         'x-user-id': '51629'
       }
     }
-    console.log(headers)
     return { headers, withCredentials: true }
   }
 
