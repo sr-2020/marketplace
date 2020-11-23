@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { SessionService } from '../services/session.service';
-import { ShopModel } from '../models/shop.model';
-import { LifestylePipe } from '../shared/pipes/lifestyle.pipe';
+import { Component, OnInit } from '@angular/core'
+import { SessionService } from '../services/session.service'
+import { ShopModel } from '../models/shop.model'
+import { LifestylePipe } from '../shared/pipes/lifestyle.pipe'
 
 @Component({
   selector: 'sr-info',
@@ -9,7 +9,7 @@ import { LifestylePipe } from '../shared/pipes/lifestyle.pipe';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-  shopInfo = [];
+  shopInfo = []
 
   constructor(private _session: SessionService) {
   }
@@ -43,8 +43,8 @@ export class InfoComponent implements OnInit {
           title: 'Лайфстайл:',
           value: new LifestylePipe().transform(el.lifestyle)
         }
-      ];
-    });
+      ]
+    })
 
   }
 

@@ -82,7 +82,7 @@
     ],
     "semicolon": {
       "options": [
-        "always"
+        "never"
       ]
     },
     "space-before-function-paren": {
@@ -130,6 +130,7 @@
         "check-typecast"
       ]
     },
+    "no-bitwise": false,
     "no-conflicting-lifecycle": true,
     "no-host-metadata-property": true,
     "no-input-rename": true,
