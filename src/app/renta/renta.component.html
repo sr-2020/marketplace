@@ -6,16 +6,16 @@
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
       <mat-label>Поиск</mat-label>
-      <input type="text"
-             matInput
+      <input matInput
+             type="text"
              (keydown)="applyFilter($event)">
     </mat-form-field>
     <mat-paginator
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
-      [pageSize]="25"
-      [pageSizeOptions]="[5, 10, 25, 100]">
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [pageSize]="25">
     </mat-paginator>
   </div>
   <div *ngIf="rentas$ | async; else loading"
@@ -42,8 +42,8 @@
             <mat-panel-description style="justify-content: flex-end">
               <ng-container *ngIf="r.hasQRWrite">
                 <button *ngIf="!r.qrRecorded; else qr"
-                        mat-icon-button
                         color="primary"
+                        mat-icon-button
                         (click)="openScanDialog(r)">
                   <mat-icon>qr_code_2</mat-icon>
                 </button>
@@ -55,8 +55,8 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description"
-                 *ngFor="let s of rentasSchema">
+            <div *ngFor="let s of rentasSchema"
+                 class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description">
               <div class="row">
                 <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
                 <div class="col-xs-12 col-sm-6">{{s.prop === 'dateCreated' ? (r[s.prop] | date: 'dd MMMM y г., HH:MM:SS') : r[s.prop]}}

@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
-import { ShopComponent } from './shop/shop.component'
-import { PrintComponent } from './print/print.component'
-import { AuthComponent } from './auth/auth.component'
-import { ShopGuard } from './shop/shop.guard'
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { ShopComponent } from './shop/shop.component';
+import { PrintComponent } from './print/print.component';
+import { AuthComponent } from './auth/auth.component';
+import { ShopGuard } from './shop/shop.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -19,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'offer/:id', loadChildren: () => import('./offer/offer.module').then(m => m.OfferModule),
-
   },
   { path: '', redirectTo: '/goods', canActivate: [ShopGuard], canActivateChild: [ShopGuard], pathMatch: 'full' },
   {
@@ -45,7 +44,7 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404', pathMatch: 'full' }
 
-]
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -73,4 +73,8 @@ export class NavComponent {
     this._sessionService.selectedShop.next(null)
     this._router.navigate(['/', 'auth'])
   }
+
+  logOut() {
+    this._sessionService.logOut()
+  }
 }

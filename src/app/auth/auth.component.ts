@@ -31,5 +31,9 @@ export class AuthComponent implements OnInit {
     this._sessionService.changeShop(shop)
     this._router.navigate(['/', 'goods'])
   }
+
+  logOut() {
+    this._sessionService.logOut()
+  }
 }
 

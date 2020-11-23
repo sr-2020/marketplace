@@ -33,7 +33,7 @@ export class SessionService {
           this._selectCurrentShop(data)
         },
         error: (err) => {
-          console.log(err)
+          console.error(err)
         }
       }
     )
@@ -60,4 +60,9 @@ export class SessionService {
     this.selectedShop.next(shop)
   }
 
+  public logOut() {
+    this.selectedShop.next(null)
+    document.cookie = 'Authorisation=1;max-age=-1'
+    document.location.href = 'http://web.evarun.ru/login'
+  }
 }

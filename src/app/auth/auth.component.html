@@ -31,7 +31,6 @@
               <mat-list-item><b>Баланс</b>: {{s.balance}}&#165;</mat-list-item>
               <mat-divider></mat-divider>
               <mat-list-item><b>Количество доступных специализаций</b>: {{s.specialisations.length}}</mat-list-item>
-
             </mat-list>
           </div>
         </ng-container>
@@ -43,6 +42,10 @@
         </ng-template>
       </mat-card-content>
       <mat-card-actions [align]="'end'">
+        <button mat-button
+                (click)="logOut()">
+          Сменить пользователя
+        </button>
         <button mat-raised-button
                 color="primary"
                 (click)="changeShop(shop)">
