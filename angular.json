@@ -71,7 +71,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sr-marketplace:build"
+            "browserTarget": "sr-marketplace:build",
+            "sslKey": "cert/localhost.key",
+            "sslCert": "cert/localhost.crt"
           },
           "configurations": {
             "production": {
