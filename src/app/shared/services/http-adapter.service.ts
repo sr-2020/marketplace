@@ -26,7 +26,7 @@ export class HttpAdapterService {
 
     if (!environment.production) {
       headers = {
-        'x-user-id': '51629'
+        'x-user-id': '44043'
       }
     }
     return { headers, withCredentials: true }

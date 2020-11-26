@@ -7,7 +7,7 @@ export const environment = {
   api: 'https://billing.evarun.ru/'
   // api: 'https://gateway.evarun.ru/api/v1/billing/api/'
   // api: 'http://localhost:8080/'
-};
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
