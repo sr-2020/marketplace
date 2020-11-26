@@ -9,8 +9,6 @@
 
 # dependencies
 /node_modules
-# local cert
-/cert
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
@@ -49,3 +47,4 @@ Thumbs.db
 
 /server/node_modules/
 /api-request-proxy/node_modules/
+/cert/

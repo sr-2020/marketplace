@@ -8,8 +8,8 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid --print-item"
-       *ngFor="let p of dataToPrint">
+  <div *ngFor="let p of dataToPrint"
+       class="container-fluid --print-item">
     <div class="row">
       <div class="col-xs-10 col-xs-offset-1 ">
         <mat-card>
@@ -19,8 +19,9 @@
             </mat-card-title>
           </mat-card-header>
           <mat-card-content>
-            <img [src]="p.qr"
-                 [alt]="p.skuName">
+            <img [alt]="p.skuName"
+                 [src]="p.qr">
+            <p><b>Описание:</b> <br> {{p.description}}</p>
           </mat-card-content>
         </mat-card>
       </div>
