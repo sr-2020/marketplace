@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, ViewChild } from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
-
 import QrScanner from 'qr-scanner'
 
-QrScanner.WORKER_PATH = 'assets/qr-scanner-worker.min.js'
+QrScanner.WORKER_PATH = './assets/qr-scanner-worker.min.js'
 
 @Component({
   selector: 'sr-basket-qr-popup',
@@ -37,8 +36,8 @@ export class RentaQrPopupComponent implements OnDestroy, AfterViewInit {
   }
 
   private async _setupQrReader() {
-    this.qrReader = new QrScanner(this.videoRef.nativeElement, this.onScanSuccess, () => {
-
+    this.qrReader = new QrScanner(this.videoRef.nativeElement, (el) => {
+      this.onScanSuccess(el)
     })
     this.hasDevices = await QrScanner.hasCamera()
     this.qrReader.start().catch(err => {
