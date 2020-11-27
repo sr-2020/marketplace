@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { OfferService } from './offer.service';
-import { ActivatedRoute } from '@angular/router';
-import { SessionService } from '../services/session.service';
-import { OfferModel } from '../models/offer.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit } from '@angular/core'
+import { OfferService } from './offer.service'
+import { ActivatedRoute } from '@angular/router'
+import { SessionService } from '../services/session.service'
+import { OfferModel } from '../models/offer.model'
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'sr-offer',
@@ -11,11 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./offer.component.scss']
 })
 export class OfferComponent implements OnInit {
-  offerId: string;
-  offer: OfferModel;
-  offerCompleted = false;
-  errorMsg: string;
-  isLoading = true;
+  offerId: string
+  offer: OfferModel
+  offerCompleted = false
+  errorMsg: string
+  isLoading = true
+  isProcessing = false
 
   constructor(private _offerService: OfferService,
               private _route: ActivatedRoute,
@@ -24,37 +25,40 @@ export class OfferComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.offerId = this._route.snapshot.params?.id;
+    this.offerId = this._route.snapshot.params?.id
     this.session$.subscribe(session => {
       if (!session) {
-        return;
+        return
       }
-      this.getOffer(this.offerId);
-    });
+      this.getOffer(this.offerId)
+    })
   }
 
   getOffer(id: string) {
     this._offerService.getRenta(id).subscribe(({ data }) => {
-      this.offer = data;
-      this.isLoading = false;
+      this.offer = data
+      this.isLoading = false
     }, ({ error }) => {
 
-      this.errorMsg = error?.message;
-      this.isLoading = false;
-    });
+      this.errorMsg = error?.message
+      this.isLoading = false
+    })
   }
 
   createOffer(id: number) {
+    this.isProcessing = true
     this._offerService.createRenta(id).subscribe(() => {
-        this._snack.open('Покупка произведена');
-        this.offerCompleted = true;
+        this._snack.open('Покупка произведена')
+        this.offerCompleted = true
+        this.isProcessing = false
       },
       ({ error }) => {
-        this._snack.open(error?.message);
-      });
+        this._snack.open(error?.message)
+        this.isProcessing = false
+      })
   }
 
   get session$() {
-    return this._session.session$;
+    return this._session.session$
   }
 }

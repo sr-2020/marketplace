@@ -9,8 +9,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
-        <a mat-raised-button
-           href="https://rc-web.evarun.ru/">Logout</a>
+        <a href="https://web.evarun.ru/"
+           mat-raised-button>Logout</a>
       </div>
     </div>
   </div>
@@ -20,15 +20,15 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <mat-card>
           <mat-card-header>
-            <img [src]="offer.corporationLogo"
-                 mat-card-avatar>
+            <img mat-card-avatar
+                 [src]="offer.corporationLogo">
             <mat-card-title>Товар {{offer.skuName}}</mat-card-title>
             <mat-card-subtitle>Корпорация: {{offer.corporationName}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <img mat-card-image
-                 [src]="offer.urlPicture"
-                 alt="">
+            <img alt=""
+                 mat-card-image
+                 [src]="offer.urlPicture">
             <div class="row">
               <div class="col-xs-12 col-sm-3">Цена</div>
               <div class="col-xs-12 col-sm-12">{{offer.finalPrice}}&#165;</div>
@@ -38,10 +38,10 @@
               <div class="col-xs-12 col-sm-12">{{offer.description}}</div>
             </div>
             <div>
-              <button mat-raised-button
-                      color="primary"
-                      [disabled]="offerCompleted"
-                      (click)="createOffer(offer.priceId)">Купить!
+              <button color="primary"
+                      mat-raised-button
+                      [disabled]="offerCompleted || isProcessing"
+                      (click)="createOffer(offer.priceId)">{{isProcessing ? 'Проводится покупка...' : 'Купить!'}}
               </button>
             </div>
           </mat-card-content>
@@ -61,8 +61,8 @@
     </mat-progress-spinner>
   </div>
 </ng-container>
-<div class="container-fluid"
-     *ngIf="errorMsg">
+<div *ngIf="errorMsg"
+     class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
       <mat-card>
