@@ -34,6 +34,9 @@ export class SessionService {
         },
         error: (err) => {
           console.error(err)
+          if (err.status === 401) {
+            window.location.href = 'http://web.evarun.ru/login?externalUrl=https://marketplace.evarun.ru'
+          }
         }
       }
     )
