@@ -26,7 +26,7 @@ export class HttpAdapterService {
 
     if (!environment.production) {
       headers = {
-        'x-user-id': '51629'
+        'x-user-id': '44043'
       }
     }
     return { headers, withCredentials: true }
@@ -37,7 +37,7 @@ export class HttpAdapterService {
   }
 
   private static isAuthorized(cookie: string): boolean {
-    return !!cookie && /Authorisation/gi.test(cookie)
+    return !!cookie && /Authorization/gi.test(cookie)
   }
 
   getReq<T>(command: URLCommand): Observable<T> {

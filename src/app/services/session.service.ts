@@ -34,6 +34,9 @@ export class SessionService {
         },
         error: (err) => {
           console.error(err)
+          if (err.status === 401) {
+            window.location.href = 'http://web.evarun.ru/login?externalUrl=https://marketplace.evarun.ru'
+          }
         }
       }
     )
@@ -62,7 +65,7 @@ export class SessionService {
 
   public logOut() {
     this.selectedShop.next(null)
-    document.cookie = 'Authorisation=1;max-age=-1'
+    document.cookie = 'Authorization=1;max-age=-1'
     document.location.href = 'http://web.evarun.ru/login'
   }
 }

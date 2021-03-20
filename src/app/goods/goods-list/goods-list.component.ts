@@ -1,14 +1,14 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { GoodsListService } from './goods-list.service';
-import { ShopUnitModel } from '../../models/shop-unit.model';
-import { map } from 'rxjs/operators';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { BehaviorSubject } from 'rxjs';
-import { MatAccordion } from '@angular/material/expansion';
-import { PrintService } from '../../print/print.service';
-import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
-import { AppService } from '../../app.service';
+import { AfterViewInit, Component, ViewChild } from '@angular/core'
+import { GoodsListService } from './goods-list.service'
+import { ShopUnitModel } from '../../models/shop-unit.model'
+import { map } from 'rxjs/operators'
+import { MatTableDataSource } from '@angular/material/table'
+import { MatPaginator } from '@angular/material/paginator'
+import { BehaviorSubject } from 'rxjs'
+import { MatAccordion } from '@angular/material/expansion'
+import { PrintService } from '../../print/print.service'
+import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox'
+import { AppService } from '../../app.service'
 
 @Component({
   selector: 'sr-goods-list',
@@ -19,15 +19,15 @@ import { AppService } from '../../app.service';
   ]
 })
 export class GoodsListComponent implements AfterViewInit {
-  shopList: ShopUnitModel[];
-  goods$: BehaviorSubject<any>;
-  dataSource: MatTableDataSource<any>;
-  printMode = false;
-  isLoading = true;
-  error: any;
+  shopList: ShopUnitModel[]
+  goods$: BehaviorSubject<any>
+  dataSource: MatTableDataSource<any>
+  printMode = false
+  isLoading = true
+  error: any
 
-  @ViewChild('listPaginator') paginator: MatPaginator;
-  @ViewChild(MatAccordion) accordion: MatAccordion;
+  @ViewChild('listPaginator') paginator: MatPaginator
+  @ViewChild(MatAccordion) accordion: MatAccordion
 
   goodsSchema = [
     {
@@ -50,11 +50,11 @@ export class GoodsListComponent implements AfterViewInit {
     {
       title: 'Тип товара',
       prop: 'productTypeName'
-    },
-  ];
+    }
+  ]
 
   get printList() {
-    return this._printService.getItems();
+    return this._printService.getItems()
   }
 
   constructor(private _service: GoodsListService,
@@ -62,55 +62,55 @@ export class GoodsListComponent implements AfterViewInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value
+    this.dataSource.filter = filterValue.trim().toLowerCase()
     if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+      this.dataSource.paginator.firstPage()
     }
   }
 
   ngAfterViewInit(): void {
     this._service.getGoodsList().pipe(map(el => el.data)).subscribe(shopList => {
-      this.shopList = shopList;
+      this.shopList = shopList
       this.dataSource = new MatTableDataSource<any>(this.shopList.map(el => {
         return {
           qr: el.qr,
           qrid: el.qrid,
           ...el.sku
-        };
-      }));
-      this.dataSource.paginator = this.paginator;
-      this.goods$ = this.dataSource.connect();
-    });
+        }
+      }))
+      this.dataSource.paginator = this.paginator
+      this.goods$ = this.dataSource.connect()
+    })
   }
 
   togglePrintMode() {
-    this.printMode = !this.printMode;
+    this.printMode = !this.printMode
     if (!this.printMode) {
-      this._printService.reset();
+      this._printService.reset()
     }
   }
 
   selectItemToPrint(e, good) {
-    e.stopPropagation();
+    e.stopPropagation()
     const skuIdx = this.printList.findIndex((el) => {
-      return el.skuId === good.skuId;
-    });
+      return el.skuId === good.skuId
+    })
     if (skuIdx !== -1) {
-      this._printService.removeItem(skuIdx);
-      return;
+      this._printService.removeItem(skuIdx)
+      return
     }
 
-    this._printService.pushItem(good);
+    this._printService.pushItem(good)
   }
 
   isSelected(good) {
     return this.printList.findIndex((el) => {
-      return el.skuId === good.skuId;
-    });
+      return el.skuId === good.skuId
+    })
   }
 
   get isMobile() {
-    return this._appService.isMobile;
+    return this._appService.isMobile
   }
 }

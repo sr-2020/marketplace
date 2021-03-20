@@ -67,7 +67,7 @@
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
               <div class="--count">Кол-во: {{g.count}}</div>
-              <div class="--lifestyle --{{g.lifeStyle.toLowerCase()}}"></div>
+              <div class="--lifestyle --{{g.lifeStyle?.toLowerCase()}}"></div>
               <mat-checkbox *ngIf="printMode"
                             class="print-checkbox"
                             color="warn"
