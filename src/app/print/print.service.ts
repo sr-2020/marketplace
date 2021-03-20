@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PrintService {
   private _itemsToPrint: any[] = []
@@ -22,6 +22,5 @@ export class PrintService {
     return this._itemsToPrint
   }
 
-  constructor() {
-  }
+  constructor() {}
 }

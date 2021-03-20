@@ -1,6 +1,6 @@
 export interface SpecialisationModel {
-  productTypeId: number;
-  productTypeName: string;
-  shopId: number;
-  shopName: string;
+  productTypeId: number
+  productTypeName: string
+  shopId: number
+  shopName: string
 }

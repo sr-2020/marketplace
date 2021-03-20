@@ -1,12 +1,10 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'lifestyle'
+  name: 'lifestyle',
 })
 export class LifestylePipe implements PipeTransform {
-
   transform(value: string): string {
-
     const lifestyles = new Map([
       ['Wood', 'Дерево'],
       ['Bronze', 'Бронза'],
@@ -14,10 +12,8 @@ export class LifestylePipe implements PipeTransform {
       ['Gold', 'Золото'],
       ['Platinum', 'Платина'],
       ['Iridium', 'Иридиум'],
-    ]);
+    ])
 
-
-    return lifestyles.get(value) ?? 'unknown';
+    return lifestyles.get(value) ?? 'unknown'
   }
-
 }

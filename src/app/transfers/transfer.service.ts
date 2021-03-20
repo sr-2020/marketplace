@@ -7,21 +7,21 @@ import { TransferModel } from '../models/transfer.model'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TransferService {
-
-  constructor(private router: Router, private _session: SessionService, private _http: HttpAdapterService) {
-  }
+  constructor(
+    private router: Router,
+    private _session: SessionService,
+    private _http: HttpAdapterService
+  ) {}
 
   getTransferList(): Observable<ResponseModel<TransferModel[]>> {
     return this._http.postReq<ResponseModel<TransferModel[]>>(
       ['shop', 'getTransfers'],
-      { shop: this._session.selectedShop.value.id })
+      { shop: this._session.selectedShop.value.id }
+    )
   }
 
-  createTransaction(transaction) {
-
-  }
-
+  createTransaction(transaction) {}
 }

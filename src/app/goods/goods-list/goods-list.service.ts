@@ -6,15 +6,17 @@ import { ResponseModel } from '../../models/response.model'
 import { HttpAdapterService } from '../../shared/services/http-adapter.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GoodsListService {
-
-  constructor(private _http: HttpAdapterService, private sessionService: SessionService) {
-  }
+  constructor(
+    private _http: HttpAdapterService,
+    private sessionService: SessionService
+  ) {}
 
   getGoodsList(): Observable<ResponseModel<ShopUnitModel[]>> {
-    return this._http.postReq<ResponseModel<ShopUnitModel[]>>(['shop', 'getproducts'],
+    return this._http.postReq<ResponseModel<ShopUnitModel[]>>(
+      ['shop', 'getproducts'],
       { shop: this.sessionService.selectedShop.value?.id }
     )
   }

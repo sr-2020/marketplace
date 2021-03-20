@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
   selectedShop = new BehaviorSubject<ShopModel>(undefined)
@@ -22,12 +22,12 @@ export class SessionService {
 
   private _session = new BehaviorSubject<SessionModel>(null)
 
-  constructor(private _http: HttpAdapterService, private _router: Router) {
-  }
+  constructor(private _http: HttpAdapterService, private _router: Router) {}
 
   initSession() {
-    this._http.getReq<ResponseModel<SessionModel>>(['shop', 'getmyshops']).subscribe(
-      {
+    this._http
+      .getReq<ResponseModel<SessionModel>>(['shop', 'getmyshops'])
+      .subscribe({
         next: ({ data }) => {
           this._session.next(data)
           this._selectCurrentShop(data)
@@ -35,11 +35,11 @@ export class SessionService {
         error: (err) => {
           console.error(err)
           if (err.status === 401) {
-            window.location.href = 'http://web.evarun.ru/login?externalUrl=https://marketplace.evarun.ru'
+            window.location.href =
+              'http://web.evarun.ru/login?externalUrl=https://marketplace.evarun.ru'
           }
-        }
-      }
-    )
+        },
+      })
 
     this.selectedShop.subscribe((shop: ShopModel) => {
       if (!shop) {

@@ -1,15 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { OfferComponent } from './offer.component';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { OfferComponent } from './offer.component'
 import { OfferRoutingModule } from './offer-routing.module'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatCardModule } from '@angular/material/card'
 import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatButtonModule } from '@angular/material/button'
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatToolbarModule } from '@angular/material/toolbar';
-
-
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatToolbarModule } from '@angular/material/toolbar'
 
 @NgModule({
   declarations: [OfferComponent],
@@ -21,7 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDatepickerModule,
     MatButtonModule,
     MatSnackBarModule,
-    MatToolbarModule
-  ]
+    MatToolbarModule,
+  ],
 })
-export class OfferModule { }
+export class OfferModule {}

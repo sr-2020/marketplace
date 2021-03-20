@@ -1,31 +1,43 @@
 <h2 mat-dialog-title>Считать QR Код</h2>
 
-<mat-dialog-content *ngIf="!code; else codeRef"
-                    class="mat-typography qr-loader-wrapper">
-  <mat-spinner *ngIf="hasDevices !== false"
-               class="qr-loader"
-               mode="indeterminate"></mat-spinner>
-  <div *ngIf="hasDevices === false">Возникла проблема с камерами. <br> Описание: {{errorText}}</div>
-  <video #qr
-         style="width: 100%"></video>
+<mat-dialog-content
+  *ngIf="!code; else codeRef"
+  class="mat-typography qr-loader-wrapper"
+>
+  <mat-spinner
+    *ngIf="hasDevices !== false"
+    class="qr-loader"
+    mode="indeterminate"
+  ></mat-spinner>
+  <div *ngIf="hasDevices === false">
+    Возникла проблема с камерами. <br />
+    Описание: {{ errorText }}
+  </div>
+  <video #qr style="width: 100%"></video>
 </mat-dialog-content>
 
-
 <mat-dialog-actions align="end">
-  <button mat-button
-          mat-dialog-close
-          [mat-dialog-close]="null">Отмена
-  </button>
-  <button *ngIf="code"
-          color="primary"
-          mat-raised-button
-          [mat-dialog-close]="{code: code, skuName: data.skuName, rentaId: data.rentaId}">Связать!
+  <button mat-button mat-dialog-close [mat-dialog-close]="null">Отмена</button>
+  <button
+    *ngIf="code"
+    color="primary"
+    mat-raised-button
+    [mat-dialog-close]="{
+      code: code,
+      skuName: data.skuName,
+      rentaId: data.rentaId
+    }"
+  >
+    Связать!
   </button>
 </mat-dialog-actions>
 
 <ng-template #codeRef>
   <mat-dialog-content class="mat-typography">
-    <div>Вы действительно хотите связать предмет <b>{{data.skuName}}</b> с кодом <b>{{code}}</b></div>
+    <div>
+      Вы действительно хотите связать предмет <b>{{ data.skuName }}</b> с кодом
+      <b>{{ code }}</b>
+    </div>
     <div><small>QR-код можно использовать только 1 раз</small></div>
   </mat-dialog-content>
 </ng-template>

@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, ViewChild } from '@angular/core'
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core'
 import { MAT_DIALOG_DATA } from '@angular/material/dialog'
 import QrScanner from 'qr-scanner'
 
@@ -7,7 +14,7 @@ QrScanner.WORKER_PATH = './assets/qr-scanner-worker.min.js'
 @Component({
   selector: 'sr-basket-qr-popup',
   templateUrl: './renta-qr-popup.component.html',
-  styleUrls: ['./renta-qr-popup.component.scss']
+  styleUrls: ['./renta-qr-popup.component.scss'],
 })
 export class RentaQrPopupComponent implements OnDestroy, AfterViewInit {
   qrReader = null
@@ -15,8 +22,7 @@ export class RentaQrPopupComponent implements OnDestroy, AfterViewInit {
   hasDevices: boolean
   errorText: string
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
   @ViewChild('qr') videoRef: ElementRef
 
@@ -40,7 +46,7 @@ export class RentaQrPopupComponent implements OnDestroy, AfterViewInit {
       this.onScanSuccess(el)
     })
     this.hasDevices = await QrScanner.hasCamera()
-    this.qrReader.start().catch(err => {
+    this.qrReader.start().catch((err) => {
       this.errorText = err
       this.hasDevices = false
     })

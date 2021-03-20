@@ -7,46 +7,46 @@ import { SessionService } from '../services/session.service'
 @Component({
   selector: 'sr-nav',
   templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss']
+  styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
   @Output() linkSelected = new EventEmitter<null>()
 
-  constructor(private _router: Router,
-              private _appService: AppService,
-              private _navService: NavService,
-              private _sessionService: SessionService) {
-  }
+  constructor(
+    private _router: Router,
+    private _appService: AppService,
+    private _navService: NavService,
+    private _sessionService: SessionService
+  ) {}
 
   navBarSchema = [
     {
       name: 'Информация',
-      routerLink: 'info'
+      routerLink: 'info',
     },
     {
       name: 'Переводы',
-      routerLink: 'transfers'
+      routerLink: 'transfers',
     },
     {
       name: 'Контракты',
       routerLink: 'contracts',
-      disabled: true
-
+      disabled: true,
     },
     {
       name: 'Доступные товары',
-      routerLink: 'goods'
+      routerLink: 'goods',
     },
     {
       name: 'Купленные товары',
       routerLink: 'renta',
-      disabled: false
+      disabled: false,
     },
     {
       name: 'Доступы',
       routerLink: 'permissions',
-      disabled: true
-    }
+      disabled: true,
+    },
   ]
 
   get isMobile() {

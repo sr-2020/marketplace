@@ -1,83 +1,110 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-2"><h1>Переводы</h1></div>
-    <div class="col-xs-10 col-sm-offset-8 col-sm-2 end-xs" *ngIf="!isMobile else mobileActions">
-      <button mat-raised-button
-              color="primary"
-              [routerLink]="['new']">Добавить перевод
+    <div
+      class="col-xs-10 col-sm-offset-8 col-sm-2 end-xs"
+      *ngIf="!isMobile; else mobileActions"
+    >
+      <button mat-raised-button color="primary" [routerLink]="['new']">
+        Добавить перевод
       </button>
     </div>
   </div>
 
   <ng-template #mobileActions>
-    <button mat-fab
-            color="primary"
-            class="add-mobile-btn"
-            [routerLink]="['new']">
+    <button
+      mat-fab
+      color="primary"
+      class="add-mobile-btn"
+      [routerLink]="['new']"
+    >
       <mat-icon>add</mat-icon>
     </button>
   </ng-template>
   <div class="row">
     <mat-form-field class="col-xs-12 col-sm-3">
       <mat-label>Поиск</mat-label>
-      <input type="text"
-             matInput
-             (keydown)="applyFilter($event)">
+      <input type="text" matInput (keydown)="applyFilter($event)" />
     </mat-form-field>
     <mat-paginator
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
       [pageSize]="25"
-      [pageSizeOptions]="[5, 10, 25, 100]">
+      [pageSizeOptions]="[5, 10, 25, 100]"
+    >
     </mat-paginator>
   </div>
-  <div class="row"
-       *ngIf="list$ | async; else loading">
+  <div class="row" *ngIf="list$ | async; else loading">
     <div class="col-xs-12 end-xs" style="margin-bottom: 12px">
-      <button mat-button (click)="accordion.openAll()"><mat-icon>view_stream</mat-icon></button>
-      <button mat-button (click)="accordion.closeAll()"><mat-icon>view_headline</mat-icon></button>
+      <button mat-button (click)="accordion.openAll()">
+        <mat-icon>view_stream</mat-icon>
+      </button>
+      <button mat-button (click)="accordion.closeAll()">
+        <mat-icon>view_headline</mat-icon>
+      </button>
     </div>
     <div class="col-xs-12">
       <mat-accordion multi>
-        <mat-expansion-panel *ngFor="let t of list$ | async"
-                             hideToggle>
+        <mat-expansion-panel *ngFor="let t of list$ | async" hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title class="transaction-list__column --trade-icon">
-              <mat-icon class="--currency"
-                        [class.--negative]="t.transferType !== 'Incoming' ">{{t.transferType === "Incoming" ? 'arrow_downward' : 'arrow_upward'}}</mat-icon>
+              <mat-icon
+                class="--currency"
+                [class.--negative]="t.transferType !== 'Incoming'"
+                >{{
+                  t.transferType === 'Incoming'
+                    ? 'arrow_downward'
+                    : 'arrow_upward'
+                }}</mat-icon
+              >
             </mat-panel-title>
             <mat-panel-title class="transaction-list__column --target">
-              <span class="--send-from">{{t.from}}</span><span class="--comment col-mobile-hidden">{{t.comment}} </span>
+              <span class="--send-from">{{ t.from }}</span
+              ><span class="--comment col-mobile-hidden">{{ t.comment }} </span>
             </mat-panel-title>
-            <mat-panel-title class="transaction-list__column --currency"
-                             [class.--negative]="t.transferType !== 'Incoming'">
-              {{t.transferType === 'Incoming' ? "+" : "-"}}  {{ t.amount }}&#165;
+            <mat-panel-title
+              class="transaction-list__column --currency"
+              [class.--negative]="t.transferType !== 'Incoming'"
+            >
+              {{ t.transferType === 'Incoming' ? '+' : '-' }}
+              {{ t.amount }}&#165;
             </mat-panel-title>
-            <mat-panel-description class="transaction-list__column --date col-mobile-hidden">
-              {{ t.operationTime | date: 'dd MMMM y г., HH:MM:SS': '': 'ru_RU'}}
+            <mat-panel-description
+              class="transaction-list__column --date col-mobile-hidden"
+            >
+              {{ t.operationTime | date: 'dd MMMM y г., HH:MM:SS':'':'ru_RU' }}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
               <div class="col-xs-6 col-sm-12 --title">Отправитель:</div>
-              <div class="col-xs-6 col-sm-12 --value">{{t.anonimous ? 'Анонимный перевод' : t.from}}</div>
+              <div class="col-xs-6 col-sm-12 --value">
+                {{ t.anonimous ? 'Анонимный перевод' : t.from }}
+              </div>
             </div>
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
               <div class="col-xs-6 col-sm-12 --title">Получатель:</div>
-              <div class="col-xs-6 col-sm-12 --value">{{ t.to}}</div>
+              <div class="col-xs-6 col-sm-12 --value">{{ t.to }}</div>
             </div>
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
               <div class="col-xs-6 col-sm-12 --title">Дата и время:</div>
-              <div class="col-xs-6 col-sm-12 --value">{{ t.operationTime | date: 'dd MMMM y г., HH:MM:SS': '': 'ru_RU'}}</div>
+              <div class="col-xs-6 col-sm-12 --value">
+                {{
+                  t.operationTime | date: 'dd MMMM y г., HH:MM:SS':'':'ru_RU'
+                }}
+              </div>
             </div>
 
             <div class="row col-xs-12 col-sm-6 col-md-3 info-meta">
-              <div class="col-xs-6 col-sm-12 center-md --title">Новый баланс:</div>
-              <div class="col-xs-6 col-sm-12 center-md --value">{{ t.newBalance }} &#165;</div>
+              <div class="col-xs-6 col-sm-12 center-md --title">
+                Новый баланс:
+              </div>
+              <div class="col-xs-6 col-sm-12 center-md --value">
+                {{ t.newBalance }} &#165;
+              </div>
             </div>
-            <div class="row col-xs-12 info-meta"
-                 *ngIf="t.comment">
+            <div class="row col-xs-12 info-meta" *ngIf="t.comment">
               <div class="col-xs-12 --title">Комментарий:</div>
               <div class="col-xs-12 --value">{{ t.comment }}</div>
             </div>
@@ -87,7 +114,6 @@
     </div>
   </div>
 </div>
-
 
 <ng-template #loading>
   <div class="container-fluid">

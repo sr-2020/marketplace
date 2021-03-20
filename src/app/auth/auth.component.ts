@@ -8,16 +8,17 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'sr-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
   shop: ShopModel
 
-  constructor(private _sessionService: SessionService, private _router: Router) {
-  }
+  constructor(
+    private _sessionService: SessionService,
+    private _router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get shop$(): Observable<ShopModel> {
     return this._sessionService.selectedShop
@@ -36,4 +37,3 @@ export class AuthComponent implements OnInit {
     this._sessionService.logOut()
   }
 }
-

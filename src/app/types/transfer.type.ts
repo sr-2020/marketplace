@@ -1,1 +1,1 @@
-export type transferType = 'Outcoming' | 'Incoming';
+export type transferType = 'Outcoming' | 'Incoming'
