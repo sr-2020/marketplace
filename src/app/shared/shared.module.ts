@@ -7,6 +7,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 @NgModule({
   declarations: [LifestylePipe, LoadingComponent],
   imports: [CommonModule, MatProgressSpinnerModule],
-  exports: [LifestylePipe],
+  exports: [LifestylePipe, LoadingComponent],
 })
 export class SharedModule {}

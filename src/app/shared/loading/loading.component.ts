@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, HostBinding, OnInit } from '@angular/core'
 
 @Component({
   selector: 'sr-loading',
@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./loading.component.scss'],
 })
 export class LoadingComponent implements OnInit {
-  constructor() {}
+  @HostBinding('container-fluid') test = true
 
-  ngOnInit(): void {}
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
 }

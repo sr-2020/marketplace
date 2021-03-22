@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatListModule } from '@angular/material/list'
 import { PrintComponent } from './print/print.component'
 import { AuthComponent } from './auth/auth.component'
+import { SharedModule } from './shared/shared.module'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -51,6 +52,7 @@ registerLocaleData(localeRu, 'ru_RU')
     MatOptionModule,
     MatSelectModule,
     MatListModule,
+    SharedModule,
   ],
   providers: [AppService],
 

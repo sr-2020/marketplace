@@ -54,17 +54,10 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="isLoading">
-  <div class="sr-loading">
-    <h2>Подождите идет загрузка</h2>
-    <mat-progress-spinner
-      class="example-margin"
-      color="primary"
-      mode="indeterminate"
-    >
-    </mat-progress-spinner>
-  </div>
-</ng-container>
+<sr-loading *ngIf="isLoading">
+  Подождите, идет загрузка
+</sr-loading>
+
 <div *ngIf="errorMsg" class="container-fluid">
   <div class="row">
     <div class="col-xs-12">

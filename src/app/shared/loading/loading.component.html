@@ -1,9 +1,12 @@
-<div class="loading">
-  <h2>Подождите идет загрузка...</h2>
-  <mat-progress-spinner
-    class="example-margin"
-    color="primary"
-    mode="indeterminate"
-  >
-  </mat-progress-spinner>
+<div class="row">
+  <div class="loading col-xs-12">
+    <mat-progress-spinner
+      class="example-margin"
+      color="primary"
+      mode="indeterminate"
+    >
+    </mat-progress-spinner>
+    <ng-content></ng-content>
+  </div>
 </div>
+
