@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list'
 import { PrintComponent } from './print/print.component'
 import { AuthComponent } from './auth/auth.component'
 import { SharedModule } from './shared/shared.module'
+import { MatRadioModule } from '@angular/material/radio'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -53,6 +54,7 @@ registerLocaleData(localeRu, 'ru_RU')
     MatSelectModule,
     MatListModule,
     SharedModule,
+    MatRadioModule,
   ],
   providers: [AppService],
 

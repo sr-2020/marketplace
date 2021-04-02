@@ -1,30 +1,38 @@
 <ng-container *ngIf="dataToPrint.length > 0; else nothingToPrint">
   <div class="container-fluid --back-button">
     <div class="row">
-      <div class="col-xs-12">
-        <button mat-button (click)="back()">Вернуться назад</button>
+      <div class="col-xs-6">
+        <button mat-button
+                (click)="back()">Вернуться назад
+        </button>
+      </div>
+      <div class="col-xs-6">
+        <mat-radio-group [value]="ratio" aria-label="Ratio">
+          <mat-radio-button value="25">25%</mat-radio-button>
+          <mat-radio-button value="50">50%</mat-radio-button>
+          <mat-radio-button value="100">100%</mat-radio-button>
+        </mat-radio-group>
       </div>
     </div>
   </div>
-  <div *ngFor="let p of dataToPrint" class="container-fluid --print-item">
-    <div class="row">
-      <div class="col-xs-10 col-xs-offset-1">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>
-              {{ p.skuName }}
-            </mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <img [alt]="p.skuName" [src]="p.qr" />
-            <p>
-              <b>Описание:</b> <br />
-              {{ p.description }}
-            </p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </div>
+  <div *ngFor="let p of dataToPrint"
+       class=" --print-item ratio-{{ratio}}">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          {{ p.skuName }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img width="100%"
+             [alt]="p.skuName"
+             [src]="p.qr"/>
+        <p>
+          <b>Описание:</b> <br/>
+          {{ p.description }}
+        </p>
+      </mat-card-content>
+    </mat-card>
   </div>
 </ng-container>
 
@@ -36,7 +44,9 @@
         страницу печати.
       </div>
       <div class="col-xs-12">
-        <button mat-button (click)="back()">Вернуться назад</button>
+        <button mat-button
+                (click)="back()">Вернуться назад
+        </button>
       </div>
     </div>
   </div>

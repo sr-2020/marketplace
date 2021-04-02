@@ -12,7 +12,7 @@ export class PrintComponent implements OnInit {
     private _printService: PrintService,
     private _location: Location
   ) {}
-
+  ratio = 25
   ngOnInit(): void {}
 
   get dataToPrint() {
