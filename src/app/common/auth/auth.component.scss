@@ -1,0 +1,27 @@
+.shop-selector {
+  margin-top: 120px;
+  @media screen and (max-width: 767px) {
+    margin-top: 40px;
+    display: block;
+  }
+
+  .list {
+    max-height: 25vh;
+    overflow: scroll;
+
+    .list-item {
+      background: darken(white, 3);
+      border-radius: 8px;
+      margin-bottom: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background: darken(white, 10);
+      }
+      &.selected {
+        background: darken(white, 20);
+      }
+    }
+  }
+}
+

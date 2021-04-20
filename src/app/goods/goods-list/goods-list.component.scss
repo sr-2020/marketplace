@@ -22,13 +22,14 @@
 
 ::ng-deep {
   .mat-paginator {
-    background-color: #FAFAFA;
+    background-color: #fafafa;
   }
   .mat-content {
     height: 40px;
   }
 
-  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description {
     align-items: center;
   }
   .mat-expansion-panel-header-title {
@@ -46,7 +47,7 @@
 }
 
 .--disabled {
-  background-color: #DDDDDD;
+  background-color: #dddddd;
 
   &-text {
     margin-left: 20px;
@@ -63,7 +64,7 @@
   max-width: 20px;
 
   &:before {
-    content: "";
+    content: '';
     font-size: 9px;
     color: white;
     display: flex;
@@ -76,44 +77,39 @@
   }
 
   &.--wood:before {
-    content: "Д";
+    content: 'Д';
     background: saddlebrown;
   }
 
   &.--bronze:before {
-    content: "Б";
-    background: #FF8D1F;
-
+    content: 'Б';
+    background: #ff8d1f;
   }
 
   &.--silver:before {
-    content: "С";
+    content: 'С';
     color: black;
     background: silver;
-
   }
 
   &.--gold:before {
-    content: "З";
+    content: 'З';
     color: black;
     background: gold;
-
   }
 
   &.--platinum:before {
-    content: "П";
+    content: 'П';
     color: black;
-    background: #E5E4E2;
-
+    background: #e5e4e2;
   }
 
   &.--iridium:before {
-    content: "И";
+    content: 'И';
     color: black;
-    background: #9AE2FA;
+    background: #9ae2fa;
   }
 }
-
 
 .--description {
   margin-bottom: 20px;
@@ -123,9 +119,9 @@
   }
 
   @media only screen and (max-width: 767px) {
-    .--title, .--value {
+    .--title,
+    .--value {
       font-size: 12px;
-
     }
   }
 }

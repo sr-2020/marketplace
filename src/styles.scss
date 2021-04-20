@@ -1,19 +1,18 @@
-
-@import "styles/grid";
-@import "styles/variables";
-@import "~@angular/material/theming";
+@import 'styles/grid';
+@import 'styles/variables';
+@import '~@angular/material/theming';
 
 @include angular-material-theme($teal-app-theme);
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
-
 
 .sr-loading {
   position: absolute;

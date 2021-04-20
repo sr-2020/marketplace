@@ -1,0 +1,70 @@
+<div *ngIf="session; else loading"
+     class="container-fluid shop-selector">
+  <div class="row">
+    <mat-card
+      class="col-xs-12 middle-sm col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 mat-elevation-z4"
+    >
+      <mat-card-content>
+        <h2>Привет, {{session.currentCharacterName}}!</h2>
+        <ng-container *ngIf="organisations; else noShops">
+          <p> Выбери организацию: </p>
+          <mat-form-field>
+            <mat-label>Фильтр</mat-label>
+            <input matInput
+                   type="text"
+                   [formControl]="filterControl">
+          </mat-form-field>
+          <mat-list class="list">
+            <ng-container *ngIf="(organisations | filter: 'name': filterControl.value) as orgs">
+              <ng-container *ngIf="orgs.length === 0">
+                <mat-list-item>Измените фильтр</mat-list-item>
+              </ng-container>
+              <mat-list-item *ngFor="let org of orgs"
+                             class="list-item"
+                             [class.selected]="isSelected(org)"
+                             (click)="selectOrg(org)">
+                {{org | organisation}}: {{org.id}} {{org.name}}
+              </mat-list-item>
+            </ng-container>
+          </mat-list>
+        </ng-container>
+
+        <ng-template #noShops>
+          <p>
+            В базе связанные организации не обнаружены. Обратитесь к мастерам.
+          </p>
+        </ng-template>
+      </mat-card-content>
+      <div *ngIf="organisation as o">
+        <h3>{{o | organisation}}</h3>
+        <p>ID: {{o.id}}</p>
+        <p>Название: {{o.name}}</p>
+        <p>Владелец: {{o.owner.name}}</p>
+        <ng-container *ngIf="(o | organisation) === 'Магазин'">
+          <p>Баланс: {{o.balance}}</p>
+        </ng-container>
+        <ng-container *ngIf="(o | organisation) === 'Корпорация'">
+          <p *ngIf="o.corporationUrl">Ссылка: <a>{{o.corporationUrl}}</a></p>
+          <p>Текущий KPI: {{o.currentKPI}}</p>
+          <p>Последний KPI: {{o.lastKPI}}</p>
+        </ng-container>
+      </div>
+      <mat-card-actions [align]="'end'">
+        <button mat-button
+                (click)="logOut()">Logout
+        </button>
+        <button color="primary"
+                mat-raised-button
+                (click)="changeOrganisation(organisation)">
+          Выбрать {{(organisation | organisation) === "Магазин" ? "магазин" : "корпорацию"}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<ng-template #loading>
+  <sr-loading>
+    Подождите, идет загрузка...
+  </sr-loading>
+</ng-template>

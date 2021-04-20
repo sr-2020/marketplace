@@ -20,7 +20,6 @@
   &.--trade-icon {
     width: 5%;
   }
-
 }
 
 .--currency {
@@ -31,7 +30,8 @@
   }
 }
 
-.--currency, .--date {
+.--currency,
+.--date {
   justify-content: flex-end;
 }
 
@@ -47,9 +47,9 @@
   }
 
   @media only screen and (max-width: 767px) {
-    .--title, .--value {
+    .--title,
+    .--value {
       font-size: 12px;
-
     }
   }
 }
@@ -89,10 +89,11 @@
   align-items: center;
 }
 ::ng-deep {
-  .mat-paginator{
-    background-color: #FAFAFA;
+  .mat-paginator {
+    background-color: #fafafa;
   }
-  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description {
     align-items: center;
   }
 }

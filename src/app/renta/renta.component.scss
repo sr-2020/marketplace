@@ -1,24 +1,18 @@
-.--loader {
-  display: flex;
-  height: 80vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-
 .--description {
   margin-bottom: 20px;
+
   .--title {
-    color: #666;
+    color: #666666;
   }
 }
 
 ::ng-deep {
-  .mat-paginator{
+  .mat-paginator {
     background-color: #FAFAFA;
   }
-  .mat-expansion-panel-header-title, .mat-expansion-panel-header-description {
+
+  .mat-expansion-panel-header-title,
+  .mat-expansion-panel-header-description {
     align-items: center;
   }
 }

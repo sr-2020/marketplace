@@ -8,15 +8,17 @@ export type URLCommand = string[]
 const ALLOW_UNAUTHORIZED_ACCESS: string[] = []
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpAdapterService {
-
   constructor(private http: HttpClient) {
-    if (environment.production && !HttpAdapterService.isAuthorized(document.cookie)) {
+    if (
+      environment.production &&
+      !HttpAdapterService.isAuthorized(document.cookie)
+    ) {
       if (!~ALLOW_UNAUTHORIZED_ACCESS.indexOf(document.location.pathname)) {
         const redirectedFrom = document.location.href
-        document.location.href = `http://web.evarun.ru/login?externalUrl=${ redirectedFrom }`
+        document.location.href = `http://web.evarun.ru/login?externalUrl=${redirectedFrom}`
       }
     }
   }
@@ -26,7 +28,7 @@ export class HttpAdapterService {
 
     if (!environment.production) {
       headers = {
-        'x-user-id': '44043'
+        'x-user-id': '44043',
       }
     }
     return { headers, withCredentials: true }
@@ -41,10 +43,17 @@ export class HttpAdapterService {
   }
 
   getReq<T>(command: URLCommand): Observable<T> {
-    return this.http.get(HttpAdapterService.getURL(command), HttpAdapterService.options) as Observable<T>
+    return this.http.get(
+      HttpAdapterService.getURL(command),
+      HttpAdapterService.options
+    ) as Observable<T>
   }
 
   postReq<T>(command: URLCommand, body: object): Observable<T> {
-    return this.http.post(HttpAdapterService.getURL(command), body, HttpAdapterService.options) as Observable<T>
+    return this.http.post(
+      HttpAdapterService.getURL(command),
+      body,
+      HttpAdapterService.options
+    ) as Observable<T>
   }
 }

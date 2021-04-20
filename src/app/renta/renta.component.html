@@ -8,14 +8,15 @@
       <mat-label>Поиск</mat-label>
       <input matInput
              type="text"
-             (keydown)="applyFilter($event)">
+             (keydown)="applyFilter($event)"/>
     </mat-form-field>
     <mat-paginator
       class="col-xs-12 col-sm-9 end-sm"
       #listPaginator
       [length]="50"
       [pageSizeOptions]="[5, 10, 25, 100]"
-      [pageSize]="25">
+      [pageSize]="25"
+    >
     </mat-paginator>
   </div>
   <div *ngIf="rentas$ | async; else loading"
@@ -37,30 +38,38 @@
                              hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{r.skuName}} {{r.characterName}}
+              {{ r.skuName }} {{ r.characterName }}
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
               <ng-container *ngIf="r.hasQRWrite">
-                <button *ngIf="!r.qrRecorded; else qr"
-                        color="primary"
-                        mat-icon-button
-                        (click)="openScanDialog(r)">
+                <button
+                  *ngIf="!r.qrRecorded; else qr"
+                  color="primary"
+                  mat-icon-button
+                  (click)="openScanDialog(r)"
+                >
                   <mat-icon>qr_code_2</mat-icon>
                 </button>
 
-                <ng-template #qr>
-                  QR:&nbsp;{{r.qrRecorded}}
-                </ng-template>
+                <ng-template #qr> QR:&nbsp;{{ r.qrRecorded }} </ng-template>
               </ng-container>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="row">
-            <div *ngFor="let s of rentasSchema"
-                 class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description">
+            <div
+              *ngFor="let s of rentasSchema"
+              class="col-xs-12 col-sm-6 col-md-4 col-lg-3 --description"
+            >
               <div class="row">
-                <div class="col-xs-12 col-sm-6 --title">{{s.title}}:</div>
-                <div class="col-xs-12 col-sm-6">{{s.prop === 'dateCreated' ? (r[s.prop] | date: 'dd MMMM y г., HH:MM:SS') : r[s.prop]}}
-                  <span *ngIf="s.price">&#165;</span></div>
+                <div class="col-xs-12 col-sm-6 --title">{{ s.title }}:</div>
+                <div class="col-xs-12 col-sm-6">
+                  {{
+                  s.prop === 'dateCreated'
+                    ? (r[s.prop] | date: 'dd MMMM y г., HH:MM:SS')
+                    : r[s.prop]
+                  }}
+                  <span *ngIf="s.price">&#165;</span>
+                </div>
               </div>
             </div>
           </div>
@@ -71,12 +80,9 @@
 </div>
 
 <ng-template #loading>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-xs-12 --loader">
-        <h3><b>Идет загрузка проданных товаров...</b></h3>
-        <mat-spinner></mat-spinner>
-      </div>
-    </div>
-  </div>
+  <sr-loading>
+    Идет загрузка проданных товаров ...
+  </sr-loading>
 </ng-template>
+
+

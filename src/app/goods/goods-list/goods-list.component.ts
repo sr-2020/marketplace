@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core'
 import { GoodsListService } from './goods-list.service'
-import { ShopUnitModel } from '../../models/shop-unit.model'
+import { ShopUnit } from '@type'
 import { map } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { BehaviorSubject } from 'rxjs'
 import { MatAccordion } from '@angular/material/expansion'
-import { PrintService } from '../../print/print.service'
+import { PrintService } from '../../common/print/print.service'
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox'
 import { AppService } from '../../app.service'
 
@@ -14,12 +14,10 @@ import { AppService } from '../../app.service'
   selector: 'sr-goods-list',
   templateUrl: './goods-list.component.html',
   styleUrls: ['./goods-list.component.scss'],
-  providers: [
-    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop' }
-  ]
+  providers: [{ provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop' }],
 })
 export class GoodsListComponent implements AfterViewInit {
-  shopList: ShopUnitModel[]
+  shopList: ShopUnit[]
   goods$: BehaviorSubject<any>
   dataSource: MatTableDataSource<any>
   printMode = false
@@ -32,34 +30,36 @@ export class GoodsListComponent implements AfterViewInit {
   goodsSchema = [
     {
       title: 'Название товара',
-      prop: 'skuName'
+      prop: 'skuName',
     },
     {
       title: 'Корпорация',
-      prop: 'corporationName'
+      prop: 'corporationName',
     },
     {
       title: 'Название номенклатуры',
-      prop: 'nomenklaturaName'
+      prop: 'nomenklaturaName',
     },
     {
       title: 'Базовая цена',
       prop: 'basePrice',
-      price: true
+      price: true,
     },
     {
       title: 'Тип товара',
-      prop: 'productTypeName'
-    }
+      prop: 'productTypeName',
+    },
   ]
 
   get printList() {
     return this._printService.getItems()
   }
 
-  constructor(private _service: GoodsListService,
-              private _appService: AppService, private _printService: PrintService) {
-  }
+  constructor(
+    private _service: GoodsListService,
+    private _appService: AppService,
+    private _printService: PrintService
+  ) {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
@@ -70,18 +70,23 @@ export class GoodsListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this._service.getGoodsList().pipe(map(el => el.data)).subscribe(shopList => {
-      this.shopList = shopList
-      this.dataSource = new MatTableDataSource<any>(this.shopList.map(el => {
-        return {
-          qr: el.qr,
-          qrid: el.qrid,
-          ...el.sku
-        }
-      }))
-      this.dataSource.paginator = this.paginator
-      this.goods$ = this.dataSource.connect()
-    })
+    this._service
+      .getGoodsList()
+      .pipe(map((el) => el.data))
+      .subscribe((shopList) => {
+        this.shopList = shopList
+        this.dataSource = new MatTableDataSource<any>(
+          this.shopList.map((el) => {
+            return {
+              qr: el.qr,
+              qrid: el.qrid,
+              ...el.sku,
+            }
+          })
+        )
+        this.dataSource.paginator = this.paginator
+        this.goods$ = this.dataSource.connect()
+      })
   }
 
   togglePrintMode() {

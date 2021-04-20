@@ -34,9 +34,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatExpansionModule,
     MatPaginatorModule,
     MatInputModule,
-    MatProgressSpinnerModule
-
-  ]
+    MatProgressSpinnerModule,
+  ],
 })
-export class RentaModule {
-}
+export class RentaModule {}
