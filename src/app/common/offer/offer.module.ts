@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatToolbarModule } from '@angular/material/toolbar'
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '@shared/shared.module'
 
 @NgModule({
   declarations: [OfferComponent],

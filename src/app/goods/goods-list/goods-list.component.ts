@@ -6,7 +6,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
 import { BehaviorSubject } from 'rxjs'
 import { MatAccordion } from '@angular/material/expansion'
-import { PrintService } from '../../print/print.service'
+import { PrintService } from '../../common/print/print.service'
 import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox'
 import { AppService } from '../../app.service'
 

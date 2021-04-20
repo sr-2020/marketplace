@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { ShopComponent } from './shop/shop.component'
-import { PrintComponent } from './print/print.component'
-import { AuthComponent } from './auth/auth.component'
+import { PrintComponent } from './common/print/print.component'
+import { AuthComponent } from './common/auth/auth.component'
 import { ShopGuard } from './shop/shop.guard'
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NotFoundComponent } from './common/not-found/not-found.component'
 
 const routes: Routes = [
   {
@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'offer/:id',
     loadChildren: () =>
-      import('./offer/offer.module').then((m) => m.OfferModule),
+      import('./common/offer/offer.module').then((m) => m.OfferModule),
   },
   {
     path: '',

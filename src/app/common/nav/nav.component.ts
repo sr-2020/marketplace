@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { Router } from '@angular/router'
-import { AppService } from '../app.service'
+import { AppService } from '../../app.service'
 import { NavService } from './nav.service'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 
 @Component({
   selector: 'sr-nav',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { OfferService } from './offer.service'
 import { ActivatedRoute } from '@angular/router'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 import { Offer } from '@type'
 import { MatSnackBar } from '@angular/material/snack-bar'
 

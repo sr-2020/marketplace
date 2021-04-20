@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 import { Observable } from 'rxjs'
 import { Offer, Response } from '@type'
-import { HttpAdapterService } from '../shared/services/http-adapter.service'
+import { HttpAdapterService } from '@shared/services/http-adapter.service'
 
 @Injectable({
   providedIn: 'root',

@@ -12,6 +12,7 @@ export function checkOrganisationType(
   if ('balance' in org) {
     return 'shop'
   }
+
   if ('currentKPI' in org) {
     return 'corporation'
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { Organisation, Response, Session } from '@type'
 import { BehaviorSubject } from 'rxjs'
 import { Router } from '@angular/router'
-import { HttpAdapterService } from '../shared/services/http-adapter.service'
+import { HttpAdapterService } from '@shared/services/http-adapter.service'
 import { checkOrganisationType } from '../util/helpers'
 
 @Injectable({
@@ -46,12 +46,11 @@ export class SessionService {
         window.localStorage.removeItem('shopId')
         return
       }
-
       switch (checkOrganisationType(org)) {
-        case 'corporation':
+        case 'shop':
           window.localStorage.setItem('shopId', org.id.toString())
           break
-        case 'shop':
+        case 'corporation':
           window.localStorage.setItem('corpId', org.id.toString())
           break
       }

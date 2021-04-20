@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 import { BehaviorSubject } from 'rxjs'
 import { Corporation, Organisation, Session } from '@type'
 import { Router } from '@angular/router'
@@ -44,9 +44,9 @@ export class AuthComponent implements OnInit {
     this.organisation = org
   }
 
-  changeShop(shop: Organisation) {
+  changeOrganisation(shop: Organisation) {
     this._sessionService.changeOrg(shop)
-    this._router.navigate(['/', 'goods'])
+    this._router.navigate(['/', 'info'])
   }
 
   isSelected(org: Organisation): boolean {
