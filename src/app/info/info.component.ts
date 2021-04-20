@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 import { Organisation } from '@type'
-import { LifestylePipe } from '../shared/pipes/lifestyle.pipe'
 
 @Component({
   selector: 'sr-info',
@@ -15,23 +14,11 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     this._session.selectedOrg.subscribe((el: Organisation) => {
+      // todo.dzu Сделать информацию как для магазинов так и для корпораций
       this.shopInfo = [
-        {
-          title: 'ID:',
-          value: el.id,
-        },
         {
           title: 'Название:',
           value: el.name,
-        },
-        {
-          title: 'Баланс:',
-          value: el.balance,
-          price: true,
-        },
-        {
-          title: 'Лайфстайл:',
-          value: new LifestylePipe().transform(el.lifestyle),
         },
       ]
     })
