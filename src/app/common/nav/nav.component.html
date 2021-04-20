@@ -1,9 +1,9 @@
 <button
-  *ngFor="let l of navBarSchema"
+  *ngFor="let l of schema"
   mat-button
   [disabled]="l.disabled"
   routerLinkActive="nav-bar--active"
-  [routerLink]="['/', l.routerLink]"
+  [routerLink]="['/', type, l.routerLink]"
   (click)="onClick()"
 >
   {{ l.name }}

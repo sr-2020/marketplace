@@ -1,10 +1,9 @@
 <mat-drawer-container
   class="sr-side-menu"
   *ngIf="session && shop$; else loading"
-  autosize
->
+  autosize >
   <mat-drawer #drawer [mode]="isMobile ? 'push' : 'side'">
-    <sr-nav (linkSelected)="drawer.close()"></sr-nav>
+    <sr-nav [schema]="navBarSchema" type="shop" (linkSelected)="drawer.close()"></sr-nav>
   </mat-drawer>
   <mat-toolbar color="primary">
     <mat-toolbar-row class="mat-elevation-z4">

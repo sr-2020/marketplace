@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Organisation, Session } from '@type'
 import { AppService } from '../app.service'
-import { SessionService } from '../services/session.service'
+import { SessionService } from '@services/session.service'
 import { Observable } from 'rxjs'
 
 @Component({
@@ -10,6 +10,29 @@ import { Observable } from 'rxjs'
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent {
+  navBarSchema = [
+    {
+      name: 'Информация',
+      routerLink: 'info',
+    },
+    {
+      name: 'Переводы',
+      routerLink: 'transfers',
+    },
+    {
+      name: 'Контракты',
+      routerLink: 'contracts',
+      disabled: true,
+    },
+    {
+      name: 'Доступные товары',
+      routerLink: 'goods',
+    },
+    {
+      name: 'Купленные товары',
+      routerLink: 'renta',
+    },
+  ]
   constructor(
     private _appService: AppService,
     private _sessionService: SessionService

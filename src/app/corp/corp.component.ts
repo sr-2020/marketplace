@@ -14,7 +14,12 @@ export class CorpComponent {
     private _appService: AppService,
     private _sessionService: SessionService
   ) {}
-
+  navBarSchema = [
+    {
+      name: 'Информация',
+      routerLink: 'info',
+    },
+  ]
   get isMobile() {
     return this._appService.isMobile
   }

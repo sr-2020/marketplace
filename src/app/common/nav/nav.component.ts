@@ -1,8 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { Router } from '@angular/router'
 import { AppService } from '../../app.service'
 import { NavService } from './nav.service'
 import { SessionService } from '@services/session.service'
+
+export interface NavBarSchema {
+  name: string
+  routerLink: string,
+  disabled?: boolean
+}
 
 @Component({
   selector: 'sr-nav',
@@ -10,8 +16,9 @@ import { SessionService } from '@services/session.service'
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent {
+  @Input() schema: NavBarSchema[] = []
+  @Input() type: 'corp' | 'shop'
   @Output() linkSelected = new EventEmitter<null>()
-
   constructor(
     private _router: Router,
     private _appService: AppService,
@@ -19,35 +26,7 @@ export class NavComponent {
     private _sessionService: SessionService
   ) {}
 
-  navBarSchema = [
-    {
-      name: 'Информация',
-      routerLink: 'info',
-    },
-    {
-      name: 'Переводы',
-      routerLink: 'transfers',
-    },
-    {
-      name: 'Контракты',
-      routerLink: 'contracts',
-      disabled: true,
-    },
-    {
-      name: 'Доступные товары',
-      routerLink: 'goods',
-    },
-    {
-      name: 'Купленные товары',
-      routerLink: 'renta',
-      disabled: false,
-    },
-    {
-      name: 'Доступы',
-      routerLink: 'permissions',
-      disabled: true,
-    },
-  ]
+
 
   get isMobile() {
     return this._appService.isMobile
