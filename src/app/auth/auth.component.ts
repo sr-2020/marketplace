@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '../services/session.service'
 import { Observable } from 'rxjs'
-import { ShopModel } from '../models/shop.model'
-import { SessionModel } from '../models/session.model'
+import { Shop } from '../models/shop'
+import { Session } from '../models/session'
 import { Router } from '@angular/router'
 
 @Component({
@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  shop: ShopModel
+  shop: Shop
 
   constructor(
     private _sessionService: SessionService,
@@ -20,15 +20,15 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get shop$(): Observable<ShopModel> {
+  get shop$(): Observable<Shop> {
     return this._sessionService.selectedShop
   }
 
-  get session(): SessionModel {
+  get session(): Session {
     return this._sessionService.session
   }
 
-  changeShop(shop: ShopModel) {
+  changeShop(shop: Shop) {
     this._sessionService.changeShop(shop)
     this._router.navigate(['/', 'goods'])
   }

@@ -1,6 +1,6 @@
 import { LifestyleType } from '../types/lifestyle.type'
 
-export interface OfferModel {
+export interface Offer {
   priceId: number
   dateCreated: number
   shopName: string

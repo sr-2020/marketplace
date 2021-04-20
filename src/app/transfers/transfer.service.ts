@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 import { SessionService } from '../services/session.service'
 import { Observable } from 'rxjs'
-import { ResponseModel } from '../models/response.model'
-import { TransferModel } from '../models/transfer.model'
+import { Response } from '../models/response'
+import { Transfer } from '../models/transfer'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
@@ -16,8 +16,8 @@ export class TransferService {
     private _http: HttpAdapterService
   ) {}
 
-  getTransferList(): Observable<ResponseModel<TransferModel[]>> {
-    return this._http.postReq<ResponseModel<TransferModel[]>>(
+  getTransferList(): Observable<Response<Transfer[]>> {
+    return this._http.postReq<Response<Transfer[]>>(
       ['shop', 'getTransfers'],
       { shop: this._session.selectedShop.value.id }
     )

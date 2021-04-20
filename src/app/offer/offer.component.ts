@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { OfferService } from './offer.service'
 import { ActivatedRoute } from '@angular/router'
 import { SessionService } from '../services/session.service'
-import { OfferModel } from '../models/offer.model'
+import { Offer } from '../models/offer'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 })
 export class OfferComponent implements OnInit {
   offerId: string
-  offer: OfferModel
+  offer: Offer
   offerCompleted = false
   errorMsg: string
   isLoading = true

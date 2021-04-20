@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core'
 import { GoodsListService } from './goods-list.service'
-import { ShopUnitModel } from '../../models/shop-unit.model'
+import { ShopUnit } from '../../models/shop.unit'
 import { map } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
@@ -17,7 +17,7 @@ import { AppService } from '../../app.service'
   providers: [{ provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop' }],
 })
 export class GoodsListComponent implements AfterViewInit {
-  shopList: ShopUnitModel[]
+  shopList: ShopUnit[]
   goods$: BehaviorSubject<any>
   dataSource: MatTableDataSource<any>
   printMode = false

@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog'
 import { RentaQrPopupComponent } from './renta-qr-popup/renta-qr-popup.component'
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { RentaService } from './renta.service'
-import { RentaModel } from '../models/renta.model'
+import { Renta } from '../models/renta'
 import { BehaviorSubject } from 'rxjs'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
@@ -17,9 +17,9 @@ import { switchMap } from 'rxjs/operators'
   styleUrls: ['./renta.component.scss'],
 })
 export class RentaComponent implements AfterViewInit {
-  rentas: RentaModel[]
-  rentas$: BehaviorSubject<RentaModel[]>
-  dataSource: MatTableDataSource<RentaModel>
+  rentas: Renta[]
+  rentas$: BehaviorSubject<Renta[]>
+  dataSource: MatTableDataSource<Renta>
 
   @ViewChild('listPaginator') paginator: MatPaginator
   @ViewChild(MatAccordion) accordion: MatAccordion
@@ -69,7 +69,7 @@ export class RentaComponent implements AfterViewInit {
     })
   }
 
-  refreshRentas(renta: RentaModel[]) {
+  refreshRentas(renta: Renta[]) {
     this.rentas = renta
     this.dataSource = new MatTableDataSource(renta)
     this.dataSource.paginator = this.paginator
@@ -84,7 +84,7 @@ export class RentaComponent implements AfterViewInit {
     }
   }
 
-  openScanDialog(i: RentaModel) {
+  openScanDialog(i: Renta) {
     const dialogRef = this._dialog.open(RentaQrPopupComponent, { data: i })
     dialogRef.afterClosed().subscribe((result) => {
       if (!result) {

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { SessionService } from '../services/session.service'
-import { ResponseModel } from '../models/response.model'
-import { RentaModel } from '../models/renta.model'
+import { Response } from '../models/response'
+import { Renta } from '../models/renta'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
@@ -14,8 +14,8 @@ export class RentaService {
     private _session: SessionService
   ) {}
 
-  getRentas(): Observable<ResponseModel<RentaModel[]>> {
-    return this._http.postReq<ResponseModel<RentaModel[]>>(
+  getRentas(): Observable<Response<Renta[]>> {
+    return this._http.postReq<Response<Renta[]>>(
       ['shop', 'getrentas'],
       { shop: this._session.selectedShop.value.id }
     )

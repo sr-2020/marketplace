@@ -1,6 +1,6 @@
 import { LifestyleType } from '../types/lifestyle.type'
 
-export interface SKUModel {
+export interface Sku {
   skuId: number
   skuName: string
   count: number
@@ -21,8 +21,8 @@ export interface SKUModel {
   discountType: number
 }
 
-export interface ShopUnitModel {
-  sku: SKUModel
+export interface ShopUnit {
+  sku: Sku
   qrid: number
   shop: number
   qr: string

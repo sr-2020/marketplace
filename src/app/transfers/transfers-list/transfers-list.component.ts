@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { BehaviorSubject } from 'rxjs'
 import { MatPaginator } from '@angular/material/paginator'
 import { AppService } from '../../app.service'
-import { TransferModel } from '../../models/transfer.model'
+import { Transfer } from '../../models/transfer'
 import { MatAccordion } from '@angular/material/expansion'
 
 @Component({
@@ -19,9 +19,9 @@ import { MatAccordion } from '@angular/material/expansion'
   styleUrls: ['./transfers-list.component.scss'],
 })
 export class TransfersListComponent implements OnInit, AfterViewInit {
-  transfersList: TransferModel[]
-  dataSource: MatTableDataSource<TransferModel>
-  list$: BehaviorSubject<TransferModel[]>
+  transfersList: Transfer[]
+  dataSource: MatTableDataSource<Transfer>
+  list$: BehaviorSubject<Transfer[]>
   isLoading = true
   constructor(
     private _service: TransferService,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
-import { SessionModel } from '../models/session.model'
-import { ResponseModel } from '../models/response.model'
-import { ShopModel } from '../models/shop.model'
+import { Session } from '../models/session'
+import { Response } from '../models/response'
+import { Shop } from '../models/shop'
 import { BehaviorSubject } from 'rxjs'
 import { Router } from '@angular/router'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
@@ -10,23 +10,23 @@ import { HttpAdapterService } from '../shared/services/http-adapter.service'
   providedIn: 'root',
 })
 export class SessionService {
-  selectedShop = new BehaviorSubject<ShopModel>(undefined)
+  selectedShop = new BehaviorSubject<Shop>(undefined)
 
-  get session(): SessionModel {
+  get session(): Session {
     return this._session.value
   }
 
-  get session$(): BehaviorSubject<SessionModel> {
+  get session$(): BehaviorSubject<Session> {
     return this._session
   }
 
-  private _session = new BehaviorSubject<SessionModel>(null)
+  private _session = new BehaviorSubject<Session>(null)
 
   constructor(private _http: HttpAdapterService, private _router: Router) {}
 
   initSession() {
     this._http
-      .getReq<ResponseModel<SessionModel>>(['shop', 'getmyshops'])
+      .getReq<Response<Session>>(['shop', 'organisations'])
       .subscribe({
         next: ({ data }) => {
           this._session.next(data)
@@ -41,7 +41,7 @@ export class SessionService {
         },
       })
 
-    this.selectedShop.subscribe((shop: ShopModel) => {
+    this.selectedShop.subscribe((shop: Shop) => {
       if (!shop) {
         return
       }
@@ -49,7 +49,7 @@ export class SessionService {
     })
   }
 
-  private _selectCurrentShop(data: SessionModel) {
+  private _selectCurrentShop(data: Session) {
     const shopId = +window.localStorage.getItem('shopId')
     if (!data.shops.find((el) => el?.id === shopId)) {
       window.localStorage.removeItem('shopId')

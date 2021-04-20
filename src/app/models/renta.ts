@@ -1,4 +1,4 @@
-export interface RentaModel {
+export interface Renta {
   characterId: number
   characterName: string
   dateCreated: string
