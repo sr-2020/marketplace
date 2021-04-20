@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { SessionService } from '../services/session.service'
 import { Observable } from 'rxjs'
-import { Response } from '../models/response'
-import { Offer } from '../models/offer'
+import { Offer, Response } from '@type'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
@@ -15,12 +14,9 @@ export class OfferService {
   ) {}
 
   getRenta(id: string): Observable<Response<Offer>> {
-    return this._http.postReq<Response<Offer>>(
-      ['shop', 'createpricebyqr'],
-      {
-        qr: id,
-      }
-    )
+    return this._http.postReq<Response<Offer>>(['shop', 'createpricebyqr'], {
+      qr: id,
+    })
   }
 
   createRenta(priceId: number) {

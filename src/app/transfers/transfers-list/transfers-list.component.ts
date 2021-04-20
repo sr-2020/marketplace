@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { BehaviorSubject } from 'rxjs'
 import { MatPaginator } from '@angular/material/paginator'
 import { AppService } from '../../app.service'
-import { Transfer } from '../../models/transfer'
+import { Transfer } from '@type'
 import { MatAccordion } from '@angular/material/expansion'
 
 @Component({

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { SessionService } from '../services/session.service'
-import { Response } from '../models/response'
-import { Renta } from '../models/renta'
+import { Renta, Response } from '@type'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
 
 @Injectable({
@@ -15,10 +14,9 @@ export class RentaService {
   ) {}
 
   getRentas(): Observable<Response<Renta[]>> {
-    return this._http.postReq<Response<Renta[]>>(
-      ['shop', 'getrentas'],
-      { shop: this._session.selectedShop.value.id }
-    )
+    return this._http.postReq<Response<Renta[]>>(['shop', 'getrentas'], {
+      shop: this._session.selectedShop.value.id,
+    })
   }
 
   setQR(qr: string, rentaId: string) {

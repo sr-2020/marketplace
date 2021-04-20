@@ -1,4 +1,4 @@
-import { transferType } from '../types/transfer.type'
+import { TransferType } from '@type'
 
 export interface Transfer {
   amount: number
@@ -8,5 +8,5 @@ export interface Transfer {
   newBalance: number
   operationTime: string
   to: string
-  transferType: transferType
+  transferType: TransferType
 }

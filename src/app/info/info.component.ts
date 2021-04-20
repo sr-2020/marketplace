@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '../services/session.service'
-import { Shop } from '../models/shop'
+import { Shop } from '@type'
 import { LifestylePipe } from '../shared/pipes/lifestyle.pipe'
 
 @Component({

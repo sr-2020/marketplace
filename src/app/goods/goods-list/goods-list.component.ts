@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core'
 import { GoodsListService } from './goods-list.service'
-import { ShopUnit } from '../../models/shop.unit'
+import { ShopUnit } from '@type'
 import { map } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'

@@ -1,4 +1,4 @@
-import { Corporation, Shop } from './shop'
+import { Corporation, Shop } from '@type'
 
 export interface Session {
   currentCharacterId: number

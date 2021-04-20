@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@type": ["./src/app/models/index"]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,

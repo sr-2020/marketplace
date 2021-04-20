@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
-import { Session } from '../models/session'
+import { Session, Shop } from '@type'
 import { AppService } from '../app.service'
 import { SessionService } from '../services/session.service'
 import { Observable } from 'rxjs'
-import { Shop } from '../models/shop'
 
 @Component({
   selector: 'sr-shop',

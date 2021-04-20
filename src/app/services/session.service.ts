@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core'
-import { Session } from '../models/session'
-import { Response } from '../models/response'
-import { Shop } from '../models/shop'
+import { Response, Session, Shop } from '@type'
 import { BehaviorSubject } from 'rxjs'
 import { Router } from '@angular/router'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'

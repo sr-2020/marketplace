@@ -1,4 +1,4 @@
-import { LifestyleType } from '../types/lifestyle.type'
+import { LifestyleType } from '@type'
 
 export interface Sku {
   skuId: number

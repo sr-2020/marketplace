@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
 import { SessionService } from '../../services/session.service'
 import { Observable } from 'rxjs'
-import { ShopUnit } from '../../models/shop.unit'
-import { Response } from '../../models/response'
+import { Response, ShopUnit } from '@type'
 import { HttpAdapterService } from '../../shared/services/http-adapter.service'
 
 @Injectable({
@@ -15,9 +14,8 @@ export class GoodsListService {
   ) {}
 
   getGoodsList(): Observable<Response<ShopUnit[]>> {
-    return this._http.postReq<Response<ShopUnit[]>>(
-      ['shop', 'getproducts'],
-      { shop: this.sessionService.selectedShop.value?.id }
-    )
+    return this._http.postReq<Response<ShopUnit[]>>(['shop', 'getproducts'], {
+      shop: this.sessionService.selectedShop.value?.id,
+    })
   }
 }
