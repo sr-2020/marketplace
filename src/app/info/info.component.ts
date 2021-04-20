@@ -15,6 +15,9 @@ export class InfoComponent implements OnInit {
   ngOnInit(): void {
     this._session.selectedOrg.subscribe((el: Organisation) => {
       // todo.dzu Сделать информацию как для магазинов так и для корпораций
+      if (!el) {
+        return
+      }
       this.shopInfo = [
         {
           title: 'Название:',

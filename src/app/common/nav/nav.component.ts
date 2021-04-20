@@ -49,6 +49,7 @@ export class NavComponent {
   }
 
   changeShop() {
+
     this._sessionService.selectedOrg.next(null)
     this._router.navigate(['/', 'auth'])
   }

@@ -14,7 +14,7 @@
       <div class="meta">
         <span>{{ (corp$ | async)?.name }} </span>
         <span *ngIf="!isMobile"
-        >Баланс &#165;{{ (corp$ | async)?.currentKPI }}
+        >Текущий KPI {{ (corp$ | async)?.currentKPI }}
         </span>
       </div>
     </mat-toolbar-row>

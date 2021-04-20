@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { AppService } from '../app.service'
 import { SessionService } from '@services/session.service'
-import { Observable } from 'rxjs'
+import { BehaviorSubject } from 'rxjs'
 import { Organisation, Session } from '@type'
 
 @Component({
@@ -23,7 +23,7 @@ export class CorpComponent {
   get isMobile() {
     return this._appService.isMobile
   }
-  get corp$(): Observable<Organisation> {
+  get corp$(): BehaviorSubject<Organisation> {
     return this._sessionService.selectedOrg
   }
   get session(): Session {

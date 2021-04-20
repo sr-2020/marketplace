@@ -14,12 +14,17 @@ export class AuthComponent implements OnInit {
   organisation: Organisation
   organisations: (Organisation | Corporation)[] = []
   filterControl = new FormControl('')
+
   constructor(
     private _sessionService: SessionService,
     private _router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
+    window.localStorage.removeItem('shopId')
+    window.localStorage.removeItem('corpId')
+
     this.session$.subscribe((session) => {
       if (!session) {
         return

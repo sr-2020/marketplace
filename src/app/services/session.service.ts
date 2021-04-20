@@ -41,11 +41,6 @@ export class SessionService {
       })
 
     this.selectedOrg.subscribe((org: Organisation) => {
-      if (org === null) {
-        window.localStorage.removeItem('corpId')
-        window.localStorage.removeItem('shopId')
-        return
-      }
       switch (checkOrganisationType(org)) {
         case 'shop':
           window.localStorage.setItem('shopId', org.id.toString())
@@ -71,7 +66,7 @@ export class SessionService {
       return
     }
 
-    const corp = data.corporations.find((el) => el?.id === shopId)
+    const corp = data.corporations.find((el) => el?.id === corpId)
     if (corp) {
       this.selectedOrg.next(corp)
       return
