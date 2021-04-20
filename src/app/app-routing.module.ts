@@ -5,6 +5,9 @@ import { PrintComponent } from './common/print/print.component'
 import { AuthComponent } from './common/auth/auth.component'
 import { ShopGuard } from './shop/shop.guard'
 import { NotFoundComponent } from './common/not-found/not-found.component'
+import { CorpComponent } from './corp/corp.component'
+import { CorpGuard } from './corp/corp.guard'
+import { AppGuard } from './guards/app.guard'
 
 const routes: Routes = [
   {
@@ -17,8 +20,13 @@ const routes: Routes = [
   },
   {
     path: 'offer',
-    redirectTo: '/goods',
+    redirectTo: '/auth',
     pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: NotFoundComponent,
+    canActivate: [AppGuard],
   },
   {
     path: 'offer/:id',
@@ -26,18 +34,34 @@ const routes: Routes = [
       import('./common/offer/offer.module').then((m) => m.OfferModule),
   },
   {
-    path: '',
-    redirectTo: '/goods',
-    canActivate: [ShopGuard],
-    canActivateChild: [ShopGuard],
-    pathMatch: 'full',
+    path: 'corp',
+    component: CorpComponent,
+    canActivate: [CorpGuard],
+    canActivateChild: [CorpGuard],
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'info'
+      },
+      {
+        path: 'info',
+        loadChildren: () =>
+          import('./info/info.module').then((m) => m.InfoModule),
+      }
+    ]
   },
   {
-    path: '',
+    path: 'shop',
     component: ShopComponent,
     canActivate: [ShopGuard],
     canActivateChild: [ShopGuard],
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'info'
+      },
       {
         path: 'info',
         loadChildren: () =>
@@ -60,6 +84,7 @@ const routes: Routes = [
       },
     ],
   },
+
   { path: '404', component: NotFoundComponent },
   { path: '**', redirectTo: '404', pathMatch: 'full' },
 ]

@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit {
 
   changeOrganisation(shop: Organisation) {
     this._sessionService.changeOrg(shop)
-    this._router.navigate(['/', 'info'])
+    this._router.navigate(['/'])
   }
 
   isSelected(org: Organisation): boolean {

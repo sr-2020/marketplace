@@ -28,6 +28,7 @@ import { SharedModule } from '@shared/shared.module'
 import { ShopComponent } from './shop/shop.component'
 import { TransfersModule } from './transfers/transfers.module'
 import { registerLocaleData } from '@angular/common'
+import { CorpComponent } from './corp/corp.component'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -39,6 +40,7 @@ registerLocaleData(localeRu, 'ru_RU')
     ShopComponent,
     PrintComponent,
     AuthComponent,
+    CorpComponent,
   ],
   imports: [
     BrowserModule,

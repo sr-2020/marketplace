@@ -13,8 +13,20 @@ import { guardHelper } from '../util/helpers'
 @Injectable({
   providedIn: 'root',
 })
-export class ShopGuard implements CanActivateChild, CanActivate {
-  constructor(public router: Router) {}
+export class CorpGuard implements CanActivate, CanActivateChild {
+  constructor(public router: Router) {
+  }
+
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return guardHelper(this, 'corpId')
+  }
 
   canActivateChild(
     next: ActivatedRouteSnapshot,
@@ -24,17 +36,6 @@ export class ShopGuard implements CanActivateChild, CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return guardHelper(this, 'shopId')
-  }
-
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    return guardHelper(this, 'shopId')
+    return guardHelper(this, 'corpId')
   }
 }
