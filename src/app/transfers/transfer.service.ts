@@ -17,7 +17,7 @@ export class TransferService {
 
   getTransferList(): Observable<Response<Transfer[]>> {
     return this._http.postReq<Response<Transfer[]>>(['shop', 'getTransfers'], {
-      shop: this._session.selectedShop.value.id,
+      shop: this._session.selectedOrg.value.id,
     })
   }
 

@@ -15,7 +15,7 @@ export class GoodsListService {
 
   getGoodsList(): Observable<Response<ShopUnit[]>> {
     return this._http.postReq<Response<ShopUnit[]>>(['shop', 'getproducts'], {
-      shop: this.sessionService.selectedShop.value?.id,
+      shop: this.sessionService.selectedOrg.value?.id,
     })
   }
 }

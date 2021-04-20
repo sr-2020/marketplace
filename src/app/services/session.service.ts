@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core'
-import { Response, Session, Shop } from '@type'
+import { Organisation, Response, Session } from '@type'
 import { BehaviorSubject } from 'rxjs'
 import { Router } from '@angular/router'
 import { HttpAdapterService } from '../shared/services/http-adapter.service'
+import { checkOrganisationType } from '../util/helpers'
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessionService {
-  selectedShop = new BehaviorSubject<Shop>(undefined)
+  selectedOrg = new BehaviorSubject<Organisation>(undefined)
 
   get session(): Session {
     return this._session.value
@@ -39,30 +40,53 @@ export class SessionService {
         },
       })
 
-    this.selectedShop.subscribe((shop: Shop) => {
-      if (!shop) {
+    this.selectedOrg.subscribe((org: Organisation) => {
+      if (org === null) {
+        window.localStorage.removeItem('corpId')
+        window.localStorage.removeItem('shopId')
         return
       }
-      window.localStorage.setItem('shopId', shop.id.toString())
+
+      switch (checkOrganisationType(org)) {
+        case 'corporation':
+          window.localStorage.setItem('shopId', org.id.toString())
+          break
+        case 'shop':
+          window.localStorage.setItem('corpId', org.id.toString())
+          break
+      }
     })
   }
 
   private _selectCurrentShop(data: Session) {
     const shopId = +window.localStorage.getItem('shopId')
-    if (!data.shops.find((el) => el?.id === shopId)) {
-      window.localStorage.removeItem('shopId')
-      this.selectedShop.next(null)
+    const corpId = +window.localStorage.getItem('corpId')
+    if (shopId && corpId) {
+      this.selectedOrg.next(null)
       return
     }
-    this.selectedShop.next(data.shops.find((el) => el?.id === shopId))
+
+    const shop = data.shops.find((el) => el?.id === shopId)
+    if (shop) {
+      this.selectedOrg.next(shop)
+      return
+    }
+
+    const corp = data.corporations.find((el) => el?.id === shopId)
+    if (corp) {
+      this.selectedOrg.next(corp)
+      return
+    }
+
+    this.selectedOrg.next(null)
   }
 
-  public changeShop(shop) {
-    this.selectedShop.next(shop)
+  public changeOrg(org: Organisation) {
+    this.selectedOrg.next(org)
   }
 
   public logOut() {
-    this.selectedShop.next(null)
+    this.selectedOrg.next(null)
     document.cookie = 'Authorization=1;max-age=-1'
     document.location.href = 'http://web.evarun.ru/login'
   }

@@ -1,8 +1,8 @@
-import { Corporation, Shop } from '@type'
+import { Organisation } from '@type'
 
 export interface Session {
   currentCharacterId: number
   currentCharacterName: string
-  shops: Shop[]
-  organisations: Corporation[]
+  shops: Organisation[]
+  corporations: Organisation[]
 }

@@ -25,6 +25,9 @@ import { PrintComponent } from './print/print.component'
 import { AuthComponent } from './auth/auth.component'
 import { SharedModule } from './shared/shared.module'
 import { MatRadioModule } from '@angular/material/radio'
+import { MatAutocompleteModule } from '@angular/material/autocomplete'
+import { MatInputModule } from '@angular/material/input'
+import { ReactiveFormsModule } from '@angular/forms'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -55,6 +58,9 @@ registerLocaleData(localeRu, 'ru_RU')
     MatListModule,
     SharedModule,
     MatRadioModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
   ],
   providers: [AppService],
 

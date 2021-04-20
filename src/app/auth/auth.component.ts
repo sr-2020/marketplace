@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '../services/session.service'
-import { Observable } from 'rxjs'
-import { Session, Shop } from '@type'
+import { BehaviorSubject } from 'rxjs'
+import { Corporation, Organisation, Session } from '@type'
 import { Router } from '@angular/router'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'sr-auth',
@@ -10,26 +11,50 @@ import { Router } from '@angular/router'
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  shop: Shop
-
+  organisation: Organisation
+  organisations: (Organisation | Corporation)[] = []
+  filterControl = new FormControl('')
   constructor(
     private _sessionService: SessionService,
     private _router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.session$.subscribe((session) => {
+      if (!session) {
+        return
+      }
+      this.organisations = [...session.shops, ...session.corporations]
+    })
+  }
 
-  get shop$(): Observable<Shop> {
-    return this._sessionService.selectedShop
+  get organisation$(): BehaviorSubject<Organisation> {
+    return this._sessionService.selectedOrg
   }
 
   get session(): Session {
     return this._sessionService.session
   }
 
-  changeShop(shop: Shop) {
-    this._sessionService.changeShop(shop)
+  get session$(): BehaviorSubject<Session> {
+    return this._sessionService.session$
+  }
+
+  selectOrg(org: Organisation) {
+    this.organisation = org
+  }
+
+  changeShop(shop: Organisation) {
+    this._sessionService.changeOrg(shop)
     this._router.navigate(['/', 'goods'])
+  }
+
+  isSelected(org: Organisation): boolean {
+    if (!this.organisation) {
+      return false
+    }
+    const { id, name } = this.organisation
+    return name === org.name && id === org.id
   }
 
   logOut() {

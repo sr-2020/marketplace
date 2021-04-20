@@ -58,7 +58,7 @@ export class NavComponent {
   }
 
   get currentShop() {
-    return this._sessionService.selectedShop.value
+    return this._sessionService.selectedOrg.value
   }
 
   close() {
@@ -70,7 +70,7 @@ export class NavComponent {
   }
 
   changeShop() {
-    this._sessionService.selectedShop.next(null)
+    this._sessionService.selectedOrg.next(null)
     this._router.navigate(['/', 'auth'])
   }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { Session, Shop } from '@type'
+import { Organisation, Session } from '@type'
 import { AppService } from '../app.service'
 import { SessionService } from '../services/session.service'
 import { Observable } from 'rxjs'
@@ -18,8 +18,8 @@ export class ShopComponent {
   get isMobile() {
     return this._appService.isMobile
   }
-  get shop$(): Observable<Shop> {
-    return this._sessionService.selectedShop
+  get shop$(): Observable<Organisation> {
+    return this._sessionService.selectedOrg
   }
   get session(): Session {
     return this._sessionService.session

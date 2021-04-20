@@ -15,7 +15,7 @@ export class RentaService {
 
   getRentas(): Observable<Response<Renta[]>> {
     return this._http.postReq<Response<Renta[]>>(['shop', 'getrentas'], {
-      shop: this._session.selectedShop.value.id,
+      shop: this._session.selectedOrg.value.id,
     })
   }
 

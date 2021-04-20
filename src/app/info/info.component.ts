@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '../services/session.service'
-import { Shop } from '@type'
+import { Organisation } from '@type'
 import { LifestylePipe } from '../shared/pipes/lifestyle.pipe'
 
 @Component({
@@ -14,7 +14,7 @@ export class InfoComponent implements OnInit {
   constructor(private _session: SessionService) {}
 
   ngOnInit(): void {
-    this._session.selectedShop.subscribe((el: Shop) => {
+    this._session.selectedOrg.subscribe((el: Organisation) => {
       this.shopInfo = [
         {
           title: 'ID:',
@@ -23,10 +23,6 @@ export class InfoComponent implements OnInit {
         {
           title: 'Название:',
           value: el.name,
-        },
-        {
-          title: 'ID владельца:',
-          value: el.ownerId,
         },
         {
           title: 'Баланс:',
