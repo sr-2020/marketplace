@@ -40,7 +40,7 @@ export class TransactionsNewComponent implements OnInit {
       )
       .subscribe(
         () => {
-          this._snack.open('Перевод выполнен успешно')
+          this._snack.open(`Перевод ${this.transferTypeCtrl.value ? 'организации' : 'персонажу'} выполнен успешно`)
           this.router.navigate(['/', 'shop', 'transfers'])
         },
         (err) => this._snack.open(err.message)
