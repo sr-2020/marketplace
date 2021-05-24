@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { TransferService } from '../transfer.service'
+import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'sr-transactions-new',
@@ -10,25 +12,39 @@ import { TransferService } from '../transfer.service'
 export class TransactionsNewComponent implements OnInit {
   form: FormGroup
 
-  constructor(private fb: FormBuilder, private service: TransferService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private service: TransferService,
+    private _snack: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
       target: ['', Validators.required],
-      sum: [0, [Validators.required, Validators.pattern(/[+-]?\d+/)]],
+      amount: [0, [Validators.required, Validators.pattern(/[+-]?\d+/)]],
       comment: [''],
       type: false,
     })
   }
 
   performTransaction() {
-    this.service.createTransaction({
-      id: Math.random().toString(),
-      target: this.form.value.target,
-      timestamp: new Date().getTime(),
-      sum: this.form.value.sum,
-      comment: this.form.value.comment,
-    })
+    this.service
+      .createTransaction(
+        {
+          target: this.form.value.target,
+          amount: this.form.value.amount,
+          comment: this.form.value.comment,
+        },
+        this.form.value.type
+      )
+      .subscribe(
+        () => {
+          this._snack.open('Перевод выполнен успешно')
+          this.router.navigate(['/', 'shop', 'transfers'])
+        },
+        (err) => this._snack.open(err.message)
+      )
   }
 
   get transferTypeCtrl() {

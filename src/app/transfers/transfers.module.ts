@@ -17,7 +17,8 @@ import {
 import { getRusPaginatorIntl } from '../util/paginationTranslation'
 import { HttpClientModule } from '@angular/common/http'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '@shared/shared.module'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SharedModule } from '../shared/shared.module'
     MatExpansionModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
     SharedModule,
   ],
   providers: [{ provide: MatPaginatorIntl, useValue: getRusPaginatorIntl() }],
