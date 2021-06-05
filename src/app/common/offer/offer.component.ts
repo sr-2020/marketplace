@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router'
 import { SessionService } from '@services/session.service'
 import { Offer } from '@type'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { FormControl, Validators } from '@angular/forms'
 
 @Component({
   selector: 'sr-offer',
@@ -11,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
   styleUrls: ['./offer.component.scss'],
 })
 export class OfferComponent implements OnInit {
+  countCtrl: FormControl
   offerId: string
   offer: Offer
   offerCompleted = false
@@ -39,6 +41,7 @@ export class OfferComponent implements OnInit {
     this._offerService.getRenta(id).subscribe(
       ({ data }) => {
         this.offer = data
+        this.countCtrl = new FormControl(1, [Validators.max(this.offer.count), Validators.min(1), Validators.required])
         this.isLoading = false
       },
       ({ error }) => {
@@ -50,7 +53,7 @@ export class OfferComponent implements OnInit {
 
   createOffer(id: number) {
     this.isProcessing = true
-    this._offerService.createRenta(id).subscribe(
+    this._offerService.createRenta(id, this.countCtrl.value).subscribe(
       () => {
         this._snack.open('Покупка произведена')
         this.offerCompleted = true

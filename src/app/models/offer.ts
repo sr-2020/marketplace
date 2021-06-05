@@ -16,4 +16,5 @@ export interface Offer {
   description: string
   urlPicture: string
   productTypeName: string
+  instantConsume: boolean
 }
