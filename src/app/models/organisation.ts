@@ -1,4 +1,4 @@
-import { LifestyleType } from '@type'
+import { Lifestyle } from '@type'
 
 export interface Organisation extends Shop, Corporation{
   id: number
@@ -8,7 +8,7 @@ export interface Organisation extends Shop, Corporation{
 
 export interface Shop {
   balance?: number
-  lifestyle?: LifestyleType
+  lifestyle?: Lifestyle
   specialisations?: number[]
 }
 

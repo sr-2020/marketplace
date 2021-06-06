@@ -1,4 +1,4 @@
-import { LifestyleType } from '@type'
+import { Lifestyle } from '@type'
 
 export interface Offer {
   priceId: number
@@ -12,7 +12,7 @@ export interface Offer {
   corporationName: string
   corporationLogo: string
   nomenklaturaName: string
-  lifeStyle: LifestyleType
+  lifeStyle: Lifestyle
   description: string
   urlPicture: string
   productTypeName: string

@@ -1,7 +1,4 @@
-export type LifestyleType =
-  | 'Wood'
-  | 'Bronze'
-  | 'Silver'
-  | 'Gold'
-  | 'Platinum'
-  | 'Iridium'
+export interface Lifestyle {
+  id: number
+  name: string
+}
