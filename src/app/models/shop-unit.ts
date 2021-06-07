@@ -1,4 +1,4 @@
-import { LifestyleType } from '@type'
+import { Lifestyle } from '@type'
 
 export interface Sku {
   skuId: number
@@ -11,7 +11,7 @@ export interface Sku {
   nomenklaturaId: number
   nomenklaturaName: string
   code: string
-  lifeStyle: LifestyleType
+  lifeStyle: Lifestyle
   lifeStyleId: number
   basePrice: number
   description: string

@@ -19,9 +19,10 @@ export class OfferService {
     })
   }
 
-  createRenta(priceId: number) {
+  createRenta(priceId: number, count: number) {
     return this._http.postReq<any>(['shop', 'createrenta'], {
       priceId,
+      count
     })
   }
 }

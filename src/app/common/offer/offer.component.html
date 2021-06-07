@@ -9,7 +9,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-6">
-        <a href="https://web.evarun.ru/" mat-raised-button>Logout</a>
+        <a href="https://web.evarun.ru/"
+           mat-raised-button>Logout</a>
       </div>
     </div>
   </div>
@@ -19,32 +20,52 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <mat-card>
           <mat-card-header>
-            <img mat-card-avatar [src]="offer.corporationLogo" />
+            <img mat-card-avatar
+                 [src]="offer.corporationLogo"/>
             <mat-card-title>Товар {{ offer.skuName }}</mat-card-title>
             <mat-card-subtitle
-              >Корпорация: {{ offer.corporationName }}</mat-card-subtitle
+            >Корпорация: {{ offer.corporationName }}</mat-card-subtitle
             >
           </mat-card-header>
           <mat-card-content>
-            <img alt="" mat-card-image [src]="offer.urlPicture" />
+            <img alt=""
+                 mat-card-image
+                 [src]="offer.urlPicture"/>
             <div class="row">
-              <div class="col-xs-12 col-sm-3">Цена</div>
-              <div class="col-xs-12 col-sm-12">
+              <div class="col-xs-12 col-sm-3 title">Цена:</div>
+              <div class="col-xs-12 col-sm-9">
                 {{ offer.finalPrice }}&#165;
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-12 col-sm-3">Описание</div>
-              <div class="col-xs-12 col-sm-12">{{ offer.description }}</div>
+              <div class="col-xs-12 col-sm-3 title">Описание:</div>
+              <div class="col-xs-12 col-sm-9">{{ offer.description }}</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-3 title">Доступное количество:</div>
+              <div class="col-xs-12 col-sm-9">{{ offer.count }}</div>
+            </div>
+            <div class="row"
+                 *ngIf="!offer.instantConsume">
+              <div class="col-xs-12 col-sm-12">
+                <mat-form-field appearance="standard" class="count-control">
+                  <mat-label>Количество для покупки</mat-label>
+                  <input [formControl]="countCtrl"
+                         matInput
+                         type="number"
+                         [max]="offer.count"
+                         [min]="1">
+                  <mat-error *ngIf="countCtrl.invalid">Поле обязательно. Не может быть меньше 1 и больше {{offer.count}}</mat-error>
+                </mat-form-field>
+              </div>
             </div>
             <div>
               <button
                 color="primary"
                 mat-raised-button
-                [disabled]="offerCompleted || isProcessing"
-                (click)="createOffer(offer.priceId)"
-              >
-                {{ isProcessing ? 'Проводится покупка...' : 'Купить!' }}
+                [disabled]="offerCompleted || isProcessing || countCtrl.invalid"
+                (click)="createOffer(offer.priceId)">
+                {{ isProcessing ? 'Проводится покупка...' : offer.instantConsume ? 'Купить и съесть!' : 'Купить!' }}
               </button>
             </div>
           </mat-card-content>
@@ -58,7 +79,8 @@
   Подождите, идет загрузка
 </sr-loading>
 
-<div *ngIf="errorMsg" class="container-fluid">
+<div *ngIf="errorMsg"
+     class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
       <mat-card>
