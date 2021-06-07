@@ -10,12 +10,16 @@ export interface Shop {
   balance?: number
   lifestyle?: Lifestyle
   specialisations?: number[]
+  location?: string
+  comment?: string
 }
 
 export interface Corporation {
   corporationUrl?: string
   currentKPI?: number
   lastKPI?: number
+  currentSkuSold?: number
+  lastSkuSold?: number
 }
 
 export interface ShopOwner {
