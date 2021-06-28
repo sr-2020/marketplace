@@ -8,7 +8,7 @@ export type URLCommand = string[]
 const ALLOW_UNAUTHORIZED_ACCESS: string[] = []
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class HttpAdapterService {
   constructor(private http: HttpClient) {
@@ -28,7 +28,7 @@ export class HttpAdapterService {
 
     if (!environment.production) {
       headers = {
-        'x-user-id': '44043',
+        'x-user-id': '44043'
       }
     }
     return { headers, withCredentials: true }
@@ -42,10 +42,13 @@ export class HttpAdapterService {
     return !!cookie && /Authorization/gi.test(cookie)
   }
 
-  getReq<T>(command: URLCommand): Observable<T> {
+  getReq<T>(command: URLCommand, options?: {[key: string]: any}): Observable<T> {
     return this.http.get(
       HttpAdapterService.getURL(command),
-      HttpAdapterService.options
+      {
+        ...HttpAdapterService.options,
+        ...options
+      }
     ) as Observable<T>
   }
 

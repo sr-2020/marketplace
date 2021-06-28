@@ -12,26 +12,26 @@ import { AppGuard } from './guards/app.guard'
 const routes: Routes = [
   {
     path: 'print',
-    component: PrintComponent,
+    component: PrintComponent
   },
   {
     path: 'auth',
-    component: AuthComponent,
+    component: AuthComponent
   },
   {
     path: 'offer',
     redirectTo: '/auth',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: '',
     component: NotFoundComponent,
-    canActivate: [AppGuard],
+    canActivate: [AppGuard]
   },
   {
     path: 'offer/:id',
     loadChildren: () =>
-      import('./common/offer/offer.module').then((m) => m.OfferModule),
+      import('./common/offer/offer.module').then((m) => m.OfferModule)
   },
   {
     path: 'corp',
@@ -47,7 +47,12 @@ const routes: Routes = [
       {
         path: 'info',
         loadChildren: () =>
-          import('./info/info.module').then((m) => m.InfoModule),
+          import('./info/info.module').then((m) => m.InfoModule)
+      },
+      {
+        path: 'contracts',
+        loadChildren: () =>
+          import('./contracts/contracts.module').then((m) => m.ContractsModule)
       }
     ]
   },
@@ -65,32 +70,38 @@ const routes: Routes = [
       {
         path: 'info',
         loadChildren: () =>
-          import('./info/info.module').then((m) => m.InfoModule),
+          import('./info/info.module').then((m) => m.InfoModule)
       },
       {
         path: 'goods',
         loadChildren: () =>
-          import('./goods/goods.module').then((m) => m.GoodsModule),
+          import('./goods/goods.module').then((m) => m.GoodsModule)
+      },
+      {
+        path: 'contracts',
+        loadChildren: () =>
+          import('./contracts/contracts.module').then((m) => m.ContractsModule)
       },
       {
         path: 'renta',
         loadChildren: () =>
-          import('./renta/renta.module').then((m) => m.RentaModule),
+          import('./renta/renta.module').then((m) => m.RentaModule)
       },
       {
         path: 'transfers',
         loadChildren: () =>
-          import('./transfers/transfers.module').then((m) => m.TransfersModule),
-      },
-    ],
+          import('./transfers/transfers.module').then((m) => m.TransfersModule)
+      }
+    ]
   },
 
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '404', pathMatch: 'full' },
+  { path: '**', redirectTo: '404', pathMatch: 'full' }
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

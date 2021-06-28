@@ -1,0 +1,23 @@
+
+<ng-container *ngIf='!loading; else loadingTpl'></ng-container>
+<div class="container-fluid">
+  <h1>Контракты</h1>
+</div>
+
+<div class='container-fluid'>
+  <div class='row'>
+
+  </div>
+  <mat-list>
+    <mat-list-item>Lorem ipsum dolor sit amet, consectetur adipisicing.</mat-list-item>
+    <mat-list-item>Culpa, ex impedit maiores modi nihil quo.</mat-list-item>
+    <mat-list-item>Beatae ducimus labore nobis non reiciendis sint?</mat-list-item>
+    <mat-list-item>Animi aut consectetur doloremque illo nobis officiis.</mat-list-item>
+    <mat-list-item>Corporis doloremque eum nostrum quidem ut, voluptas.</mat-list-item>
+    <mat-list-item>Consectetur consequuntur cupiditate, dolore explicabo quaerat totam?</mat-list-item>
+  </mat-list>
+</div>
+
+<ng-template #loadingTpl>
+  <sr-loading>Загрузка контрактов</sr-loading>
+</ng-template>

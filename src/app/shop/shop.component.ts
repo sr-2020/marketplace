@@ -22,7 +22,6 @@ export class ShopComponent {
     {
       name: 'Контракты',
       routerLink: 'contracts',
-      disabled: true,
     },
     {
       name: 'Доступные товары',
