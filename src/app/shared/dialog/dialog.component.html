@@ -1,0 +1,11 @@
+<h1 mat-dialog-title *ngIf='data.title'>{{data.title}}</h1>
+<div mat-dialog-content *ngIf='data.description'>
+  {{data.description}}
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)='onDecline()'>Отмена</button>
+  <button [disabled]='pending' (click)='onAccept()' mat-raised-button cdkFocusInitial>
+    <mat-spinner diameter='30' *ngIf='pending; else text' mode='indeterminate'></mat-spinner>
+    <ng-template #text>{{data.confirmBtnText || 'Продолжить'}}</ng-template>
+  </button>
+</div>

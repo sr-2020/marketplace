@@ -1,0 +1,41 @@
+<ng-container *ngIf='!loading; else loadingTpl'>
+<div class='container-fluid'>
+  <h1>Заключение контракта</h1>
+  <h2>Выберите магазин</h2>
+</div>
+
+
+<div class='container-fluid'>
+  <div class='row'>
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field>
+        <input matInput [formControl]='filterCtrl' placeholder='Фильтр'>
+      </mat-form-field>
+    </div>
+    <div class='col-xs-12 col-sm-8' style='text-align: right'>
+      <button mat-button [routerLink]='["/corp/contracts"]'>Назад к контрактам</button>
+    </div>
+  </div>
+</div>
+
+<div class='container-fluid'>
+  <div class='row'>
+    <mat-list class='col-xs-12'>
+      <mat-list-item *ngFor='let s of shops' class='shop-list' [disabled]='s.haveContract' (click)='suggestContract(s)'>
+        <div class='shop-list__item'>
+          <div class='shop-list__title'>Магазин:</div>
+          <div class='shop-list__description'>{{s.name}}</div>
+        </div>
+        <div class='shop-list__item' *ngIf='s.location'>
+          <div class='shop-list__title'>Локация:</div>
+          <div class='shop-list__description'>{{s.location}}</div>
+        </div>
+        <div *ngIf='s.haveContract' class='shop-list__item have-contract'>Есть контракт</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
+</ng-container>
+<ng-template #loadingTpl>
+  <sr-loading>Загрузка магазинов</sr-loading>
+</ng-template>

@@ -7,6 +7,8 @@ export interface Organisation extends Shop, Corporation{
 }
 
 export interface Shop {
+  id?: number
+  name?: string
   balance?: number
   lifestyle?: Lifestyle
   specialisations?: number[]

@@ -19,6 +19,10 @@ export class CorpComponent {
       name: 'Информация',
       routerLink: 'info',
     },
+    {
+      name: 'Контракты',
+      routerLink: 'contracts'
+    }
   ]
   get isMobile() {
     return this._appService.isMobile

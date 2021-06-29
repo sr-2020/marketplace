@@ -7,14 +7,18 @@ import { MatPaginator } from '@angular/material/paginator'
 import { BehaviorSubject } from 'rxjs'
 import { MatAccordion } from '@angular/material/expansion'
 import { PrintService } from '../../common/print/print.service'
-import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox'
 import { AppService } from '../../app.service'
+import { MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox'
 
 @Component({
   selector: 'sr-goods-list',
   templateUrl: './goods-list.component.html',
   styleUrls: ['./goods-list.component.scss'],
-  providers: [{ provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'noop' }],
+  providers: [{
+    provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: {
+      clickAction: 'noop'
+    }
+  }],
 })
 export class GoodsListComponent implements AfterViewInit {
   shopList: ShopUnit[]

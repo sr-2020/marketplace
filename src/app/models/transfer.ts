@@ -7,6 +7,7 @@ export interface Transfer {
   from: string
   newBalance: number
   operationTime: string
+  overdraft: boolean
   to: string
   transferType: TransferType
 }
