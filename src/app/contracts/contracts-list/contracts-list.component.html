@@ -7,12 +7,13 @@
   <div class='row'>
     <div class='col-xs-12 col-sm-4'>
       <mat-form-field>
-        <input type='text' placeholder='Фильтр' matInput>
+        <input [formControl]='filterCtrl' type='text' placeholder='Фильтр' matInput>
       </mat-form-field>
     </div>
     <div class='col-xs-12 col-sm-4'>
       <mat-form-field>
-        <mat-select>
+        <mat-select [multiple]='true' placeholder='Статус' [formControl]='statusFilter'>
+          <mat-option *ngFor='let o of options' [value]='o'><span class='status-option'>{{o | contract}}</span></mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -28,7 +29,7 @@
             {{c.shopName}}
           </div>
         </div>
-        <div class='contract__status'>{{c.status}}</div>
+        <div class='contract__status'>{{c.status | contract}}</div>
       </mat-list-item>
     </mat-list>
   </div>

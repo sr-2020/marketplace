@@ -1,6 +1,7 @@
 .transaction-list__column {
   width: 40%;
   align-items: center;
+  position: relative;
 
   &.--target {
     width: 50%;
@@ -100,4 +101,8 @@
 
 .container-fluid:last-child {
   margin-bottom: 80px;
+}
+
+.--overdraft {
+  background: #ffc9c9;
 }

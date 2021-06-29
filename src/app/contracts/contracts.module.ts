@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { ContractStatusPipe } from '@shared/pipes/contractStatus.pipe'
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 
@@ -23,7 +24,8 @@ import { ContractStatusPipe } from '@shared/pipes/contractStatus.pipe'
     SharedModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ]
 })
 export class ContractsModule { }

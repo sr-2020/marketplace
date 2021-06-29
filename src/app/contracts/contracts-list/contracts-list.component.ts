@@ -13,9 +13,11 @@ export class ContractsListComponent implements OnInit {
   loading = true
   _rawContracts: Contract[] = []
   filterCtrl = new FormControl('')
-  statusFilter = new FormControl('All')
-  options = ['All', 'Suggested', '', '']
-  constructor(private session: SessionService, private contractListService: ContractsListService) { }
+  statusFilter = new FormControl([])
+  options = ['suggested', 'terminating', 'approved']
+
+  constructor(private session: SessionService, private contractListService: ContractsListService) {
+  }
 
   get isShop(): boolean {
     return this.session.isShop
@@ -31,6 +33,16 @@ export class ContractsListComponent implements OnInit {
   }
 
   get contracts() {
-    return this._rawContracts.filter(() => true) // todo add filter
+    const statusFiltered = this._rawContracts.filter(c => {
+      if (this.statusFilter.value.length === 0) {
+        return true
+      } else {
+        return !!~this.statusFilter.value.indexOf(c.status.toLowerCase())
+      }
+    })
+
+    return statusFiltered
+      .filter((c) => new RegExp(this.filterCtrl.value, 'gi')
+        .test(this.isShop ? c.corporationName : c.shopName))
   }
 }
