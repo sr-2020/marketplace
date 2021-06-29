@@ -13,12 +13,17 @@
     <div class='col-xs-12 col-sm-4'>
       <mat-form-field>
         <mat-select [multiple]='true' placeholder='Статус' [formControl]='statusFilter'>
-          <mat-option *ngFor='let o of options' [value]='o'><span class='status-option'>{{o | contract}}</span></mat-option>
+          <mat-option *ngFor='let o of options' [value]='o'><span class='status-option'>{{o | contract}}</span>
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
+    <div class='col-xs-12 col-sm-4' style='text-align: right' *ngIf='!isShop'>
+      <button color='primary' mat-raised-button [routerLink]="['shops']">Заключить контракт</button>
+    </div>
   </div>
 </div>
+
 <div class='container-fluid content'>
   <div class='row'>
     <mat-list class='col-xs-12'>
@@ -29,7 +34,14 @@
             {{c.shopName}}
           </div>
         </div>
-        <div class='contract__status'>{{c.status | contract}}</div>
+        <div class='contract__actions'>
+          <button color='primary' mat-mini-fab>
+            <mat-icon>
+            done
+          </mat-icon></button>
+          <button mat-button>123</button>
+        </div>
+        <div class='contract__status {{c.status.toLowerCase()}}'>{{c.status | contract}}</div>
       </mat-list-item>
     </mat-list>
   </div>

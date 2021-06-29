@@ -9,13 +9,17 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { ContractStatusPipe } from '@shared/pipes/contractStatus.pipe'
 import { ReactiveFormsModule } from '@angular/forms'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
+import { ShopsListComponent } from './shops-list/shops-list.component'
 
 
 
 @NgModule({
   declarations: [
     ContractsListComponent,
-    ContractStatusPipe
+    ContractStatusPipe,
+    ShopsListComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms'
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class ContractsModule { }

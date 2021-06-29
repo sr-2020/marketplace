@@ -1,11 +1,10 @@
 .contract {
+  overflow: hidden;
   background: #F2F2F2;
+  position: relative;
   border-radius: 8px;
   margin-bottom: 4px;
-  transition: background-color .3s ease-in-out;
-  &:hover {
-    background: #DADADA;
-  }
+  transition: background-color .3s ease-in-out;;
 
   &__title {
     color: #999999;
@@ -16,9 +15,30 @@
     width: max-content;
     margin-right: auto;
   }
+  &__actions {
+    position: relative;
+    z-index: 2000;
+  }
 
   &__status {
-    text-align: right;
+    text-align: center;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    opacity: .3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &.suggested {
+      color: orange;
+    }
+    &.terminating {
+      color: red;
+    }
+    &.approved{
+      color: green
+    }
   }
 }
 

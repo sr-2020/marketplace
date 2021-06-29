@@ -24,12 +24,12 @@ export class ContractsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._rawContracts = mock
+    // this._rawContracts = mock
     this.loading = false
-    // this.contractListService.getContractList().subscribe(el => {
-    //   this._rawContracts = el.data
-    //   this.loading = false
-    // }) // todo раскоментить когда сверстаю
+    this.contractListService.getContractList().subscribe(el => {
+      this._rawContracts = el.data
+      this.loading = false
+    })
   }
 
   get contracts() {

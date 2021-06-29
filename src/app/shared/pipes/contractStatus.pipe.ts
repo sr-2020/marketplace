@@ -5,7 +5,7 @@ export type ContractType = 'suggested' | 'terminating' | 'approved'
 const map = new Map<ContractType, string>([
   ['suggested', 'предложенный'],
   ['terminating', 'расторгаемый'],
-  ['approved', 'активный'],
+  ['approved', 'заключенный'],
 ])
 @Pipe({
   name: 'contract',
