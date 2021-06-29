@@ -1,21 +1,38 @@
-
 <ng-container *ngIf='!loading; else loadingTpl'></ng-container>
-<div class="container-fluid">
+<div class='container-fluid'>
   <h1>Контракты</h1>
 </div>
 
 <div class='container-fluid'>
   <div class='row'>
-
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field>
+        <input type='text' placeholder='Фильтр' matInput>
+      </mat-form-field>
+    </div>
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field>
+        <mat-select>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-  <mat-list>
-    <mat-list-item>Lorem ipsum dolor sit amet, consectetur adipisicing.</mat-list-item>
-    <mat-list-item>Culpa, ex impedit maiores modi nihil quo.</mat-list-item>
-    <mat-list-item>Beatae ducimus labore nobis non reiciendis sint?</mat-list-item>
-    <mat-list-item>Animi aut consectetur doloremque illo nobis officiis.</mat-list-item>
-    <mat-list-item>Corporis doloremque eum nostrum quidem ut, voluptas.</mat-list-item>
-    <mat-list-item>Consectetur consequuntur cupiditate, dolore explicabo quaerat totam?</mat-list-item>
-  </mat-list>
+</div>
+<div class='container-fluid content'>
+  <div class='row'>
+    <mat-list class='col-xs-12'>
+      <mat-list-item *ngFor='let c of contracts' class='contract'>
+        <div class='contract__wrapper'>
+          <div class='contract__title'>Контракт с:</div>
+          <div class='contract__name'>
+            {{c.shopName}}
+          </div>
+        </div>
+        <div class='contract__status'>{{c.status}}</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
 </div>
 
 <ng-template #loadingTpl>

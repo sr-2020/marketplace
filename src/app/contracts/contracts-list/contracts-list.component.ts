@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '@services/session.service'
 import { Contract, ContractsListService } from './contracts-list.service'
+import { mock } from './ContractsMock'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'sr-contracts-list',
@@ -10,6 +12,9 @@ import { Contract, ContractsListService } from './contracts-list.service'
 export class ContractsListComponent implements OnInit {
   loading = true
   _rawContracts: Contract[] = []
+  filterCtrl = new FormControl('')
+  statusFilter = new FormControl('All')
+  options = ['All', 'Suggested', '', '']
   constructor(private session: SessionService, private contractListService: ContractsListService) { }
 
   get isShop(): boolean {
@@ -17,10 +22,12 @@ export class ContractsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.contractListService.getContractList().subscribe(el => {
-      this._rawContracts = el.data
-      this.loading = false
-    })
+    this._rawContracts = mock
+    this.loading = false
+    // this.contractListService.getContractList().subscribe(el => {
+    //   this._rawContracts = el.data
+    //   this.loading = false
+    // }) // todo раскоментить когда сверстаю
   }
 
   get contracts() {

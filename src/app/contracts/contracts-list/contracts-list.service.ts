@@ -10,7 +10,6 @@ export interface Contract {
   shopId: number,
   shopName: string,
   status: string,
-  contract: number
 }
 
 @Injectable({
