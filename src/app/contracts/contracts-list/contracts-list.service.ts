@@ -30,7 +30,7 @@ export class ContractsListService {
     const q = {}
     q[this.session.isShop ? 'shop' : 'corporation'] = this.session.selectedOrg.value?.id
     const path: string[] = ['shop', this.session.isShop ? 'shopcontracts' : 'corporationcontracts']
-    return this._http.getReq<Response<Contract[]>>( path, q )
+    return this._http.getReq<Response<Contract[]>>( path, { params: {...q}} )
   }
 
   approveContract(c: Contract): Observable<Response<undefined>> {

@@ -4,7 +4,8 @@
   position: relative;
   border-radius: 8px;
   margin-bottom: 4px;
-  transition: background-color .3s ease-in-out;;
+  transition: background-color .3s ease-in-out;
+  height: unset !important;
 
   &__title {
     color: #999999;

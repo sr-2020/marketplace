@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export interface DialogData {
   title?: string,
   description?: string
-  succesText?: string
+  successText?: string
   confirmBtnText?: string
   confirmMethod: () => Observable<any>
 }
@@ -26,9 +26,9 @@ export class DialogComponent {
   onAccept() {
     this.dialogRef.disableClose = true
     this.pending = true
-    this.data.confirmMethod().subscribe((el) => {
-        this.alert.open(this.data.succesText || 'Успешно!', '', {duration: 3000})
-        this.dialogRef.close(el)
+    this.data.confirmMethod().subscribe(() => {
+        this.alert.open(this.data.successText || 'Успешно!', '', {duration: 3000})
+        this.dialogRef.close('success')
       },
       error => {
         this.alert.open(error.message)

@@ -45,7 +45,7 @@ export class ShopsListComponent implements OnInit {
       data: {
         title: 'Заключение контракта',
         description: `Вы уверены что хотите заключить контракт с магазином '${shop.name}'?`,
-        succesText: `Отправлен запрос на заключение контракта с магазином '${shop.name}'`,
+        successText: `Отправлен запрос на заключение контракта с магазином '${shop.name}'`,
         confirmBtnText: 'Заключить',
         confirmMethod: () => {
           return this.service.suggestContract(shop.id)

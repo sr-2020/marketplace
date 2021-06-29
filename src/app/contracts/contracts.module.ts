@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { ShopsListComponent } from './shops-list/shops-list.component'
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 
 
@@ -31,7 +32,8 @@ import { ShopsListComponent } from './shops-list/shops-list.component'
     MatSelectModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule
   ]
 })
 export class ContractsModule { }

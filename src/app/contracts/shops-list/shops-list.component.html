@@ -1,4 +1,4 @@
-<ng-container *ngIf='!loading; else loadingTpl'></ng-container>
+<ng-container *ngIf='!loading; else loadingTpl'>
 <div class='container-fluid'>
   <h1>Заключение контракта</h1>
   <h2>Выберите магазин</h2>
@@ -30,12 +30,12 @@
           <div class='shop-list__title'>Локация:</div>
           <div class='shop-list__description'>{{s.location}}</div>
         </div>
-        <div *ngIf='s.haveContract' class='shop-list__item'>Есть контракт</div>
+        <div *ngIf='s.haveContract' class='shop-list__item have-contract'>Есть контракт</div>
       </mat-list-item>
     </mat-list>
   </div>
 </div>
-
+</ng-container>
 <ng-template #loadingTpl>
   <sr-loading>Загрузка магазинов</sr-loading>
 </ng-template>
