@@ -6,9 +6,22 @@
   <ng-container *ngFor="let info of shopInfo">
     <div *ngIf="info.value !== null || info.value !== undefined" class="row">
       <div class="col-xs-12 col-sm-2 --title">{{ info.title }}</div>
-      <div class="col-xs-12 col-sm-10 --value">
+      <div class="col-xs-12 col-sm-10 --value" *ngIf='info.title !== "Специализации:"; else spec'>
         {{ info.value }} <span *ngIf="info.price">&#165;</span>
       </div>
+      <ng-template #spec>
+        <div class="col-xs-12 col-sm-10 --value" >
+          <ng-container *ngIf='(specs$ | async) as s'>
+            <div *ngIf='s.length === 0'>
+              Специализации отсутствуют
+            </div>
+            <div *ngFor='let spec of s'>
+              {{spec.name}}
+            </div>
+          </ng-container>
+
+        </div>
+      </ng-template>
     </div>
   </ng-container>
 </div>

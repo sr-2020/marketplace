@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { SessionService } from '@services/session.service'
-import { Organisation } from '@type'
+import { Organisation, Specialisation } from '@type'
 import { LifestylePipe } from '@shared/pipes/lifestyle.pipe'
+import { InfoService } from './info.service'
+import { filter, map, pluck } from 'rxjs/operators'
+import { Observable, of } from 'rxjs'
 
 @Component({
   selector: 'sr-info',
@@ -10,8 +13,8 @@ import { LifestylePipe } from '@shared/pipes/lifestyle.pipe'
 })
 export class InfoComponent implements OnInit {
   shopInfo = []
-
-  constructor(private _session: SessionService) {}
+  specs$ = of<Specialisation[]>([])
+  constructor(private _session: SessionService, private _service: InfoService) {}
 
   ngOnInit(): void {
     this._session.selectedOrg.subscribe((org: Organisation) => {
@@ -21,8 +24,15 @@ export class InfoComponent implements OnInit {
       }
 
       const isShop = org.corporationUrl === undefined
+
       let info = []
       if (isShop) {
+        this.specs$ = this._service.getSpecialisations().pipe(
+          pluck('data'),
+          map(spec => {
+            return spec.filter(e => ~org.specialisations.indexOf(e.id))
+          })
+        )
         info = [
           {
             title: 'Lifestyle:',
@@ -38,11 +48,7 @@ export class InfoComponent implements OnInit {
           },
           {
             title: 'Специализации:',
-            value: 'TBI',
-          },
-          {
-            title: 'Комментарий:',
-            value: org.comment,
+            value: org.specialisations,
           },
         ]
       } else {
