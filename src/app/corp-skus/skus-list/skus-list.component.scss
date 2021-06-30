@@ -1,0 +1,19 @@
+.property {
+  margin-bottom: 8px;
+  display: inline-block;
+  margin-right: 8px;
+
+  &__title {
+    font-size: 10px;
+    color: #C9C9C9;
+  }
+
+  &__value {
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

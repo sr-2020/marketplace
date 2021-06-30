@@ -22,7 +22,12 @@ export class CorpComponent {
     {
       name: 'Контракты',
       routerLink: 'contracts'
+    },
+    {
+      name: 'Товары корпорации',
+      routerLink: 'skus'
     }
+
   ]
   get isMobile() {
     return this._appService.isMobile

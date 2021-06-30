@@ -1,0 +1,58 @@
+<div class='container-fluid'>
+  <div class='row'>
+    <h1>Товары корпорации</h1>
+  </div>
+
+  <div class='row'>
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field class='col-xs-12 col-sm-3'>
+        <input matInput
+               [formControl]='filterCtrl'
+               placeholder='Поиск'
+               type='text' />
+      </mat-form-field>
+    </div>
+
+    <mat-paginator
+      #listPaginator
+      class='col-xs-12 col-sm-8 end-sm'
+      style='background-color: unset'
+      [length]='50'
+      [pageSizeOptions]='[5, 10, 25, 100]'
+      [pageSize]='25'
+    >
+    </mat-paginator>
+    <ng-container *ngIf='!loading; else loadingTpl'>
+      <div class='col-xs-12 col-sm-4' style='margin-bottom: 8px' *ngFor='let sku of skus$ | async' >
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{sku.name}}
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{sku.specialisationName}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <div class='property-wrapper'>
+              <div class='property' *ngFor='let s of schema'>
+                <div class='property__title'>{{s.title}}</div>
+                <ng-container [ngSwitch]='s.prop'>
+                  <div class='property__value' *ngSwitchCase='"discountType"'>{{sku[s.prop] === 1 ? 'Обычный предмет' : 'Оружие/Броня'}}</div>
+                  <div class='property__value' *ngSwitchCase='"basePrice"'>{{sku[s.prop]}} &#165;</div>
+                  <div class='property__value' *ngSwitchDefault>{{sku[s.prop]}}</div>
+                </ng-container>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+  <ng-template #loadingTpl>
+    <sr-loading>Загрузка товаров</sr-loading>
+  </ng-template>
+</div>

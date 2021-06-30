@@ -1,11 +1,9 @@
-<ng-container *ngIf='!loading; else loadingTpl'>
-<div class='container-fluid'>
-  <h1>Заключение контракта</h1>
-  <h2>Выберите магазин</h2>
-</div>
+<div class='container-fluid' *ngIf='!loading; else loadingTpl'>
+  <div class='row'>
+    <h1 class='col-xs-12'>Заключение контракта</h1>
+    <h2 class='col-xs-12'>Выберите магазин</h2>
+  </div>
 
-
-<div class='container-fluid'>
   <div class='row'>
     <div class='col-xs-12 col-sm-4'>
       <mat-form-field>
@@ -16,12 +14,11 @@
       <button mat-button [routerLink]='["/corp/contracts"]'>Назад к контрактам</button>
     </div>
   </div>
-</div>
 
-<div class='container-fluid'>
   <div class='row'>
     <mat-list class='col-xs-12'>
-      <mat-list-item *ngFor='let s of shops' class='shop-list' [disabled]='s.haveContract' (click)='suggestContract(s)'>
+      <mat-list-item *ngFor='let s of shops' class='shop-list' [disabled]='s.haveContract'
+                     (click)='suggestContract(s)'>
         <div class='shop-list__item'>
           <div class='shop-list__title'>Магазин:</div>
           <div class='shop-list__description'>{{s.name}}</div>
@@ -35,7 +32,7 @@
     </mat-list>
   </div>
 </div>
-</ng-container>
+
 <ng-template #loadingTpl>
   <sr-loading>Загрузка магазинов</sr-loading>
 </ng-template>

@@ -1,24 +1,30 @@
 import { Lifestyle } from '@type'
 
 export interface Sku {
-  skuId: number
-  skuName: string
-  count: number
-  corporationId: number
-  corporationName: string
-  enabled: boolean
-  corporationLogo: string
-  nomenklaturaId: number
-  nomenklaturaName: string
+  alias: string
+  baseCount: number
+  basePrice: number
   code: string
+  corporationId: number
+  corporationLogo: string
+  corporationName: string
+  count: number
+  description: string
+  discountType: number
+  enabled: boolean
+  id: number
   lifeStyle: Lifestyle
   lifeStyleId: number
-  basePrice: number
-  description: string
-  urlPicture: string
+  name: string
+  nomenklaturaId: number
+  nomenklaturaName: string
   productTypeId: number
   productTypeName: string
-  discountType: number
+  skuId: number
+  skuName: string
+  specialisationId: number
+  specialisationName: string
+  urlPicture: string
 }
 
 export interface ShopUnit {

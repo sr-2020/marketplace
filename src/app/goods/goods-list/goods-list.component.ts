@@ -49,10 +49,6 @@ export class GoodsListComponent implements AfterViewInit {
       prop: 'basePrice',
       price: true,
     },
-    {
-      title: 'Тип товара',
-      prop: 'productTypeName',
-    },
   ]
 
   get printList() {
@@ -68,9 +64,7 @@ export class GoodsListComponent implements AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
     this.dataSource.filter = filterValue.trim().toLowerCase()
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage()
-    }
+    this.dataSource.paginator?.firstPage()
   }
 
   ngAfterViewInit(): void {
