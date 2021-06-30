@@ -4,13 +4,8 @@
   width: 100%;
 }
 
-mat-drawer-container::ng-deep {
-  min-height: 100vh;
-
-  mat-drawer-content {
-    min-height: 100vh;
-    overflow: visible;
-  }
+mat-drawer-container {
+  height: 100%;
 }
 
 .mat-toolbar::ng-deep {

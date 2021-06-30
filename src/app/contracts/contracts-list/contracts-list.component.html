@@ -1,61 +1,58 @@
-<ng-container *ngIf='!loading; else loadingTpl'>
-  <div class='container-fluid'>
-    <h1>Контракты</h1>
+<div class='container-fluid' *ngIf='!loading; else loadingTpl'>
+  <div class='row'>
+    <h1 class='col-xs-12'>Контракты</h1>
   </div>
 
-  <div class='container-fluid'>
-    <div class='row'>
-      <div class='col-xs-12 col-sm-4'>
-        <mat-form-field>
-          <input [formControl]='filterCtrl' type='text' placeholder='Фильтр' matInput>
-        </mat-form-field>
-      </div>
-      <div class='col-xs-12 col-sm-4'>
-        <mat-form-field>
-          <mat-select [multiple]='true' placeholder='Статус' [formControl]='statusFilter'>
-            <mat-option *ngFor='let o of options' [value]='o'><span class='status-option'>{{o | contract}}</span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class='col-xs-12 col-sm-4' style='text-align: right' *ngIf='!isShop'>
-        <button color='primary' mat-raised-button [routerLink]="['shops']">Заключить контракт</button>
-      </div>
+  <div class='row'>
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field>
+        <input [formControl]='filterCtrl' type='text' placeholder='Фильтр' matInput>
+      </mat-form-field>
+    </div>
+    <div class='col-xs-12 col-sm-4'>
+      <mat-form-field>
+        <mat-select [multiple]='true' placeholder='Статус' [formControl]='statusFilter'>
+          <mat-option *ngFor='let o of options' [value]='o'><span class='status-option'>{{o | contract}}</span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class='col-xs-12 col-sm-4' style='text-align: right' *ngIf='!isShop'>
+      <button color='primary' mat-raised-button [routerLink]="['shops']">Заключить контракт</button>
     </div>
   </div>
 
-  <div class='container-fluid content'>
-    <div class='row'>
-      <mat-list class='col-xs-12'>
-        <mat-list-item *ngFor='let c of contracts' class='contract'>
-          <div class='contract__wrapper'>
-            <div class='contract__title'>Контракт с:</div>
-            <div class='contract__name'>
-              {{getName(c)}}
-            </div>
+  <div class='row'>
+    <mat-list class='col-xs-12'>
+      <mat-list-item *ngFor='let c of contracts' class='contract'>
+        <div class='contract__wrapper'>
+          <div class='contract__title'>Контракт с:</div>
+          <div class='contract__name'>
+            {{getName(c)}}
           </div>
-          <div class='contract__actions'>
-            <button *ngIf='isApprovable(c)' (click)='approveContract(c)' color='primary'
-                    [matTooltip]=" isShop ? 'Принять контракт' : 'Отозвать разрыв контракта'" mat-button>
-              <mat-icon>
-                grading
-              </mat-icon>
-            </button>
+        </div>
+        <div class='contract__actions'>
+          <button *ngIf='isApprovable(c)' (click)='approveContract(c)' color='primary'
+                  [matTooltip]=" isShop ? 'Принять контракт' : 'Отозвать разрыв контракта'" mat-button>
+            <mat-icon>
+              grading
+            </mat-icon>
+          </button>
 
-            <button *ngIf='!isNotTerminatable(c)' color='warn'
-                    (click)='terminateContract(c)'
-                    [matTooltip]="isShop ? 'Разорвать контракт' : 'Запросить разрыв контракта'" mat-button>
-              <mat-icon>
-                close
-              </mat-icon>
-            </button>
-          </div>
-          <div class='contract__status {{c.status.toLowerCase()}}'>{{c.status | contract}}</div>
-        </mat-list-item>
-      </mat-list>
-    </div>
+          <button *ngIf='!isNotTerminatable(c)' color='warn'
+                  (click)='terminateContract(c)'
+                  [matTooltip]="isShop ? 'Разорвать контракт' : 'Запросить разрыв контракта'" mat-button>
+            <mat-icon>
+              close
+            </mat-icon>
+          </button>
+        </div>
+        <div class='contract__status {{c.status.toLowerCase()}}'>{{c.status | contract}}</div>
+      </mat-list-item>
+    </mat-list>
   </div>
-</ng-container>
+</div>
+
 
 <ng-template #loadingTpl>
   <sr-loading>Загрузка контрактов</sr-loading>
