@@ -52,7 +52,7 @@ export class ShopAccessComponent implements OnInit {
   }
 
   selected($event: MatAutocompleteSelectedEvent) {
-    if (this.trustedUsers.indexOf($event.option.value) === -1) {
+    if (this.trustedUsers.map(el => el.toString()).indexOf($event.option.value) === -1) {
       this.trustedUsers.push($event.option.value)
       this.processing = true
       this.service
