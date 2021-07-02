@@ -30,6 +30,7 @@ import { TransfersModule } from './transfers/transfers.module'
 import { registerLocaleData } from '@angular/common'
 import { CorpComponent } from './corp/corp.component'
 import { ShopAccessComponent } from './shop/shop-access/shop-access.component'
+import { MatChipsModule } from '@angular/material/chips'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -65,6 +66,7 @@ registerLocaleData(localeRu, 'ru_RU')
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatChipsModule
   ],
   providers: [AppService],
 

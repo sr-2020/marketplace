@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms'
 import { DialogComponent, DialogData } from '@shared/dialog/dialog.component'
 import { MatDialog } from '@angular/material/dialog'
 import { take } from 'rxjs/operators'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'sr-contracts-list',
@@ -18,7 +19,10 @@ export class ContractsListComponent implements OnInit {
   statusFilter = new FormControl([])
   options = ['suggested', 'terminating', 'approved']
 
-  constructor(private session: SessionService, private contractListService: ContractsListService, private dialog: MatDialog) {
+  constructor(private session: SessionService,
+              private contractListService: ContractsListService,
+              private dialog: MatDialog,
+              private router: Router) {
   }
 
   get isShop(): boolean {
@@ -28,6 +32,11 @@ export class ContractsListComponent implements OnInit {
   ngOnInit(): void {
     // this._rawContracts = mock
     // this.loading = false
+    this.session.selectedOrg.subscribe(org => {
+      if (this.isShop && org !== undefined && !org.isOwner) {
+        this.router.navigate(['/404'])
+      }
+    })
     this.requestContract()
   }
 
@@ -100,8 +109,8 @@ export class ContractsListComponent implements OnInit {
     const dialogOptions: DialogData = this.isShop
       ? {
         title: 'Расторжение контракта',
-        description: `Вы уверены, что хотите ${isSuggested  ? 'отказать корпорации' : 'расторгнуть контракт с корпорацей' }  '${c.corporationName}'?`,
-        confirmBtnText: isSuggested  ? 'Отказать!' : 'Расторгнуть!',
+        description: `Вы уверены, что хотите ${isSuggested ? 'отказать корпорации' : 'расторгнуть контракт с корпорацей'}  '${c.corporationName}'?`,
+        confirmBtnText: isSuggested ? 'Отказать!' : 'Расторгнуть!',
         successText: isSuggested ? 'Отказ отправлен!' : `Контракт расторгнут!`,
         confirmMethod: () => {
           return this.contractListService.terminateContract(c)
@@ -109,9 +118,9 @@ export class ContractsListComponent implements OnInit {
       }
       : {
         title: 'Запрос на расторжение',
-        description: `Вы уверены, что хотите ${isSuggested  ? 'отозвать подписание' : 'запросить расторжение' } контракта с магазином '${c.shopName}'`,
-        confirmBtnText: isSuggested  ? 'Отозвать!' : 'Запросить!',
-        successText: isSuggested  ? 'Контракт отозван!' : 'Расторжение запрошено!',
+        description: `Вы уверены, что хотите ${isSuggested ? 'отозвать подписание' : 'запросить расторжение'} контракта с магазином '${c.shopName}'`,
+        confirmBtnText: isSuggested ? 'Отозвать!' : 'Запросить!',
+        successText: isSuggested ? 'Контракт отозван!' : 'Расторжение запрошено!',
         confirmMethod: () => {
           return this.contractListService.proposeContract(c)
         }

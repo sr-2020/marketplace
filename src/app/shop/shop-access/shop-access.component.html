@@ -4,7 +4,32 @@
   </div>
   <div class='row'>
     <div class='col-xs-12 col-sm-4'>
+      <mat-form-field appearance="fill" style='width: 100%'>
+        <mat-label>Доверенные пользователи</mat-label>
+        <input
+          type='text'
+          matInput
+          placeholder="Начните вводить имя"
+          [disabled]='processing'
+          [formControl]="inputCtrl"
+          [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let user of filteredOptions" [value]="user.modelId">
+            {{user.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
 
+      <mat-chip-list [disabled]='processing' class="mat-chip-list-stacked" aria-label="Fruit selection">
+        <mat-chip
+          *ngFor="let user of trustedUsers"
+          [removable]="removable"
+          (removed)='onRemove(user)'
+        >
+          {{getUserName(user)}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
     </div>
   </div>
 </div>
