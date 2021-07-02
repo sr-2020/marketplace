@@ -12,8 +12,10 @@ export interface Shop {
   balance?: number
   lifestyle?: Lifestyle
   specialisations?: number[]
+  trustedUsers: number[]
   location?: string
   comment?: string
+  isOwner?: boolean
 }
 
 export interface Corporation {

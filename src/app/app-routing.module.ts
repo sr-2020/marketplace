@@ -8,6 +8,8 @@ import { NotFoundComponent } from './common/not-found/not-found.component'
 import { CorpComponent } from './corp/corp.component'
 import { CorpGuard } from './corp/corp.guard'
 import { AppGuard } from './guards/app.guard'
+import { TrustedUserGuard } from './guards/trusted-user.guard'
+import { ShopAccessComponent } from './shop/shop-access/shop-access.component'
 
 const routes: Routes = [
   {
@@ -83,7 +85,13 @@ const routes: Routes = [
           import('./goods/goods.module').then((m) => m.GoodsModule)
       },
       {
+        path: 'access',
+        component: ShopAccessComponent,
+        canActivate: [TrustedUserGuard]
+      },
+      {
         path: 'contracts',
+        canActivate: [TrustedUserGuard],
         loadChildren: () =>
           import('./contracts/contracts.module').then((m) => m.ContractsModule)
       },
@@ -94,6 +102,7 @@ const routes: Routes = [
       },
       {
         path: 'transfers',
+        canActivate: [TrustedUserGuard],
         loadChildren: () =>
           import('./transfers/transfers.module').then((m) => m.TransfersModule)
       }

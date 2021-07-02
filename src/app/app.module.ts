@@ -29,6 +29,7 @@ import { ShopComponent } from './shop/shop.component'
 import { TransfersModule } from './transfers/transfers.module'
 import { registerLocaleData } from '@angular/common'
 import { CorpComponent } from './corp/corp.component'
+import { ShopAccessComponent } from './shop/shop-access/shop-access.component'
 
 registerLocaleData(localeRu, 'ru_RU')
 
@@ -41,6 +42,7 @@ registerLocaleData(localeRu, 'ru_RU')
     PrintComponent,
     AuthComponent,
     CorpComponent,
+    ShopAccessComponent,
   ],
   imports: [
     BrowserModule,
