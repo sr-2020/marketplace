@@ -59,7 +59,7 @@ export class ShopAccessComponent implements OnInit {
         .updateTrustedUsers(this.trustedUsers)
         .subscribe(() => {
           this.session.initSession()
-          this.alert.open('Пользователь добавлен в доверенных')
+          this.alert.open('Пользователь добавлен в доверенных', '', {duration: 2000})
           this.processing = false
         } )
     }
@@ -80,7 +80,7 @@ export class ShopAccessComponent implements OnInit {
       this.service
         .updateTrustedUsers(this.trustedUsers)
         .subscribe(() => {
-          this.alert.open('Пользователь убран из доверенных')
+          this.alert.open('Пользователь убран из доверенных', '', {duration: 2000})
           this.session.initSession()
           this.processing = false
         } )
