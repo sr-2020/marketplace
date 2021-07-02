@@ -8,6 +8,7 @@ import { NotFoundComponent } from './common/not-found/not-found.component'
 import { CorpComponent } from './corp/corp.component'
 import { CorpGuard } from './corp/corp.guard'
 import { AppGuard } from './guards/app.guard'
+import { ShopAccessComponent } from './shop/shop-access/shop-access.component'
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
         path: 'goods',
         loadChildren: () =>
           import('./goods/goods.module').then((m) => m.GoodsModule)
+      },
+      {
+        path: 'access',
+        component: ShopAccessComponent,
       },
       {
         path: 'contracts',
