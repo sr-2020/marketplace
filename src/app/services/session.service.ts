@@ -16,7 +16,7 @@ export class SessionService {
   }
 
   get isShop(): boolean {
-     return this.selectedOrg.value.corporationUrl === undefined
+     return this.selectedOrg?.value.corporationUrl === undefined
   }
 
   get session$(): BehaviorSubject<Session> {

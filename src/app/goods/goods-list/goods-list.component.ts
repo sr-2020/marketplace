@@ -37,10 +37,6 @@ export class GoodsListComponent implements AfterViewInit {
       prop: 'skuName'
     },
     {
-      title: 'Корпорация',
-      prop: 'corporationName'
-    },
-    {
       title: 'Название номенклатуры',
       prop: 'nomenklaturaName'
     },
@@ -50,8 +46,7 @@ export class GoodsListComponent implements AfterViewInit {
     },
     {
       title: 'Базовая цена',
-      prop: 'basePrice',
-      price: true
+      prop: 'basePrice'
     }
   ]
 
