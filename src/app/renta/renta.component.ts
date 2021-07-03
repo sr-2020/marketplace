@@ -38,6 +38,10 @@ export class RentaComponent implements AfterViewInit {
       prop: 'corporation',
     },
     {
+      title: 'Количество',
+      prop: 'count'
+    },
+    {
       title: 'Магазин',
       prop: 'shop',
     },
