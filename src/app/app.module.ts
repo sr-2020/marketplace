@@ -23,7 +23,7 @@ import { NavComponent } from './common/nav/nav.component'
 import { NgModule } from '@angular/core'
 import { NotFoundComponent } from './common/not-found/not-found.component'
 import { PrintComponent } from './common/print/print.component'
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SharedModule } from '@shared/shared.module'
 import { ShopComponent } from './shop/shop.component'
 import { TransfersModule } from './transfers/transfers.module'
@@ -66,7 +66,8 @@ registerLocaleData(localeRu, 'ru_RU')
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatChipsModule
+    MatChipsModule,
+    FormsModule
   ],
   providers: [AppService],
 

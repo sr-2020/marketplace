@@ -10,9 +10,9 @@ export interface Offer {
   skuName: string
   count: number
   corporationName: string
-  corporationLogo: string
+  corporationUrl: string
   nomenklaturaName: string
-  lifeStyle: Lifestyle
+  lifeStyle: Lifestyle | string
   description: string
   urlPicture: string
   productTypeName: string

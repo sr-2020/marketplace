@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Location } from '@angular/common'
 import { PrintService } from './print.service'
+import { FormControl } from '@angular/forms'
 
 @Component({
   selector: 'sr-print',
@@ -13,6 +14,7 @@ export class PrintComponent implements OnInit {
     private _location: Location
   ) {}
   ratio = 25
+  ratioCtrl = new FormControl('25')
   ngOnInit(): void {}
 
   get dataToPrint() {
