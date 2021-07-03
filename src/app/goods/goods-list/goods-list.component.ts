@@ -18,7 +18,7 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox'
     provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: {
       clickAction: 'noop'
     }
-  }],
+  }]
 })
 export class GoodsListComponent implements AfterViewInit {
   shopList: ShopUnit[]
@@ -34,21 +34,25 @@ export class GoodsListComponent implements AfterViewInit {
   goodsSchema = [
     {
       title: 'Название товара',
-      prop: 'skuName',
+      prop: 'skuName'
     },
     {
       title: 'Корпорация',
-      prop: 'corporationName',
+      prop: 'corporationName'
     },
     {
       title: 'Название номенклатуры',
-      prop: 'nomenklaturaName',
+      prop: 'nomenklaturaName'
+    },
+    {
+      title: 'Название специализации',
+      prop: 'specialisationName'
     },
     {
       title: 'Базовая цена',
       prop: 'basePrice',
-      price: true,
-    },
+      price: true
+    }
   ]
 
   get printList() {
@@ -59,7 +63,8 @@ export class GoodsListComponent implements AfterViewInit {
     private _service: GoodsListService,
     private _appService: AppService,
     private _printService: PrintService
-  ) {}
+  ) {
+  }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value
@@ -68,19 +73,25 @@ export class GoodsListComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this._printService.reset()
     this._service
       .getGoodsList()
       .pipe(map((el) => el.data))
       .subscribe((shopList) => {
         this.shopList = shopList
         this.dataSource = new MatTableDataSource<any>(
-          this.shopList.map((el) => {
-            return {
-              qr: el.qr,
-              qrid: el.qrid,
-              ...el.sku,
-            }
-          })
+          this.shopList
+            .filter(data => {
+              const result = new RegExp('анлок', 'gi').test(data?.sku?.name)
+              return !result
+            })
+            .map((el) => {
+              return {
+                qr: el.qr,
+                qrid: el.qrid,
+                ...el.sku
+              }
+            })
         )
         this.dataSource.paginator = this.paginator
         this.goods$ = this.dataSource.connect()
