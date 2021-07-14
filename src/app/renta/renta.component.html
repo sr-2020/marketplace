@@ -41,6 +41,7 @@
               {{ r.skuName }} {{ r.characterName }}
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
+              Кол-во:&nbsp;{{r.count}}
               <ng-container *ngIf="r.hasQRWrite">
                 <button
                   *ngIf="!r.qrRecorded; else qr"

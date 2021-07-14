@@ -13,7 +13,7 @@ export interface Sku {
   discountType: number
   enabled: boolean
   id: number
-  lifeStyle: Lifestyle
+  lifeStyle: Lifestyle | string
   lifeStyleId: number
   name: string
   nomenklaturaId: number
