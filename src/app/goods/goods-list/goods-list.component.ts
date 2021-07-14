@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core'
 import { GoodsListService } from './goods-list.service'
-import { ShopUnit } from '@type'
+import { ShopUnit, Sku } from '@type'
 import { map } from 'rxjs/operators'
 import { MatTableDataSource } from '@angular/material/table'
 import { MatPaginator } from '@angular/material/paginator'
@@ -22,8 +22,8 @@ import { MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox'
 })
 export class GoodsListComponent implements AfterViewInit {
   shopList: ShopUnit[]
-  goods$: BehaviorSubject<any>
-  dataSource: MatTableDataSource<any>
+  goods$: BehaviorSubject<Sku[]>
+  dataSource: MatTableDataSource<Sku>
   printMode = false
   isLoading = true
   error: any
@@ -31,10 +31,18 @@ export class GoodsListComponent implements AfterViewInit {
   @ViewChild('listPaginator') paginator: MatPaginator
   @ViewChild(MatAccordion) accordion: MatAccordion
 
-  goodsSchema = [
+  goodsSchema: {title: string, prop: keyof Sku}[] = [
     {
       title: 'Название товара',
       prop: 'skuName'
+    },
+    {
+      title: 'Корпорация',
+      prop: 'corporationName'
+    },
+    {
+      title: 'Лайфстайл',
+      prop: 'lifeStyle'
     },
     {
       title: 'Название номенклатуры',
@@ -74,10 +82,10 @@ export class GoodsListComponent implements AfterViewInit {
       .pipe(map((el) => el.data))
       .subscribe((shopList) => {
         this.shopList = shopList
-        this.dataSource = new MatTableDataSource<any>(
+        this.dataSource = new MatTableDataSource<Sku>(
           this.shopList
             .filter(data => {
-              const result = new RegExp('анлок', 'gi').test(data?.sku?.name)
+              const result = new RegExp('анлок', 'gi').test(data?.sku?.specialisationName)
               return !result
             })
             .map((el) => {

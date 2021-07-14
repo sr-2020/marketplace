@@ -73,6 +73,7 @@
               <span class='--lifestyle --{{g?.lifeStyle?.toLowerCase()}}'></span> {{ g.skuName }}
             </mat-panel-title>
             <mat-panel-description style="justify-content: flex-end">
+              <div class='--spec'>Спец: {{ g.specialisationName }}</div>
               <div class="--count">Кол-во: {{ g.count }}</div>
               <mat-checkbox
                 *ngIf="printMode"
@@ -107,11 +108,11 @@
                     </div>
 
                     <div *ngSwitchCase="'basePrice'" class="col-xs-12 col-sm-6 --value">
-                      {{ g[s.prop] }} &#165;<span *ngIf="s.price">&#165;</span>
+                      {{ g[s.prop] }} &#165;
                     </div>
 
                     <div *ngSwitchDefault class="col-xs-12 col-sm-6 --value">
-                      {{ g[s.prop] }} <span *ngIf="s.price">&#165;</span>
+                      {{ g[s.prop] }}
                     </div>
                   </ng-container>
 

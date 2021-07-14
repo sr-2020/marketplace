@@ -37,7 +37,9 @@
     white-space: nowrap;
   }
 }
-
+.--spec {
+  margin-right: 12px;
+}
 .--count {
   @media only screen and (max-width: 992px) {
     display: none;

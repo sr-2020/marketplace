@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core'
-import { Lifestyle } from '@type'
 
 export const LIFESTYLE: Map<string, string> = new Map([
   ['Wood', 'Дерево'],
@@ -14,8 +13,8 @@ export const LIFESTYLE: Map<string, string> = new Map([
   name: 'lifestyle'
 })
 export class LifestylePipe implements PipeTransform {
-  transform(value: Lifestyle | string): string {
-    if (!value) {
+  transform(value: any ): string {
+    if (!value ) {
       return ''
     }
 
@@ -23,6 +22,6 @@ export class LifestylePipe implements PipeTransform {
       return LIFESTYLE.get(value) ?? 'unknown'
     }
 
-    return LIFESTYLE.get(value.name) ?? 'unknown'
+    return LIFESTYLE.get(value?.name) ?? 'unknown'
   }
 }
