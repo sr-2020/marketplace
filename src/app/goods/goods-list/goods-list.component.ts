@@ -84,11 +84,7 @@ export class GoodsListComponent implements AfterViewInit {
         this.shopList = shopList
         this.dataSource = new MatTableDataSource<Sku>(
           this.shopList
-            .filter(data => {
-              const result = new RegExp('анлок', 'gi').test(data?.sku?.specialisationName)
-              return !result
-            })
-            .map((el) => {
+           .map((el) => {
               return {
                 qr: el.qr,
                 qrid: el.qrid,

@@ -3,8 +3,8 @@ import { SessionService } from '@services/session.service'
 import { Organisation, Specialisation } from '@type'
 import { LifestylePipe } from '@shared/pipes/lifestyle.pipe'
 import { InfoService } from './info.service'
-import { filter, map, pluck } from 'rxjs/operators'
-import { Observable, of } from 'rxjs'
+import { map, pluck } from 'rxjs/operators'
+import { of } from 'rxjs'
 
 @Component({
   selector: 'sr-info',
@@ -25,12 +25,18 @@ export class InfoComponent implements OnInit {
 
       const isShop = org.corporationUrl === undefined
 
-      let info = []
+      let info: {title: string, value: string | number | any[]}[]
       if (isShop) {
+        const unlockRegexp = new RegExp('анлок', 'gi')
         this.specs$ = this._service.getSpecialisations().pipe(
           pluck('data'),
           map(spec => {
-            return spec.filter(e => ~org.specialisations.indexOf(e.id))
+            return spec
+              .filter(e => ~org.specialisations.indexOf(e.id))
+              .filter(specialisation => {
+              return !unlockRegexp.test(specialisation?.name)
+            })
+
           })
         )
         info = [
