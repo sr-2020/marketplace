@@ -12,6 +12,7 @@ import { MatPaginator } from '@angular/material/paginator'
 import { AppService } from '../../app.service'
 import { Transfer } from '@type'
 import { MatAccordion } from '@angular/material/expansion'
+import { SessionService } from '@services/session.service'
 
 @Component({
   selector: 'sr-transfers-list',
@@ -19,23 +20,27 @@ import { MatAccordion } from '@angular/material/expansion'
   styleUrls: ['./transfers-list.component.scss'],
 })
 export class TransfersListComponent implements OnInit, AfterViewInit {
-  transfersList: Transfer[]
+  transfersList: Transfer[] = []
   dataSource: MatTableDataSource<Transfer>
   list$: BehaviorSubject<Transfer[]>
   isLoading = true
   constructor(
     private _service: TransferService,
+    private _session: SessionService,
     private _appService: AppService,
     private _cdr: ChangeDetectorRef
   ) {}
 
   @ViewChild('listPaginator') paginator: MatPaginator
   @ViewChild(MatAccordion) accordion: MatAccordion
+  get isShop(): boolean {
+    return this._session.isShop
+  }
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this._service.getTransferList().subscribe(({ data }) => {
-      this.transfersList = data
+      this.transfersList = [...this.transfersList, ...data]
       this.dataSource = new MatTableDataSource<any>(this.transfersList)
       this.list$ = this.dataSource.connect()
       this.dataSource.paginator = this.paginator

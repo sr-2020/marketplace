@@ -24,6 +24,10 @@ export class CorpComponent {
       routerLink: 'contracts'
     },
     {
+      name: 'Транзакции',
+      routerLink: 'transfers'
+    },
+    {
       name: 'Товары корпорации',
       routerLink: 'skus'
     }

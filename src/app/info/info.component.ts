@@ -69,11 +69,11 @@ export class InfoComponent implements OnInit {
           },
           {
             title: 'Продано товаров за прошедший цикл:',
-            value: org.lastSkuSold,
+            value: org.lastSkuSold + ' ¥',
           },
           {
             title: 'Продано товаров за текущий цикл:',
-            value: org.currentSkuSold,
+            value: org.currentSkuSold + ' ¥',
           },
         ]
       }
