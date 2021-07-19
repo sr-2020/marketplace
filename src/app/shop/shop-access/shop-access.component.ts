@@ -52,7 +52,7 @@ export class ShopAccessComponent implements OnInit {
   }
 
   selected($event: MatAutocompleteSelectedEvent) {
-    if (this.trustedUsers.map(el => el.toString()).indexOf($event.option.value) === -1) {
+    if (this.trustedUsers.indexOf($event.option.value) === -1) {
       this.trustedUsers.push($event.option.value)
       this.processing = true
       this.service
@@ -66,9 +66,9 @@ export class ShopAccessComponent implements OnInit {
     this.inputCtrl.patchValue('')
   }
 
-  getUserName(id: string) {
+  getUserName(id: number) {
     return this.users.find(user => {
-      return user.modelId === id.toString()})?.name
+      return user.modelId === id})?.name
   }
 
   onRemove(user: string) {

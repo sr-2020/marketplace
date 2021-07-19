@@ -14,7 +14,7 @@
           [formControl]="inputCtrl"
           [matAutocomplete]="auto">
         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let user of filteredOptions" [value]="user.modelId">
+          <mat-option *ngFor="let user of filteredOptions" [value]="user?.modelId">
             {{user.name}}
           </mat-option>
         </mat-autocomplete>

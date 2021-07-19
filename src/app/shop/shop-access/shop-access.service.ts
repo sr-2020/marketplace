@@ -9,8 +9,7 @@ export class ShopAccessService {
 
   constructor(private _http: HttpAdapterService, private session: SessionService) { }
 
-
-  updateTrustedUsers(users: string[]) {
+  updateTrustedUsers(users: number[]) {
     return this._http.postReq(['shop', 'shop'], {
       shop: this.session.selectedOrg.value.id,
       trustedModels: users
