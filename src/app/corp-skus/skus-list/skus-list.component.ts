@@ -41,7 +41,7 @@ export class SkusListComponent implements OnInit {
 
     this.service.getSkus$().subscribe(skus => {
       this.filterCtrl.enable()
-      this.dataSource = new MatTableDataSource(skus)
+      this.dataSource = new MatTableDataSource(skus.filter(sku => sku.enabled))
       this.dataSource.paginator = this.paginator
       this.skus$ = this.dataSource.connect()
       this.loading = false
