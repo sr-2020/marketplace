@@ -23,9 +23,10 @@ export class SkusListComponent implements OnInit {
 
   schema = [
     { title: 'Количество', prop: 'count' },
-    { title: 'Тип', prop: 'discountType' },
     { title: 'Базовая цена', prop: 'basePrice' },
     { title: 'Номенклатура', prop: 'nomenklaturaName' },
+    { title: 'Тип продукта', prop: 'productTypeName'},
+    { title: 'Тип', prop: 'discountType' },
     { title: 'Лайфстайл', prop: 'lifeStyle'},
     { title: 'Описание', prop: 'description'}
   ]
