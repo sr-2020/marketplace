@@ -18,6 +18,7 @@ export interface Sku {
   name: string
   nomenklaturaId: number
   nomenklaturaName: string
+  price?: number
   productTypeId: number
   productTypeName: string
   skuId: number
